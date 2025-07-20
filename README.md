@@ -69,17 +69,5 @@ code --install-extension rust-lang.rust-analyzer uloco.theme-bluloco-dark uloco.
 # Soft link
 
 ```bash
-# Windows
-mklink %HOME%\.config\starship.toml %cd%\.config\starship.toml
-mklink %HOME%\.config\btm.toml %cd%.\.config\btm.toml
-mklink %CMDER_HOME%\vendor\self_init.bat %cd%\cmder\self_init.bat
-mklink %CMDER_HOME%\config\user_aliases.cmd %cd%\cmder\user_aliases.cmd
-mklink %HOME%\.clang-format %cd%\.clang-format
-mklink %HOME%\.gitconfig %cd%\.gitconfig 
-
-# Linux
-ln -s ./.config/starship.toml ~/.config/starship.toml
-ln -s ./.config/btm.toml ~/.config/btm.toml
-ln -s ./.clang-format ~/.clang-format
-ln -s ./.gitconfig ~/.gitconfig
+python config.py
 ```
