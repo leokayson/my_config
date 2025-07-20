@@ -1,0 +1,188 @@
+From 2eb624410266e483381b4ff7631b7e76b934b02c Mon Sep 17 00:00:00 2001
+From: leokayson <1140933692@qq.com>
+Date: Sun, 20 Jul 2025 15:13:38 +0800
+Subject: [PATCH] Allow sorting by file type
+
+---
+ README.md            |  2 +-
+ doc/lsd.md           |  3 +++
+ src/app.rs           | 14 +++++++++-----
+ src/flags/sorting.rs | 10 ++++++++++
+ src/meta/filetype.rs |  2 +-
+ src/sort.rs          |  5 +++++
+ tests/integration.rs | 23 +++++++++++++++++++++++
+ 7 files changed, 52 insertions(+), 7 deletions(-)
+
+diff --git a/README.md b/README.md
+index 82d5ce2..0945e74 100644
+--- a/README.md
++++ b/README.md
+@@ -234,7 +234,7 @@ size: default
+ # == Sorting ==
+ sorting:
+   # Specify what to sort by.
+-  # Possible values: extension, name, time, size, version
++  # Possible values: type, extension, name, time, size, version
+   column: name
+   # Whether to reverse the sorting.
+   # Possible values: false, true
+diff --git a/doc/lsd.md b/doc/lsd.md
+index 78a1204..81808f4 100644
+--- a/doc/lsd.md
++++ b/doc/lsd.md
+@@ -77,6 +77,9 @@ lsd is a ls command with a lot of pretty colours and some other stuff to enrich
+ `-S`, `--sizesort`
+ : Sort by size
+ 
++`-T`, `--typesort`
++: Sort by file type
++
+ `-t`, `--timesort`
+ : Sort by time modified
+ 
+diff --git a/src/app.rs b/src/app.rs
+index fa32959..3a36970 100644
+--- a/src/app.rs
++++ b/src/app.rs
+@@ -92,6 +92,10 @@ pub struct Cli {
+     #[arg(short = 'S', long)]
+     pub sizesort: bool,
+ 
++    /// Sort by file type
++    #[arg(short = 'T', long)]
++    pub typesort: bool,
++
+     /// Sort by file extension
+     #[arg(short = 'X', long)]
+     pub extensionsort: bool,
+@@ -104,17 +108,17 @@ pub struct Cli {
+     #[arg(short = 'v', long)]
+     pub versionsort: bool,
+ 
+-    /// Sort by TYPE instead of name
++    /// Sort by SORTTYPE instead of name
+     #[arg(
+         long,
+-        value_name = "TYPE",
+-        value_parser = ["size", "time", "version", "extension", "git", "none"],
+-        overrides_with_all = ["timesort", "sizesort", "extensionsort", "versionsort", "gitsort", "no_sort"]
++        value_name = "SORTTYPE",
++        value_parser = ["size", "time", "version", "type", "extension", "git", "none"],
++        overrides_with_all = ["timesort", "sizesort", "typesort", "extensionsort", "versionsort", "gitsort", "no_sort"]
+     )]
+     pub sort: Option<String>,
+ 
+     /// Do not sort. List entries in directory order
+-    #[arg(short = 'U', long, overrides_with_all = ["timesort", "sizesort", "extensionsort", "versionsort", "gitsort", "sort"])]
++    #[arg(short = 'U', long, overrides_with_all = ["timesort", "sizesort", "typesort", "extensionsort", "versionsort", "gitsort", "sort"])]
+     pub no_sort: bool,
+ 
+     /// Reverse the order of the sort
+diff --git a/src/flags/sorting.rs b/src/flags/sorting.rs
+index 3e89593..6ebdd99 100644
+--- a/src/flags/sorting.rs
++++ b/src/flags/sorting.rs
+@@ -38,6 +38,7 @@ impl Sorting {
+ #[serde(rename_all = "kebab-case")]
+ pub enum SortColumn {
+     None,
++    Type,
+     Extension,
+     #[default]
+     Name,
+@@ -65,6 +66,8 @@ impl Configurable<Self> for SortColumn {
+             Some(Self::Version)
+         } else if cli.gitsort || sort == Some("git") {
+             Some(Self::GitStatus)
++        } else if cli.typesort || sort == Some("type") {
++            Some(Self::Type)
+         } else if cli.no_sort || sort == Some("none") {
+             Some(Self::None)
+         } else {
+@@ -201,6 +204,13 @@ mod test_sort_column {
+         assert_eq!(Some(SortColumn::Extension), SortColumn::from_cli(&cli));
+     }
+ 
++    #[test]
++    fn test_from_cli_type() {
++        let argv = ["lsd", "--typesort"];
++        let cli = Cli::try_parse_from(argv).unwrap();
++        assert_eq!(Some(SortColumn::Type), SortColumn::from_cli(&cli));
++    }
++
+     #[test]
+     fn test_from_cli_time() {
+         let argv = ["lsd", "--timesort"];
+diff --git a/src/meta/filetype.rs b/src/meta/filetype.rs
+index 07ca8ab..229654b 100644
+--- a/src/meta/filetype.rs
++++ b/src/meta/filetype.rs
+@@ -1,7 +1,7 @@
+ use crate::color::{ColoredString, Colors, Elem};
+ use std::fs::Metadata;
+ 
+-#[derive(Debug, PartialEq, Eq, Copy, Clone)]
++#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
+ #[cfg_attr(windows, allow(dead_code))]
+ pub enum FileType {
+     BlockDevice,
+diff --git a/src/sort.rs b/src/sort.rs
+index 34deb94..0ccde55 100644
+--- a/src/sort.rs
++++ b/src/sort.rs
+@@ -21,6 +21,7 @@ pub fn assemble_sorters(flags: &Flags) -> Vec<(SortOrder, SortFn)> {
+         SortColumn::Name => sorters.push((flags.sorting.order, by_name)),
+         SortColumn::Size => sorters.push((flags.sorting.order, by_size)),
+         SortColumn::Time => sorters.push((flags.sorting.order, by_date)),
++        SortColumn::Type => sorters.push((flags.sorting.order, by_type)),
+         SortColumn::Version => sorters.push((flags.sorting.order, by_version)),
+         SortColumn::Extension => sorters.push((flags.sorting.order, by_extension)),
+         SortColumn::GitStatus => sorters.push((flags.sorting.order, by_git_status)),
+@@ -65,6 +66,10 @@ fn by_date(a: &Meta, b: &Meta) -> Ordering {
+     b.date.cmp(&a.date).then(a.name.cmp(&b.name))
+ }
+ 
++fn by_type(a: &Meta, b: &Meta) -> Ordering {
++    a.file_type.cmp(&b.file_type).then(a.name.cmp(&b.name))
++}
++
+ fn by_version(a: &Meta, b: &Meta) -> Ordering {
+     compare(&a.name.name, &b.name.name)
+ }
+diff --git a/tests/integration.rs b/tests/integration.rs
+index 7244233..84b25f3 100644
+--- a/tests/integration.rs
++++ b/tests/integration.rs
+@@ -433,6 +433,29 @@ fn test_version_sort() {
+         );
+ }
+ 
++#[test]
++fn test_version_sort_overwrite_by_typesort() {
++    let dir = tempdir();
++    dir.child("0.3.7").touch().unwrap();
++    dir.child("0.11.5").touch().unwrap();
++    dir.child("11a").touch().unwrap();
++    dir.child("0.2").touch().unwrap();
++    dir.child("0.11").touch().unwrap();
++    dir.child("1").touch().unwrap();
++    dir.child("11").touch().unwrap();
++    dir.child("2").touch().unwrap();
++    dir.child("22").touch().unwrap();
++    cmd()
++        .arg("-v")
++        .arg("-T")
++        .arg("--ignore-config")
++        .arg(dir.path())
++        .assert()
++        .stdout(
++            predicate::str::is_match("0.2\n0.3.7\n0.11\n0.11.5\n1\n2\n11\n11a\n22\n$").unwrap(),
++        );
++}
++
+ #[test]
+ fn test_version_sort_overwrite_by_timesort() {
+     let dir = tempdir();
+-- 
+2.45.1.windows.1
+
