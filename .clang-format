@@ -1,3 +1,24 @@
-BasedOnStyle: Chromium
+BasedOnStyle: Google
+UseTab: Never
 IndentWidth: 4
-ColumnLimit: 200
+TabWidth: 4
+SortIncludes: false
+ColumnLimit: 120
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: true
+AccessModifierOffset: -4
+NamespaceIndentation: All
+FixNamespaceComments: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+DerivePointerAlignment: false
+PointerAlignment: Right
+BreakBeforeBraces: Custom
+SpacesInParentheses: true
+SpacesInAngles: true
+SpacesInSquareBrackets: true
+SpacesInContainerLiterals: true
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: true
+BraceWrapping:
+  AfterFunction: true

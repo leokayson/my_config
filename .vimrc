@@ -1,0 +1,20 @@
+syntax on
+set number
+set hlsearch
+set ruler
+set autochdir
+set relativenumber
+set wrap
+set autoindent
+set tabstop=4
+set showcmd
+set cursorline
+set linebreak
+set incsearch
+" set spell spelllang=en_us
+set undofile
+set noerrorbells
+set history=50
+set title
+set laststatus=2
+set nocompatible

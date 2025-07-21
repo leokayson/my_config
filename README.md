@@ -11,12 +11,13 @@
    # CMDER
    https://github.com/cmderdev/cmder
    ```
-2. Rust# install
+2. Rust
 
 ```bash
 # creat install
-cargo install bottom uv fd-find ripgrep bat starship
+cargo install bottom fd-find du-dust ripgrep bat starship
 cargo install --git https://github.com/leokayson/lsd.git
+cargo install --git https://github.com/astral-sh/uv uv
 ```
 
 2. VSCode
@@ -62,12 +63,20 @@ code --install-extension rust-lang.rust-analyzer uloco.theme-bluloco-dark uloco.
 ```plaintext
 # Windows
 %APPDATA%\Code\User\keybindings.json
-# Linux
-~/.config/Code/User/keybindings.json
+%APPDATA%\Code\User\settings.json
 ```
 
 # Soft link
 
 ```bash
 python config.py
+```
+
+# SSH
+
+```bash
+ssh-keygen -t rsa -b 4096 -f rsa-remote-ssh
+chmod 700 ./.ssh
+chmod 600 ./.ssh/authorized_keys
+chmod 755 ~
 ```
