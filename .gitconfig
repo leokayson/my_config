@@ -12,12 +12,23 @@
 	sp = stash pop 
 	sd = stash drop 
 	dt = difftool 
+	dt1 = difftool HEAD~1 
+	dt2 = difftool HEAD~2 
+	mt = mergetool 
+	mt1 = mergetool HEAD~1 
+	mt2 = mergetool HEAD~2 
+	rh = reset --hard 
+	his = show --name-only
 	sss = ls-files -m -o --exclude-standard 
 	cnm = commit --no-edit --amend 
 	shn = show --name-only --pretty="" 
+	shns = show --name-status 
 	unstage = reset HEAD -- 
 	glog = log --graph 
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short 
+	fp = format-patch 
+	fp1 = format-patch -1
+	fp2 = format-patch -2
 [core] 
 	editor = code --wait 
 	autocrlf = input

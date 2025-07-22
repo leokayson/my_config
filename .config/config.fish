@@ -3,10 +3,9 @@ if status is-interactive
     set PATH $PATH ~/env
     set PATH $PATH /env/usr/bin
     set PATH $PATH ~/.cargo/bin
-    set PATH $PATH ~/scripts
+    set PATH $PATH ~/tool/scripts/bin
     set PATH $PATH ~/env/rust/.cargo/bin
     set PATH $PATH ~/.local/bin
-    set PATH $PATH /pkg/qct/software/andes/nds32le-elf-newLib-v5/bin
 
     alias bashrc 'code ~/.bashrc'
     alias cls 'clear'
@@ -15,16 +14,16 @@ if status is-interactive
     alias scfg 'code ~/.config/starship.toml'
     alias fd 'fd -I -H'
     alias ls 'lsd -T --icon-theme unicode'
-    alias Ll 'ls --header --git -Al --date "+%m/%d/%Y %H:%M"'
+    alias ll 'ls --header --git -Al --date "+%m/%d/%Y %H:%M"'
     alias lld 'fd -l -d 1'
     alias llt 'll --total-size'
     alias cd1 'cd'
     alias cd2 'cd'
     alias cd3 'cd ../../../'
-    alias pc 'python ~/scripts/tool.py -pc'
+    alias pc '~/tool/scripts/bin/tool -pc'
     alias btm 'btm --theme=gruvbox --config_Location ~/.config/btm.toml'
 
-    alias ga_cnm 'git add . && git commit -m "cnm"'
+    alias ga_cnm 'git add . && git cnm'
     alias gc_cmd 'git commit -m "[{(date +"%m/%d %H:%M")}] sync"'
     alias grd 'git rh && git clean -fd'
 
@@ -32,6 +31,7 @@ if status is-interactive
 end
 
 starship init fish | source
+zoxide init fish | source
 
 function vscode_crash
     set -gx VSCODE_IPC_HOOK_CLI (lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)

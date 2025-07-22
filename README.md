@@ -15,7 +15,7 @@
 
 ```bash
 # creat install
-cargo install bottom fd-find du-dust ripgrep bat starship
+cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide
 cargo install --git https://github.com/leokayson/lsd.git
 cargo install --git https://github.com/astral-sh/uv uv
 ```
@@ -23,7 +23,11 @@ cargo install --git https://github.com/astral-sh/uv uv
 2. VSCode
 
 ```bash
-code --install-extension rust-lang.rust-analyzer uloco.theme-bluloco-dark uloco.theme-bluloco-light llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax ms-vscode-remote.remote-ssh
+code --install-extension rust-lang.rust-analyzer 
+code --install-extension uloco.theme-bluloco-dark uloco.theme-bluloco-light 
+code --install-extension llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor 
+code --install-extension pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax ms-vscode-remote.remote-ssh
+code --install-extension yo1dog.cursor-align matthewthorning.align-vertically
 ```
 
 ## On Linux

@@ -15,21 +15,24 @@ vi=vim $*
 pwsh=%SystemRoot%/System32/WindowsPowerShell/v1.0/powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "Invoke-Expression '. ''%CMDER_ROOT%/vendor/profile.ps1'''"
 
 ;= rem cmder-related cmd
-alias=code "C:\Users\11409\env\cmder\config\user_aliases.cmd"  
+alias=code "%CMDER_ROOT%\config\user_aliases.cmd"  
 reload_a="%CMDER_ROOT%\config\user_aliases.cmd" /reload
 reload=%SystemRoot%\System32\cmd.exe /s /k ""%CMDER_ROOT%/vendor/init.bat" /f"
 cd_cmder=cd /d "%CMDER_ROOT%"
 code_cmder=code %CMDER_ROOT%
 
-
 ;= rem 3rd-party cmd
+;= rem cargo cmds
 fd=fd -HI --color=always $*
-btm=btm --config_Location=%HoME%.config\btm.toml $*
 ls=lsd --icon-theme=unicode -T
-ll=lsd --icon-theme=unicode -T -Al --header --git --date="+%m/%d/%Y %H:%M" $*
-lls=lsd --icon-theme=unicode -T -Al --header --git --date="+%m/%d/%Y %H:%M" --total-size $*
+ll=lsd --icon-theme=unicode -T -Al --header --git --date=relative $*
+lls=lsd --icon-theme=unicode -T -Al --header --git --date=relative --total-size $*
 lld=fd -l -d 1 $*
-btm=btm --config_location=%HOME%\.config\btm.toml
+btm=btm --config_location=%HOME%\.config\btm.toml $*
 cr=cargo run $*
 cb=cargo build $*
+;= rem git cmds
 ga_cnm=git add . && git cnm
+;= rem config cmds
+scfg=code %HOME%\.config\starship.toml
+mycfg=code %HOME%\.config\my_config

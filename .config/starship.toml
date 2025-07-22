@@ -12,11 +12,12 @@ $git_status\
 $status\
 $cmd_duration\
 $line_break\
-$character"""
+$character\
+"""
 
-[character]
-success_symbol = '[✔](bold green)'
-error_symbol = '[X](bold red)'
+[character] 
+success_symbol = '✅' 
+error_symbol = '⛔'
 
 [status]
 symbol = '[○](bold red)'
