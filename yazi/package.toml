@@ -1,0 +1,52 @@
+[[plugin.deps]]
+use = "ourongxing/fast-enter"
+rev = "738356f"
+hash = "b209b5db91df69bdc6a4656cb8276cd9"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a63550b"
+hash = "c2021386289a0cbb3e152a052f67c177"
+
+[[plugin.deps]]
+use = "MasouShizuka/projects"
+rev = "a5e33db"
+hash = "3de26efded35814ba3e55e28f1c389a4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "1ab21d4"
+hash = "6d1fdb3792f6c003ab8ec0266c5eb142"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "1ab21d4"
+hash = "6dd6842938287785e70c8b991a91a3ed"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "1ab21d4"
+hash = "a8050052e59f3952abe0b3e27a5843de"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "de53d90"
+hash = "d601446a35750846682d4a67882b7dc2"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "9fc8fe0"
+hash = "2ad086899bf368fba211a33d8f68c39d"
+
+[[plugin.deps]]
+use = "MasouShizuka/close-and-restore-tab"
+rev = "5047217"
+hash = "bb24648b1f96f1cef8c1543742189aad"
+
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "a603d9e"
+hash = "e02a788e5b8ae0fb47fd0193dda589cc"
+
+[flavor]
+deps = []

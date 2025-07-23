@@ -9,20 +9,22 @@ ex=explorer $*
 gl=git log --oneline --all --graph --decorate $*
 ls=lsd --icon-theme=unicode -T
 pwd=cd
+cd=cd /d $*
 clear=cls
 unalias=alias /d $1
 vi=vim $*
 pwsh=%SystemRoot%/System32/WindowsPowerShell/v1.0/powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "Invoke-Expression '. ''%CMDER_ROOT%/vendor/profile.ps1'''"
 
 ;= rem cmder-related cmd
+cmder=code %CMDER_ROOT%
 alias=code "%CMDER_ROOT%\config\user_aliases.cmd"  
 reload_a="%CMDER_ROOT%\config\user_aliases.cmd" /reload
 reload=%SystemRoot%\System32\cmd.exe /s /k ""%CMDER_ROOT%/vendor/init.bat" /f"
 cd_cmder=cd /d "%CMDER_ROOT%"
-code_cmder=code %CMDER_ROOT%
 
 ;= rem 3rd-party cmd
 ;= rem cargo cmds
+y=yazi $*
 fd=fd -HI --color=always $*
 ls=lsd --icon-theme=unicode -T
 ll=lsd --icon-theme=unicode -T -Al --header --git --date=relative $*

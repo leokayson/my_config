@@ -1,14 +1,24 @@
-import sys, os, subprocess
+import os, subprocess, shutil
 
 def create_soft_link(file, link_file):
-    print(link_file)
-    if os.path.exists(link_file) or os.path.lexists(link_file):
-        os.remove(link_file)
+    if os.path.lexists(link_file):
+        try:
+            if os.path.islink(link_file) or os.path.isfile(link_file):
+                os.remove(link_file)
+            else:
+                shutil.rmtree(link_file)
+        except Exception as e:
+            print(f"Error removing existing link or file: {e}")
+            exit(1)
+    
     if not os.path.exists(os.path.dirname(link_file)):
         os.makedirs(os.path.dirname(link_file))
 
     if os.name == 'nt':
-        subprocess.run(f'mklink {link_file} {file}', shell=True, check=True)
+        if os.path.isdir(file):
+            subprocess.run(f'mklink /D {link_file} {file}', shell=True, check=True)
+        else:
+            subprocess.run(f'mklink {link_file} {file}', shell=True, check=True)
     else:
         subprocess.run(f'ln -s {file} {link_file}', shell=True, check=True)
 
@@ -18,7 +28,9 @@ def config_soft_link():
     
     if os.name == 'nt':
         cmder_home = os.getenv('CMDER_ROOT')
+        app_data = os.getenv('APPDATA')
 
+        create_soft_link(os.path.join(cwd, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
         if cmder_home:
             create_soft_link(os.path.join(cwd, 'cmder', 'self_init.bat'), os.path.join(cmder_home, 'vendor', 'self_init.bat'))
             create_soft_link(os.path.join(cwd, 'cmder', 'user_aliases.cmd'), os.path.join(cmder_home, 'config', 'user_aliases.cmd'))
@@ -27,8 +39,7 @@ def config_soft_link():
     else:
         fish_cfg = os.getenv('__fish_config_dir')
         
-        create_soft_link(os.path.join(cwd, 'bashrc'), os.path.join(home, '.bashrc'))
-
+        create_soft_link(os.path.join(cwd, '.bashrc'), os.path.join(home, '.bashrc'))
         if fish_cfg:
             create_soft_link(os.path.join(cwd, 'config.fish'), os.path.join(fish_cfg, 'config.fish'))
 
