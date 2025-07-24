@@ -1,72 +1,72 @@
 [user]
-	name = leokayson
-	email = 1140933692@qq.com
+	name       = leokayson
+	email      = 1140933692@qq.com
 [alias] 
-	co = checkout 
-	cp = cherry-pick 
-	br = branch 
-	ci = commit 
-	cm = commit -m 
-	ss = status 
-	sl = stash list 
-	sp = stash pop 
-	sd = stash drop 
-	dt = difftool 
-	dt1 = difftool HEAD~1 
-	dt2 = difftool HEAD~2 
-	mt = mergetool 
-	mt1 = mergetool HEAD~1 
-	mt2 = mergetool HEAD~2 
-	rh = reset --hard 
-	his = show --name-only
-	sss = ls-files -m -o --exclude-standard 
-	cnm = commit --no-edit --amend 
-	shn = show --name-only --pretty="" 
-	shns = show --name-status 
-	unstage = reset HEAD -- 
-	glog = log --graph 
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short 
-	fp = format-patch 
-	fp1 = format-patch -1
-	fp2 = format-patch -2
+	co         = checkout 
+	cp         = cherry-pick 
+	br         = branch 
+	ci         = commit 
+	cm         = commit -m 
+	ss         = status
+	sl         = stash list 
+	sp         = stash pop 
+	sd         = stash drop 
+	dt         = difftool 
+	dt1        = difftool HEAD~1 
+	dt2        = difftool HEAD~2 
+	mt         = mergetool 
+	mt1        = mergetool HEAD~1 
+	mt2        = mergetool HEAD~2 
+	rh         = reset --hard 
+	his        = show --name-only
+	sss        = ls-files -m -o --exclude-standard 
+	cnm        = commit --no-edit --amend 
+	shn        = show --name-only --pretty="" 
+	shns       = show --name-status 
+	unstage    = reset HEAD -- 
+	glog       = log --graph 
+	hist       = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short 
+	fp         = format-patch 
+	fp1        = format-patch -1
+	fp2        = format-patch -2
 [core] 
-	editor = code --wait 
-	autocrlf = input
+	editor     = code --wait 
+	autocrlf   = input
 [diff] 
-	tool = vscode 
+	tool       = vscode 
 [merge] 
-	tool = vscode 
+	tool       = vscode 
 [difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE 
+	cmd        = code --wait --diff $LOCAL $REMOTE 
 [mergetool "vscode"] 
-	cmd = cursor --wait $MERGED 
+	cmd        = cursor --wait $MERGED 
 [color] 
-	ui = auto 
-	branch = auto 
-	diff = auto 
-	status = auto
+	ui         = auto 
+	branch     = auto 
+	diff       = auto 
+	status     = auto
 [color "branch"] 
-	current = yellow reverse 
-	local = yellow 
-	remote = green 
+	current    = yellow reverse 
+	local      = yellow 
+	remote     = green 
 [color "diff"] 
-	meta = yellow bold 
-	frag = magenta bold 
-	old = red bold 
-	new = green bold 
+	meta       = yellow bold 
+	frag       = magenta bold 
+	old        = red bold 
+	new        = green bold 
 [color "status"] 
-	added = yellow 
-	changed = green 
-	untracked = cyan 
+	added      = yellow 
+	changed    = green 
+	untracked  = cyan 
 [format] 
-	numbered = auto 
+	numbered   = auto 
 [http] 
-	sslVerify = false 
-	proxy = http://127.0.0.1:12688 
+	sslVerify  = false 
+	proxy      = http://127.0.0.1:12688 
 	postBuffer = 524288000 
 [https] 
-	sslVerify = false 
-	proxy = http://127.0.0.1:12688 
+	sslVerify  = false 
+	proxy      = http://127.0.0.1:12688 
 	postBuffer = 524288000 
 [credential "helperselector"]
-	selected = manager
+	selected   = manager

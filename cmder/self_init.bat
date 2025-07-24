@@ -6,5 +6,6 @@ set RUST_BACKTRACE=1
 
 set PATH=%PATH%;%APPDATA%\Python\Python313\Scripts
 set PATH=%PATH%;%HOME%\.cargo\bin
+set PATH=%PATH%;%HOME%\.local\bin
 
 :: Self Init Operations

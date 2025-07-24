@@ -5,6 +5,9 @@
 [mgr]
 
 keymap = [
+	# This is a key for test
+	{on   = "<C-t>", run = "plugin command", desc = "Yazi command prompt" },
+
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
 	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
@@ -19,15 +22,13 @@ keymap = [
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
-	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
-
 	# Navigation
 	{ on = "<Left>",  run = "leave", desc = "Back to the parent directory" },
 	{ on = "<Right>", run = "enter", desc = "Enter the child directory" },
 
 	{ on = "<Backspace>",  run = "leave",             desc = "Back to the parent directory" },
 	{ on = "<Enter>", 	   run = "plugin fast-enter", desc = "Enter the subfolder faster, or open the file directly" },
+	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
 
 	# Toggle
 	{ on = "<Space>", run = [ "toggle", "arrow next" ], desc = "Toggle the current selection state" },
@@ -46,10 +47,8 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "o",         run = "open",                        desc = "Open selected files" },
-	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
+ 	{ on = "o",         run = 'shell "code %*"' ,  			orphan = true, desc = "Open with VS Code", for = "windows"  },
+ 	{ on = "o",         run = 'shell "code $@"' ,  			orphan = true, desc = "Open with VS Code", for = "linux"  },
 	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
 	{ on = "c",         run = "yank",                        desc = "Yank selected files (copy)" },
 	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
@@ -89,8 +88,6 @@ keymap = [
 	{ on = [ "<C-c>", "f" ], run = "copy filename",         desc = "Copy the filename" },
 	{ on = [ "<C-c>", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
 
-	{ on = [ "<C-c>", "m" ], run = "plugin chmod", 			desc = "Chmod on selected files" },
-
 	# Filter
 	{ on = "F", run = "filter --smart", desc = "Filter files" },
 
@@ -116,7 +113,8 @@ keymap = [
 	{ on = [ "<C-s>", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
-	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
+	{ on = [ "g", "~" ],       run = "cd ~",             desc = "Go home" },
+	{ on = [ "g", "h" ],       run = "plugin cdhist -- _ --fuzzy=fzf",             desc = "Select a directory from history using cdhist", 		for = "linux" },
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
@@ -176,11 +174,13 @@ keymap = [
 	{ on = [ "<C-c>", "p", "h" ], run = "plugin compress -ph",                 desc = "Archive selected files (password+header)" },
 	{ on = [ "<C-c>", "p", "l" ], run = "plugin compress -l",                  desc = "Archive selected files (compression level)" },
 	{ on = [ "<C-c>", "p", "u" ], run = "plugin compress -phl",                desc = "Archive selected files (password+header+level)" },
+	{ on = [ "<C-c>", "s" ], run = "plugin system-clipboard",       desc = "Rename bookmark by fzf" },
+	{ on = [ "<C-c>", "m" ], run = "plugin chmod", 			desc = "Chmod on selected files" },
 	
 	{ on = "w", 	run = "plugin close-and-restore-tab close_to_right",	desc = "Close the current tab and turn to right tab, or quit if it is last tab" },
 	{ on = "<C-w>",	run = "plugin close-and-restore-tab restore",			desc = "Restore the closed tab" },
 
-	{ on = "<m>", run = "plugin relative-motions", desc = "Trigger a new relative motion"}
+	{ on = "G", run = "plugin relative-motions", desc = "Trigger a new relative motion"}
 ]
 
 [tasks]

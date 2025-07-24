@@ -2,6 +2,7 @@
 local is_windows = ya.target_family() == "windows"
 -- Define flags and strings
 local is_password, is_encrypted, is_level, cmd_password, cmd_level, default_extension = false, false, false, "", "", "zip"
+local is_depress = false
 
 -- Function to check valid filename
 local function is_valid_filename(name)
@@ -233,13 +234,15 @@ return {
         if job.args ~= nil then
             for _, arg in ipairs(job.args) do
                 if arg:match("^%-(%w+)$") then
-                    -- Handle combined flags (e.g., -phl)
+                    -- Handle combined flags (e.g., -uphl)
                     for flag in arg:sub(2):gmatch(".") do
                         if flag == "p" then
                             is_password = true
                         elseif flag == "h" then
                             is_encrypted = true
                         elseif flag == "l" then
+                            is_level = true
+                        elseif flag == "d" then
                             is_level = true
                         end
                     end

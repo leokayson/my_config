@@ -84,3 +84,7 @@ chmod 700 ./.ssh
 chmod 600 ./.ssh/authorized_keys
 chmod 755 ~
 ```
+
+# Yazi
+
+[Resources | Yazi](https://yazi-rs.github.io/docs/resources)
