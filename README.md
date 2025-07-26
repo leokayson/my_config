@@ -10,12 +10,15 @@
 
    # CMDER
    https://github.com/cmderdev/cmder
+
+   # cb
+   https://github.com/Slackadays/Clipboard
    ```
 2. Rust
 
 ```bash
 # creat install
-cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide
+cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl ouch
 cargo install --git https://github.com/leokayson/lsd.git
 cargo install --git https://github.com/astral-sh/uv uv
 ```
@@ -28,6 +31,7 @@ code --install-extension uloco.theme-bluloco-dark uloco.theme-bluloco-light
 code --install-extension llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor 
 code --install-extension pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax ms-vscode-remote.remote-ssh
 code --install-extension yo1dog.cursor-align matthewthorning.align-vertically
+code --install-extension usernamehw.find-jump enkeldigital.relative-goto
 ```
 
 ## On Linux
