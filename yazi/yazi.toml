@@ -47,9 +47,13 @@ reveal = [
 	{ run = 'termux-open "$(dirname "$1")"',        desc = "Reveal", for = "android" },
 	{ run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
+# extract = [
+# 	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+# 	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+# ]
 extract = [
-	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
+	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
 play = [
 	{ run = 'xdg-open "$1"',                desc = "Play", for = "linux" },
@@ -89,25 +93,28 @@ image_alloc      = 536870912  # 512MB
 image_bound      = [ 10000, 10000 ]
 suppress_preload = false
 
-[[plugin.prepend_previewers]]
-name = "*.tar*"
-run  = 'piper --format=url -- tar tf "$1"'
-
-[[plugin.prepend_previewers]]
-name = "*.csv"
-run  = 'piper -- bat -p --color=always "$1"'
-
 
 [plugin]
-append_previewers = [
-  { name = "*", run = "hexyl" },
+prepend_previewers = [
+	{name = "*.csv", run  = 'piper -- bat -p --color=always "$1"' },
+	# Archive previewer
+	{ mime = "application/*zip",            run = "ouch" },
+	{ mime = "application/*7z",             run = "ouch" },
+	{ mime = "application/x-tar",           run = "ouch" },
+	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/vnd.rar",         run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
+	{ mime = "application/xz",              run = "ouch" },
+	{ mime = "application/x-zstd",          run = "ouch" },
+	{ mime = "application/zstd",            run = "ouch" },
+	{ mime = "application/java-archive",    run = "ouch" },
 ]
-
 fetchers = [
 	# Mimetype
 	{ id = "mime", name = "*", run = "mime", prio = "high" },
 ]
-
 spotters = [
 	{ name = "*/", run = "folder" },
 	# Code
@@ -141,30 +148,33 @@ previewers = [
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	# JSON
-	{ mime = "application/{json,ndjson}", run = "json" },
+	{ mime = "application/{json,ndjson}", 	run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
-	{ mime = "image/svg+xml", run = "svg" },
-	{ mime = "image/*", run = "image" },
+	{ mime = "image/{avif,hei?,jxl}", 		run = "magick" },
+	{ mime = "image/svg+xml",         		run = "svg" },
+	{ mime = "image/*",               		run = "image" },
 	# Video
-	{ mime = "video/*", run = "video" },
+	{ mime = "video/*", 					run = "video" },
 	# PDF
-	{ mime = "application/pdf", run = "pdf" },
+	{ mime = "application/pdf", 			run = "pdf" },
 	# Archive
-	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
+	# { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
 	{ mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
-	{ name = "*.{AppImage,appimage}", run = "archive" },
+	# { name = "*.{AppImage,appimage}", run = "archive" },
 	# Virtual Disk / Disk Image
 	{ mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
 	{ mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
 	{ name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
 	# Font
 	{ mime = "font/*", run = "font" },
-	{ mime = "application/ms-opentype", run = "font" },
+	{ mime = "application/ms-opentype", 	run = "font" },
 	# Empty file
-	{ mime = "inode/empty", run = "empty" },
+	{ mime = "inode/empty", 				run = "empty" },
 	# Fallback
 	{ name = "*", run = "file" },
+]
+append_previewers = [
+  { name = "*", run = "hexyl" },
 ]
 
 [input]

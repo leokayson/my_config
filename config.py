@@ -1,5 +1,7 @@
 import os, subprocess, shutil
 
+cfg_home = os.path.dirname(__file__)
+
 def create_soft_link(file, link_file):
     if os.path.lexists(link_file):
         try:
@@ -23,32 +25,34 @@ def create_soft_link(file, link_file):
         subprocess.run(f'ln -s {file} {link_file}', shell=True, check=True)
 
 def config_soft_link():
-    cwd = os.getcwd()
     home = os.getenv('HOME')
     
     if os.name == 'nt':
         cmder_home = os.getenv('CMDER_ROOT')
         app_data = os.getenv('APPDATA')
+        local_app_data = os.getenv('LOCALAPPDATA')
 
-        create_soft_link(os.path.join(cwd, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
+        create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
+        create_soft_link(os.path.join(cfg_home, 'script', 'win'), os.path.join(home, '.config', 'script'))
+        create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(local_app_data, 'nvim', 'lua', 'config', 'keymaps.lua'))
+        create_soft_link(os.path.join(cfg_home, 'cmder', 'zoxide.lua'), os.path.join(cmder_home, 'vendor', 'zoxide.lua'))
         if cmder_home:
-            create_soft_link(os.path.join(cwd, 'cmder', 'self_init.bat'), os.path.join(cmder_home, 'vendor', 'self_init.bat'))
-            create_soft_link(os.path.join(cwd, 'cmder', 'user_aliases.cmd'), os.path.join(cmder_home, 'config', 'user_aliases.cmd'))
-            create_soft_link(os.path.join(cwd, 'cmder', 'zoxide.lua'), os.path.join(cmder_home, 'vendor', 'zoxide.lua'))
-
+            create_soft_link(os.path.join(cfg_home, 'cmder', 'self_init.bat'), os.path.join(cmder_home, 'vendor', 'self_init.bat'))
+            create_soft_link(os.path.join(cfg_home, 'cmder', 'user_aliases.cmd'), os.path.join(cmder_home, 'config', 'user_aliases.cmd'))
     else:
         fish_cfg = os.getenv('__fish_config_dir')
         
-        create_soft_link(os.path.join(cwd, '.bashrc'), os.path.join(home, '.bashrc'))
+        create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
+        create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
         if fish_cfg:
-            create_soft_link(os.path.join(cwd, 'config.fish'), os.path.join(fish_cfg, 'config.fish'))
+            create_soft_link(os.path.join(cfg_home, 'config.fish'), os.path.join(fish_cfg, 'config.fish'))
 
-    create_soft_link(os.path.join(cwd, 'vimrc'), os.path.join(home, '.vimrc'))
-    create_soft_link(os.path.join(cwd, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
-    create_soft_link(os.path.join(cwd, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))
+    create_soft_link(os.path.join(cfg_home, 'vimrc'), os.path.join(home, '.vimrc'))
+    create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
+    create_soft_link(os.path.join(cfg_home, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))
 
-    create_soft_link(os.path.join(cwd, '.clang-format'), os.path.join(home, '.clang-format'))
-    create_soft_link(os.path.join(cwd, '.gitconfig'), os.path.join(home, '.gitconfig'))
+    create_soft_link(os.path.join(cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
+    create_soft_link(os.path.join(cfg_home, '.gitconfig'), os.path.join(home, '.gitconfig'))
 
 
 if __name__ == "__main__":

@@ -21,18 +21,20 @@ alias=code "%CMDER_ROOT%\config\user_aliases.cmd"
 reload_a="%CMDER_ROOT%\config\user_aliases.cmd" /reload
 reload=%SystemRoot%\System32\cmd.exe /s /k ""%CMDER_ROOT%/vendor/init.bat" /f"
 cd_cmder=cd /d "%CMDER_ROOT%"
+cdf=%HOME%\.config\script\win_fzf.cmd cdf
+cdp=%HOME%\.config\script\win_fzf.cmd cdp
+codef=%HOME%\.config\script\win_fzf.cmd codef
+codep=%HOME%\.config\script\win_fzf.cmd codep
 
 ;= rem 3rd-party cmd
 ;= rem cargo cmds
-y=yazi $*
+y=y.cmd $*
 fd=fd -HI --color=always $*
 ls=lsd --icon-theme=unicode -T
 ll=lsd --icon-theme=unicode -T -Al --header --git --date=relative $*
 lls=lsd --icon-theme=unicode -T -Al --header --git --date=relative --total-size $*
 lld=fd -l -d 1 $*
 btm=btm --config_location=%HOME%\.config\btm.toml $*
-cr=cargo run $*
-cb=cargo build $*
 ;= rem git cmds
 ga_cnm=git add . && git cnm
 ;= rem config cmds

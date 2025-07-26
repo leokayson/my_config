@@ -24,19 +24,9 @@ rev = "de53d90"
 hash = "6dd6842938287785e70c8b991a91a3ed"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-paste"
-rev = "1ab21d4"
-hash = "a8050052e59f3952abe0b3e27a5843de"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:diff"
 rev = "de53d90"
 hash = "d601446a35750846682d4a67882b7dc2"
-
-[[plugin.deps]]
-use = "KKV9/compress"
-rev = "9fc8fe0"
-hash = "2ad086899bf368fba211a33d8f68c39d"
 
 [[plugin.deps]]
 use = "MasouShizuka/close-and-restore-tab"

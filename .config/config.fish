@@ -1,13 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    set PATH $PATH ~/env
-    set PATH $PATH /env/usr/bin
-    set PATH $PATH ~/.cargo/bin
-    set PATH $PATH ~/tool/scripts/bin
-    set PATH $PATH ~/env/rust/.cargo/bin
-    set PATH $PATH ~/.local/bin
-
-
     alias bashrc 'code ~/.bashrc'
     alias fcfg   'code ~/.config/fish/config.fish'
     alias scfg   'code ~/.config/starship.toml'
@@ -41,4 +33,57 @@ end
 
 function winpath
     echo (realpath $argv | string replace -a '/local/mnt/workspace/' 'Z:/')
+end
+
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+
+function cdf
+    cd ~
+    set selected (fzf --walker=dir,hidden) 
+    
+    if [ -n "$selected" ] 
+        cd "$selected" 
+        echo "enter: $PWD" 
+    else
+        cd - 
+        echo "no enter" 
+    end 
+end 
+
+function cdc
+    set selected (fzf --walker=dir,hidden) 
+    
+    if [ -n "$selected" ] 
+        cd "$selected" 
+        echo "enter: $PWD" 
+    else 
+        echo "no enter" 
+    end 
+end 
+
+function codef 
+    cd ~
+    set selected (fzf --walker=file,dir,hidden) 
+    if [ -n "$selected" ] 
+        code "$selected" 
+    else
+        cd -
+    end 
+end
+
+function coder
+    cd ~
+    set selected (fzf --walker=file,dir,hidden) 
+    if [ -n "$selected" ] 
+        code -r "$selected" 
+    else
+        cd -
+    end 
 end
