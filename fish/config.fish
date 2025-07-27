@@ -44,70 +44,106 @@ function y
 	rm -f -- "$tmp"
 end
 
-function cdh
-    cd ~
-    set selected (fzf --walker=dir,hidden) 
-    
-    if [ -n "$selected" ] 
-        cd "$selected" 
-        echo "enter: $PWD" 
-    else
-        cd - 
-        echo "no enter" 
-    end 
-end 
+function z
+    if test $argv[1] = "cd" (
 
-function cdc
-    set selected (fzf --walker=dir,hidden) 
-    
-    if [ -n "$selected" ] 
-        cd "$selected" 
-        echo "enter: $PWD" 
-    else 
-        echo "no enter" 
-    end 
-end 
+        set selected (fzf --walker=dir,hidden) 
+        
+        if [ -n "$selected" ] 
+            cd "$selected" 
+            echo "enter: $PWD" 
+        else
+            echo "no enter" 
+        end 
 
-function codeh 
-    cd ~
-    set selected (fzf --walker=file,dir,hidden) 
-    if [ -n "$selected" ] 
-        code "$selected" 
-    else
-        cd -
-    end 
-end
+    ) else if test $argv[1] = "cd~" (
 
-function codec 
-    set selected (fzf --walker=file,dir,hidden) 
-    if [ -n "$selected" ] 
-        code "$selected" 
-    end 
-end
+        cd ~
+        set selected (fzf --walker=dir,hidden) 
+        
+        if [ -n "$selected" ] 
+            cd "$selected" 
+            echo "enter: $PWD" 
+        else
+            cd - 
+            echo "no enter" 
+        end 
 
-function coder
-    cd ~
-    set selected (fzf --walker=file,dir,hidden) 
-    if [ -n "$selected" ] 
-        code -r "$selected" 
-    else
-        cd -
-    end 
-end
+    ) else if test $argv[1] = "cd/" (
 
-function nvimf 
-    cd ~
-    set selected (fzf --walker=file,dir,hidden) 
-    if [ -n "$selected" ] 
-        nvim "$selected" 
-    else
-        cd -
-    end 
-end
+        cd /
+        set selected (fzf --walker=dir,hidden) 
+        
+        if [ -n "$selected" ] 
+            cd "$selected" 
+            echo "enter: $PWD" 
+        else
+            cd -
+            echo "no enter" 
+        end 
 
-function nvimc
-    set selected (fzf --walker=file,dir,hidden) 
-    if [ -n "$selected" ] 
-        nvim "$selected" 
-    end 
+    ) else if test $argv[1] = "code" (
+        
+        set selected (fzf --walker=dir,file,hidden) 
+        
+        if [ -n "$selected" ] 
+            code "$selected" 
+        end 
+
+    ) else if test $argv[1] = "code~" (
+        
+        cd ~
+        set selected (fzf --walker=dir,file,hidden) 
+        
+        if [ -n "$selected" ] 
+            code "$selected" 
+        else
+            cd -
+        end 
+
+    ) else if test $argv[1] = "code/" (
+        
+        cd /
+        set selected (fzf --walker=dir,file,hidden) 
+        
+        if [ -n "$selected" ] 
+            code "$selected" 
+        else
+            cd -
+        end 
+
+    ) else if test $argv[1] = "nvim" (
+        
+        set selected (fzf --walker=file,hidden) 
+        
+        if [ -n "$selected" ] 
+            nvim "$selected" 
+        end 
+
+    ) else if test $argv[1] = "nvim~" (
+        
+        cd ~
+        set selected (fzf --walker=file,hidden) 
+        
+        if [ -n "$selected" ] 
+            code "$selected" 
+        else
+            cd -
+        end 
+
+    ) else if test $argv[1] = "nvim/" (
+        
+        cd /
+        set selected (fzf --walker=file,hidden) 
+        
+        if [ -n "$selected" ] 
+            nvim "$selected" 
+        else
+            cd -
+        end 
+
+    ) else (
+        echo No this cmd: $argv[1]
+    )
+
 end
