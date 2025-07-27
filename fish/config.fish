@@ -44,7 +44,7 @@ function y
 	rm -f -- "$tmp"
 end
 
-function cdf
+function cdh
     cd ~
     set selected (fzf --walker=dir,hidden) 
     
@@ -68,13 +68,20 @@ function cdc
     end 
 end 
 
-function codef 
+function codeh 
     cd ~
     set selected (fzf --walker=file,dir,hidden) 
     if [ -n "$selected" ] 
         code "$selected" 
     else
         cd -
+    end 
+end
+
+function codec 
+    set selected (fzf --walker=file,dir,hidden) 
+    if [ -n "$selected" ] 
+        code "$selected" 
     end 
 end
 
@@ -85,5 +92,22 @@ function coder
         code -r "$selected" 
     else
         cd -
+    end 
+end
+
+function nvimf 
+    cd ~
+    set selected (fzf --walker=file,dir,hidden) 
+    if [ -n "$selected" ] 
+        nvim "$selected" 
+    else
+        cd -
+    end 
+end
+
+function nvimc
+    set selected (fzf --walker=file,dir,hidden) 
+    if [ -n "$selected" ] 
+        nvim "$selected" 
     end 
 end
