@@ -40,12 +40,10 @@ def config_soft_link():
             create_soft_link(os.path.join(cfg_home, 'cmder', 'self_init.bat'), os.path.join(cmder_home, 'vendor', 'self_init.bat'))
             create_soft_link(os.path.join(cfg_home, 'cmder', 'user_aliases.cmd'), os.path.join(cmder_home, 'config', 'user_aliases.cmd'))
     else:
-        fish_cfg = os.getenv('__fish_config_dir')
-        
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
+        create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
-        if fish_cfg:
-            create_soft_link(os.path.join(cfg_home, 'config.fish'), os.path.join(fish_cfg, 'config.fish'))
+        create_soft_link(os.path.join(cfg_home, 'fish', 'config.fish'), os.path.join(home, '.config', 'fish', 'config.fish'))
 
     create_soft_link(os.path.join(cfg_home, 'vimrc'), os.path.join(home, '.vimrc'))
     create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))

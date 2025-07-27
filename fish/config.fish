@@ -21,11 +21,11 @@ if status is-interactive
     alias gc_cmd 'git commit -m "[{(date +"%m/%d %H:%M")}] sync"'
     alias grd    'git rh && git clean -fd'
 
-    source ~/.uv_venv/bin/activate.fish
+    # source ~/.uv_venv/bin/activate.fish
 end
 
 starship init fish | source
-zoxide init fish | source
+# zoxide init fish | source
 
 function vscode_crash
     set -gx VSCODE_IPC_HOOK_CLI (lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)

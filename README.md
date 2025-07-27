@@ -1,3 +1,30 @@
+# On Linux
+
+- Fish
+
+```bash
+cargo install --git https://github.com/fish-shell/fish-shell # to build the current development snapshot without cloning
+
+sudo apt install -y build-essential ffmpeg 7zip jq poppler-utils fzf imagemagick
+
+```
+
+## On Windows
+
+- cmder
+
+1. config
+
+> %CMDER_ROOT%\config\user_aliases.cmd
+>
+> %CMDER_ROOT%\vendor\self_init.bat
+
+2. clink cmd
+
+```bash
+clink update
+```
+
 # Env
 
 1. SW
@@ -20,10 +47,16 @@
 # creat install
 cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl ouch
 cargo install --git https://github.com/leokayson/lsd.git
-cargo install --git https://github.com/astral-sh/uv uv
+cargo install --locked yazi-fm yazi-cli
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 2. VSCode
+
+# VSCode
+
+## Extension
 
 ```bash
 code --install-extension rust-lang.rust-analyzer 
@@ -34,44 +67,15 @@ code --install-extension yo1dog.cursor-align matthewthorning.align-vertically
 code --install-extension usernamehw.find-jump enkeldigital.relative-goto
 ```
 
-## On Linux
-
-- Fish
-
-```bash
-cargo install --git https://github.com/fish-shell/fish-shell # to build the current development snapshot without cloning
-```
-
-## On Windows
-
-- cmder
-
-1. config
-
-> %CMDER_ROOT%\config\user_aliases.cmd
->
-> %CMDER_ROOT%\vendor\self_init.bat
-
-2. clink cmd
-
-```bash
-clink update
-```
-
-# VSCode
-
-## Extension
-
-```bash
-code --install-extension rust-lang.rust-analyzer uloco.theme-bluloco-dark uloco.theme-bluloco-light llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax ms-vscode-remote.remote-ssh
-```
-
 ## Configs
 
 ```plaintext
 # Windows
 %APPDATA%\Code\User\keybindings.json
 %APPDATA%\Code\User\settings.json
+# Linux
+~/Code/User/keybindings.json
+~/Code/User/settings.json
 ```
 
 # Soft link
@@ -92,3 +96,11 @@ chmod 755 ~
 # Yazi
 
 [Resources | Yazi](https://yazi-rs.github.io/docs/resources)
+
+# NVIM
+
+```bash
+https://github.com/neovim/neovim/releases
+
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+```
