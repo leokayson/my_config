@@ -23,6 +23,7 @@ def create_soft_link(file, link_file):
             subprocess.run(f'mklink {link_file} {file}', shell=True, check=True)
     else:
         subprocess.run(f'ln -s {file} {link_file}', shell=True, check=True)
+        print(f'soft link created: {link_file} => {file}')
 
 def config_soft_link():
     home = os.getenv('HOME')
@@ -32,18 +33,15 @@ def config_soft_link():
         app_data = os.getenv('APPDATA')
         local_app_data = os.getenv('LOCALAPPDATA')
 
-        create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
         create_soft_link(os.path.join(cfg_home, 'script', 'win'), os.path.join(home, '.config', 'script'))
+        create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(local_app_data, 'nvim', 'lua', 'config', 'keymaps.lua'))
-        create_soft_link(os.path.join(cfg_home, 'cmder', 'zoxide.lua'), os.path.join(cmder_home, 'vendor', 'zoxide.lua'))
-        if cmder_home:
-            create_soft_link(os.path.join(cfg_home, 'cmder', 'self_init.bat'), os.path.join(cmder_home, 'vendor', 'self_init.bat'))
-            create_soft_link(os.path.join(cfg_home, 'cmder', 'user_aliases.cmd'), os.path.join(cmder_home, 'config', 'user_aliases.cmd'))
     else:
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
-        create_soft_link(os.path.join(cfg_home, 'fish', 'config.fish'), os.path.join(home, '.config', 'fish', 'config.fish'))
+        if os.path.exists(os.path.join(home, '.config', 'nushell')):
+            create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
 
     create_soft_link(os.path.join(cfg_home, 'vimrc'), os.path.join(home, '.vimrc'))
     create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
