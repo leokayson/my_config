@@ -1,3 +1,7 @@
+# This repo
+
+This repo is just to store my develop habits to sync in many PCs and it includes many personal preferences and shouldn't apply for many people. ofc anyone can use it.
+
 # On Linux
 
 - Fish
