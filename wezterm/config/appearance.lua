@@ -23,7 +23,7 @@ return {
   },
   background = {
     {
-      source = { File = wezterm.config_dir .. "/backdrops/space.jpg" },
+      source = { File = wezterm.config_dir .. "/backdrops/1.jpg" },
     },
     {
       source = { Color = "#1A1B26" },

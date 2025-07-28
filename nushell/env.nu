@@ -18,3 +18,4 @@
 # them for future reference.
 
 $env.config.buffer_editor = "nvim" 
+$env.EDITOR = "nvim" 

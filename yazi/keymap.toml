@@ -49,6 +49,7 @@ keymap = [
 	# Operation
  	{ on = "o",          run = 'shell "code %*"',	orphan = true,     desc = "Open with VS Code", for = "windows"  },
  	{ on = "o",          run = 'shell "code $@"',	orphan = true,     desc = "Open with VS Code", for = "linux"  },
+ 	{ on = "O",          run = 'shell "code ."',	orphan = true,     desc = "Open dir with VS Code"  },
 	{ on = "y",          run = "yank",                                 desc = "Yank selected files (copy)" },
 	{ on = "x",          run = "yank --cut",                           desc = "Yank selected files (cut)" },
 	{ on = [ "p", "p" ], run = "paste",                                desc = "paste" },
@@ -93,7 +94,7 @@ keymap = [
 	{ on = [ "c", "s" ], run = "shell 'cb copy $@'", 		desc = "system cb", for = "linux" },
 
 	# Filter
-	{ on = "F", run = "filter --smart", desc = "Filter files" },
+	{ on = "f", run = "filter --smart", desc = "Filter files" },
 
 	# Find
 	{ on = "/", run = "find --smart",            desc = "Find next file" },
@@ -150,7 +151,7 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 
 	# plugins
-	{ on = "f", run  = "plugin jump-to-char", desc = "Jump to char" },
+	{ on = "j", run  = "plugin searchjump",  desc = "Jump to search" },
 
 	{ on = [ "B", "a" ],          run = "plugin yamb save",                         desc = "Add bookmark" },
 	{ on = [ "B", "g" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },

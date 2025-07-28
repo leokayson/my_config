@@ -43,7 +43,6 @@ def config_soft_link():
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
         create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
 
-    create_soft_link(os.path.join(cfg_home, 'vimrc'), os.path.join(home, '.vimrc'))
     create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
     create_soft_link(os.path.join(cfg_home, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))
     create_soft_link(os.path.join(cfg_home, 'script'), os.path.join(home, 'env', 'script'))

@@ -93,11 +93,4 @@ def --env z [cmd: string, path: string] {
     } else {
         echo $"no such cmd: ($cmd)"
     }
-<<<<<<< HEAD
-}
-
-def tool [...args] {
-    python ~\usr\env\script\tool.py $args
-=======
->>>>>>> 163d7e224be3383569be076a4eecab772c916902
 }
