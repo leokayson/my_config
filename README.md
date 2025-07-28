@@ -1,94 +1,95 @@
-# This repo
+# 1 This repo
 
 This repo is just to store my develop habits to sync in many PCs and it includes many personal preferences and shouldn't apply for many people. ofc anyone can use it.
 
-# On Linux
+I mainly use linux + windows, so cross-platform is much more preferable.
 
-- Fish
+# 2 Env
 
-```bash
-cargo install --git https://github.com/fish-shell/fish-shell # to build the current development snapshot without cloning
+> ~/env
 
-sudo apt install -y build-essential ffmpeg 7zip jq poppler-utils fzf imagemagick
+## 2.1 System environment
 
-```
+> sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick
 
-## On Windows
+## 2.2 Rust
 
-- cmder
-
-1. config
-
-> %CMDER_ROOT%\config\user_aliases.cmd
+> - On Linux:
 >
-> %CMDER_ROOT%\vendor\self_init.bat
+> curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+>
+> - On Windows:
+>
+> https://www.rust-lang.org/learn/get-started
 
-2. clink cmd
+## 2.3 Rust Crate
 
-```bash
-clink update
-```
+> cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl ouch
+>
+> cargo install --git https://github.com/leokayson/lsd.git
+>
+> cargo install --locked yazi-fm yazi-cli
 
-# Env
+## 2.4 3rd-patry SW or cannot install in crate.io
 
-1. SW
-   ```
-   # Rust
-   ## On Linux
-   curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-   ## On windows
-   https://www.rust-lang.org/learn/get-started
+> - uv
+>
+> curl -LsSf https://astral.sh/uv/install.sh | sh
+>
+> - cb
+>
+> https://github.com/Slackadays/Clipboard/releases
+>
+> - neovim
+>
+> https://github.com/neovim/neovim/releases
 
-   # CMDER
-   https://github.com/cmderdev/cmder
+# 3 Shell
 
-   # cb
-   https://github.com/Slackadays/Clipboard
-   ```
-2. Rust
+> - nushell release
+>
+> https://github.com/nushell/nushell/releases
+>
+> - starship configure:
+>
+> ```bash
+> mkdir ($nu.data-dir | path join "vendor/autoload")
+> starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+> ```
+>
 
-```bash
-# creat install
-cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl ouch
-cargo install --git https://github.com/leokayson/lsd.git
-cargo install --locked yazi-fm yazi-cli
+# 4 VSCode
 
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+## 4.1 Extension
 
-2. VSCode
+> code --install-extension rust-lang.rust-analyzer
+> code --install-extension uloco.theme-bluloco-dark uloco.theme-bluloco-light
+> code --install-extension llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor
+> code --install-extension pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax
+> code --install-extension ms-vscode-remote.remote-ssh yo1dog.cursor-align matthewthorning.align-vertically
+> code --install-extension usernamehw.find-jump enkeldigital.relative-goto
 
-# VSCode
+## 4.2 Configs (Can use cloud sync)
 
-## Extension
+> - Windows
+>
+> %APPDATA%\Code\User\keybindings.json
+> %APPDATA%\Code\User\settings.json
+>
+> - Linux
+>
+> ~/Code/User/keybindings.json
+> ~/Code/User/settings.json
 
-```bash
-code --install-extension rust-lang.rust-analyzer 
-code --install-extension uloco.theme-bluloco-dark uloco.theme-bluloco-light 
-code --install-extension llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor 
-code --install-extension pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax ms-vscode-remote.remote-ssh
-code --install-extension yo1dog.cursor-align matthewthorning.align-vertically
-code --install-extension usernamehw.find-jump enkeldigital.relative-goto
-```
+# 5 Config
 
-## Configs
-
-```plaintext
-# Windows
-%APPDATA%\Code\User\keybindings.json
-%APPDATA%\Code\User\settings.json
-# Linux
-~/Code/User/keybindings.json
-~/Code/User/settings.json
-```
-
-# Soft link
+## 5.1 soft link
 
 ```bash
 python config.py
 ```
 
-# SSH
+## 5.2 yazi
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f rsa-remote-ssh
@@ -97,14 +98,32 @@ chmod 600 ./.ssh/authorized_keys
 chmod 755 ~
 ```
 
-# Yazi
+## 5.3 NVIM plugin
 
-[Resources | Yazi](https://yazi-rs.github.io/docs/resources)
+> - Windows
+>
+> git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
+>
+> - Linux
+>
+> git clone https://github.com/LazyVim/starter ~/.config/nvim
+> git clone https://github.com/uloco/bluloco.nvim.git $env:LOCALAPPDATA\nvim-data\lazy
 
-# NVIM
+- bloluco.nvim configure
 
-```bash
-https://github.com/neovim/neovim/releases
+```lua
+# Linux:  
+# Windows: $env:LOCALAPPDATA\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
 
-git clone https://github.com/LazyVim/starter ~/.config/nvim
+# Linux: nvim 
+# Windows: nvim $env:LOCALAPPDATA\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
+{
+  'uloco/bluloco.nvim',
+  lazy = false,
+  priority = 1000,
+  dependencies = { 'rktjmp/lush.nvim' },
+  config = function()
+    -- your optional config goes here, see below.
+  end,
+},
 ```

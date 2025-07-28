@@ -26,22 +26,22 @@ def create_soft_link(file, link_file):
         print(f'soft link created: {link_file} => {file}')
 
 def config_soft_link():
-    home = os.getenv('HOME')
     
     if os.name == 'nt':
-        cmder_home = os.getenv('CMDER_ROOT')
+        home = os.getenv('USERPROFILE')
         app_data = os.getenv('APPDATA')
         local_app_data = os.getenv('LOCALAPPDATA')
 
         create_soft_link(os.path.join(cfg_home, 'script', 'win'), os.path.join(home, '.config', 'script'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(local_app_data, 'nvim', 'lua', 'config', 'keymaps.lua'))
+        create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(app_data, 'nushell'))
     else:
+        home = os.getenv('HOME')
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
-        if os.path.exists(os.path.join(home, '.config', 'nushell')):
-            create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
+        create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
 
     create_soft_link(os.path.join(cfg_home, 'vimrc'), os.path.join(home, '.vimrc'))
     create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
