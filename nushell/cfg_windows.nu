@@ -1,0 +1,2 @@
+$env.HOME = $env.USERPROFILE
+
