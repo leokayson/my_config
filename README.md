@@ -43,6 +43,14 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 > - neovim
 >
 > https://github.com/neovim/neovim/releases
+>
+> - tldr
+>
+> uv  tool install tldr rich-cli
+>
+> - fanyi
+>
+> npm i fanyi -g
 
 # 3 Shell
 
@@ -56,7 +64,6 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 > mkdir ($nu.data-dir | path join "vendor/autoload")
 > starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 > ```
->
 
 # 4 VSCode
 
@@ -80,6 +87,13 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 >
 > ~/Code/User/keybindings.json
 > ~/Code/User/settings.json
+
+# 5 Terminal Emulator
+
+> - Wezterm
+>   - Use nightly version
+> 
+> https://wezterm.org/installation.html
 
 # 5 Config
 

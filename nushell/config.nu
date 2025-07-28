@@ -19,32 +19,32 @@
 
 source $"cfg_($nu.os-info.name).nu"
 
-# alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
-# alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
-# alias scfg   = code $"($env.HOME)/.config/starship.toml"
-# alias py     = python
+alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
+alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
+alias scfg   = code $"($env.HOME)/.config/starship.toml"
+alias py     = python
 
-# alias fd     = fd -I -H
-# alias ls     = lsd -T --icon-theme unicode
-# alias ll     = ls --header --git -Al --date relative
-# alias lld    = fd -l -d 1
-# alias llt    = ll --total-size
-# alias cd1    = cd ../
-# alias cd2    = cd ../../
-# alias cd3    = cd ../../../
-# alias pc     = ~/tool/scripts/bin/tool -pc
-# alias btm    = btm --theme=gruvbox --config_Location ~/.config/btm.toml
-# alias ga_cnm = git add .;git cnm
-# alias grd    = git rh;git clean -fd
+alias fd     = fd -I -H
+alias ls     = lsd -T --icon-theme unicode
+alias ll     = ls --header --git -Al --date relative
+alias lld    = fd -l -d 1
+alias llt    = ll --total-size
+alias cd1    = cd ../
+alias cd2    = cd ../../
+alias cd3    = cd ../../../
+alias btm    = btm --theme=gruvbox --config_Location ~/.config/btm.toml
+alias gacnm  = git add . and git cnm
+alias grd    = git rh and git clean -fd
 
-# $env.CLIPBOARD_EDITOR = "nvim"
-# $env.CLIPBOARD_HISTORY = 50
+$env.CLIPBOARD_EDITOR = "nvim"
+$env.CLIPBOARD_HISTORY = 50
 
-# $env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
-# $env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")
-# $env.PATH = ($env.PATH | append $"($env.HOME)/env/usr/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env/usr/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env/script")
 
-# $env.LD_LIBRARY_PATH = $"($env.HOME)/env/usr/lib"
+$env.LD_LIBRARY_PATH = $"($env.HOME)/env/usr/lib"
 
 def --env y [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
@@ -93,4 +93,8 @@ def --env z [cmd: string, path: string] {
     } else {
         echo $"no such cmd: ($cmd)"
     }
+}
+
+def tool [...args] {
+    python ~\usr\env\script\tool.py $args
 }
