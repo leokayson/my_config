@@ -108,3 +108,8 @@ require("searchjump"):setup({
 	-- mapdata = require("sjch").data,
 	search_patterns = ({"hell[dk]d","%d+.1080p","第%d+集","第%d+话","%.E%d+","S%d+E%d+",})
 })
+
+require("custom-shell"):setup({
+    history_path = "default",
+    save_history = false,
+})

@@ -6,7 +6,7 @@
 
 keymap = [
 	# This is a key for test
-	{on   = "<C-t>", run = "plugin command", desc = "Yazi command prompt" },
+	{on   = "<C-t>", run = "plugin command", 	desc = "Yazi command prompt" },
 
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
@@ -17,18 +17,16 @@ keymap = [
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous file" },
 	{ on = "<Down>", run = "arrow next", desc = "Next file" },
 
-	{ on = "<S-PageUp>",   run = "arrow -50%",  desc = "Move cursor up half page" },
-	{ on = "<S-PageDown>", run = "arrow 50%",   desc = "Move cursor down half page" },
-	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
-	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
+	{ on = "<PageUp>",     run = "arrow -40%", desc = "Move cursor up one page" },
+	{ on = "<PageDown>",   run = "arrow 40%",  desc = "Move cursor down one page" },
 
 	# Navigation
 	{ on = "<Left>",  run = "leave", desc = "Back to the parent directory" },
 	{ on = "<Right>", run = "enter", desc = "Enter the child directory" },
 
-	{ on = "<Backspace>",  run = "leave",             desc = "Back to the parent directory" },
-	{ on = "<Enter>", 	   run = "plugin fast-enter", desc = "Enter the subfolder faster, or open the file directly" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "<Backspace>",  run = "leave",                       desc = "Back to the parent directory" },
+	{ on = "<Enter>", 	   run = "plugin smart-enter",          desc = "Enter the subfolder faster, or open the file directly" },
+	{ on = "<S-Enter>",	   run = "open --interactive",          desc = "Open selected files interactively" },
 
 	# Toggle
 	{ on = "<Space>", run = [ "toggle", "arrow next" ], desc = "Toggle the current selection state" },
@@ -65,8 +63,8 @@ keymap = [
 	{ on = "a",          run = "create",                               desc = "Create a file (ends with / for directories)" },
 	{ on = "r",          run = "rename --cursor=before_ext",           desc = "Rename selected file(s)" },
 	{ on = "<F2>",       run = "rename --cursor=before_ext",           desc = "Rename selected file(s)" },
-	{ on = ";",          run = "shell --interactive",                  desc = "Run a shell command" },
-	{ on = ":",          run = "shell --block --interactive",          desc = "Run a shell command (block until finishes)" },
+	{ on = ";",          run = "plugin custom-shell -- auto --interactive --block",                  desc = "Run a shell command" },
+	{ on = ":",          run = "plugin custom-shell -- auto --interactive --block --wait",           desc = "Run a shell command (block until finishes)" },
 	{ on = ".",          run = "hidden toggle",                        desc = "Toggle the visibility of hidden files" },
 	{ on = "s",          run = "search --via=fd",                      desc = "Search files by name via fd" },
 	{ on = "S",          run = "search --via=rg",                      desc = "Search files by content via ripgrep" },

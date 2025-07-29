@@ -64,6 +64,8 @@ map("v", "<C-c>", '"+y', { noremap = true, desc = "Yank into system clipboard" }
 -- scrolling
 map("n", "<S-Up>", "<C-u>", defaults)
 map("n", "<S-Down>", "<C-d>", defaults)
+map("n", "<Pageup>", "<C-u>", defaults)
+map("n", "<Pagedown>", "<C-d>", defaults)
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })

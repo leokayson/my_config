@@ -29,7 +29,7 @@ return {
       source = { Color = "#1A1B26" },
       height = "100%",
       width = "100%",
-      opacity = 0.95,
+      opacity = 0.9,
     },
   },
 

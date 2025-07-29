@@ -1,9 +1,4 @@
 [[plugin.deps]]
-use = "ourongxing/fast-enter"
-rev = "738356f"
-hash = "b209b5db91df69bdc6a4656cb8276cd9"
-
-[[plugin.deps]]
 use = "Rolv-Apneseth/starship"
 rev = "a63550b"
 hash = "c2021386289a0cbb3e152a052f67c177"
@@ -62,6 +57,16 @@ hash = "65fff40a0060fe4b1c42d49d29f770fd"
 use = "hankertrix/augment-command"
 rev = "80d34f2"
 hash = "2191d6d57ebd0040258e25ed8859d459"
+
+[[plugin.deps]]
+use = "AnirudhG07/custom-shell"
+rev = "b04213d"
+hash = "3efc7ddc9bac120c618462eb994edf75"
+
+[[plugin.deps]]
+use = "Ape/smart-enter"
+rev = "7b84c89"
+hash = "43eb1a1f2291795fb5b0b2ce1206ebee"
 
 [flavor]
 deps = []

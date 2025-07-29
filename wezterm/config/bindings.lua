@@ -6,16 +6,16 @@ local mod = {}
 
 if platform.is_mac then
     mod.SUPER = "SUPER"
-    mod.SUPER_REV = "SUPER|CTRL"
+    mod.SUPER_REV = "CTRL|SUPER"
 elseif platform.is_win or platform.is_linux then
     mod.SUPER = "CTRL" -- to not conflict with Windows key shortcuts
-    mod.SUPER_REV = "ALT|CTRL"
+    mod.SUPER_REV = "CTRL|ALT"
 end
 
 local keys = { -- misc/useful --
-{key = "F1", mods = "NONE", action = "ActivateCopyMode"},
-{key = "F2", mods = "NONE", action = act.ActivateCommandPalette},
-{key = "F3", mods = "NONE", action = act.ShowLauncher}, {key = "F4", mods = "NONE", action = act.ShowTabNavigator},
+{key = "F1", mods = "NONE", action = act.ActivateCommandPalette},
+{key = "F3", mods = "NONE", action = act.ShowLauncher}, 
+{key = "F4", mods = "NONE", action = act.ShowTabNavigator},
 {key = "F11", mods = "NONE", action = act.ToggleFullScreen},
 {key = "F12", mods = "NONE", action = act.ShowDebugOverlay},
 {key = "f", mods = mod.SUPER, action = act.Search({CaseInSensitiveString = ""})}, -- copy/paste --
@@ -29,14 +29,12 @@ local keys = { -- misc/useful --
 
 -- Clears the scrollback and viewport leaving the prompt line the new first line.
 {key = 'C', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, -- window --
--- Clears the scrollback and viewport leaving the prompt line the new first line.
-{key = 'c', mods = 'CTRL|SHIFT', action = act.ResetTerminal}, -- window --
 -- spawn windows
 {key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow},
 
-{key = "[", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
-{key = "]", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
-{key = [[-]], mods = mod.SUPER_REV, action = act.CloseCurrentPane({confirm = true})}, -- panes: zoom+close pane
+{key = "-", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
+{key = "\\", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
+{key = "0", mods = mod.SUPER_REV, action = act.CloseCurrentPane({confirm = true})}, -- panes: zoom+close pane
 {key = "z", mods = mod.SUPER_REV, action = act.TogglePaneZoomState},
 {key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = false})}, -- panes: navigation
 {key = "i", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
