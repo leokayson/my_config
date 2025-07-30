@@ -113,3 +113,8 @@ require("custom-shell"):setup({
     history_path = "default",
     save_history = false,
 })
+
+require("keyjump"):setup({
+	icon_fg = "#778899",
+	first_key_fg = "#df6249",
+})
