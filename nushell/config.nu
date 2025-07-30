@@ -87,7 +87,6 @@ def --env y [...args] {
 def --env z [cmd: string, path: string] {
     cd $"($path)"
     let selected = (fzf --walker=dir,file,hidden)
-    echo $selected | path type
     
     if ( $cmd == "cd" ) {
         if ( $selected != "" ) {
