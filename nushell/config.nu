@@ -31,24 +31,23 @@ $env.LD_LIBRARY_PATH = $"($env.HOME)/env/lib"
 $env.LD_LIBRARY_PATH = ($env.LD_LIBRARY_PATH | append $"($env.HOME)/env/lib")
 
 source $"($nu.default-config-dir)/starship.nu"
-source $"($nu.default-config-dir)/custom-completions/apt/apt.nu"
-source $"($nu.default-config-dir)/custom-completions/bat/bat-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/cargo/cargo-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/curl/curl-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/git/git-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/make/make-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/rg/rg-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/rustup/rustup-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/ssh/ssh-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/uv/uv-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/vscode/vscode-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/apt/apt.nu"
+# source $"($nu.default-config-dir)/custom-completions/bat/bat-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/cargo/cargo-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/curl/curl-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/git/git-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/make/make-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/rg/rg-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/rustup/rustup-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/ssh/ssh-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/uv/uv-completions.nu"
+# source $"($nu.default-config-dir)/custom-completions/vscode/vscode-completions.nu"
 
 # ========================= Alias =========================
 alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
 alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
 alias scfg   = code $"($env.HOME)/.config/starship.toml"
 alias py     = python
-
 alias fd     = fd -I -H
 alias ls     = lsd --config-file ~/.config/lsd.yaml
 alias ll     = ls -Al
@@ -60,6 +59,9 @@ alias cd2    = cd ../../
 alias cd3    = cd ../../../
 alias btm    = btm --theme=gruvbox --config_location ~/.config/btm.toml
 alias tool   = python ~/env/script/tool.py
+alias fzff   = fzf --style=full --preview 'bat --color=always {}' --preview-window 'up'
+alias fzf    = fzff -e
+
 
 def ga_cnm [] {
     git add .
@@ -84,26 +86,27 @@ def --env y [...args] {
 
 def --env z [cmd: string, path: string] {
     cd $"($path)"
+    let selected = (fzf --walker=dir,file,hidden)
+    echo $selected | path type
     
     if ( $cmd == "cd" ) {
-        try {
-            let selected = (fzf --walker=dir,hidden)
-            if ( $selected != "" ) {
+        if ( $selected != "" ) {
+            if ( (($selected) | path type) == 'dir') {
                 cd $"($selected)"
-                echo $"enter: (pwd)"
             } else {
-                cd -
-                echo no enter
+                cd $"(($selected) | path dirname)"
             }
+            echo $"enter: (pwd)"
+        } else {
+            cd -
+            echo no enter
         }
     } else if ( $cmd == "code" ) {
-        let selected = (fzf --walker=dir,file,hidden)
         if ( $selected != "" ) {
             code $"($selected)"
         } 
         cd -
     } else if ( $cmd == "nvim" ) {
-        let selected = (fzf --walker=dir,file,hidden)
         if ( $selected != "" ) {
             nvim $"($selected)"
         }
