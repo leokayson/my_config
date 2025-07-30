@@ -9,7 +9,7 @@ export-env {
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/script/win")
 $env.PATH = ($env.PATH | append $"($env.LOCALAPPDATA)/Microsoft/WindowsApps")
 
-source $"($nu.data-dir)/custom-completions/adb/adb-completions.nu"
-source $"($nu.data-dir)/custom-completions/fastboot/fastboot-completions.nu"
-source $"($nu.data-dir)/custom-completions/windows/windows-completions.nu"
-source $"($nu.data-dir)/custom-completions/winget/winget-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/adb/adb-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/fastboot/fastboot-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/windows/windows-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/winget/winget-completions.nu"

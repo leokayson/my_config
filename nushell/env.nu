@@ -17,5 +17,15 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
-$env.config.buffer_editor = "nvim" 
-$env.EDITOR = "nvim" 
+export-env {
+    load-env {
+        config.buffer_editor:   'nvim'
+        EDITOR:                 'nvim'
+        CLIPBOARD_EDITOR:       'nvim'
+        CLIPBOARD_HISTORY:      10
+        VISUAL:                 'nvim'
+        PAGER:                  'bat'
+        SHELL:                  'nu'
+        HOSTNAME:               (hostname | split row '.' | first | str trim)
+    }
+}

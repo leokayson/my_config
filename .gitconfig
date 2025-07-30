@@ -60,13 +60,13 @@
 	untracked  = cyan 
 [format] 
 	numbered   = auto 
-[http] 
-	sslVerify  = false 
-	proxy      = http://127.0.0.1:12688 
-	postBuffer = 524288000 
-[https] 
-	sslVerify  = false 
-	proxy      = http://127.0.0.1:12688 
-	postBuffer = 524288000 
+# [http] 
+# 	sslVerify  = false 
+# 	proxy      = http://127.0.0.1:12688 
+# 	postBuffer = 524288000 
+# [https] 
+# 	sslVerify  = false 
+# 	proxy      = http://127.0.0.1:12688 
+# 	postBuffer = 524288000 
 [credential "helperselector"]
 	selected   = manager

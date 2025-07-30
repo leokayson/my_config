@@ -21,9 +21,6 @@
 # ========================= Env + PATH =========================
 source $"cfg_($nu.os-info.name).nu"
 
-$env.CLIPBOARD_EDITOR = "nvim"
-$env.CLIPBOARD_HISTORY = 50
-
 $env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
 $env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/bin")
@@ -33,29 +30,18 @@ $env.PATH = ($env.PATH | append $"($env.HOME)/env/usr/bin")
 $env.LD_LIBRARY_PATH = $"($env.HOME)/env/lib"
 $env.LD_LIBRARY_PATH = ($env.LD_LIBRARY_PATH | append $"($env.HOME)/env/lib")
 
-export-env {
-    load-env {
-        EDITOR:           'nvim'
-        CLIPBOARD_EDITOR: 'nvim'
-        CLIPBOARD_HISTORY: 10
-        VISUAL:           'nvim'
-        PAGER:            'bat'
-        SHELL:            'nu'
-        HOSTNAME:         (hostname | split row '.' | first | str trim)
-    }
-}
-
-source $"($nu.data-dir)/custom-completions/apt/apt.nu"
-source $"($nu.data-dir)/custom-completions/bat/bat-completions.nu"
-source $"($nu.data-dir)/custom-completions/cargo/cargo-completions.nu"
-source $"($nu.data-dir)/custom-completions/curl/curl-completions.nu"
-source $"($nu.data-dir)/custom-completions/git/git-completions.nu"
-source $"($nu.data-dir)/custom-completions/make/make-completions.nu"
-source $"($nu.data-dir)/custom-completions/rg/rg-completions.nu"
-source $"($nu.data-dir)/custom-completions/rustup/rustup-completions.nu"
-source $"($nu.data-dir)/custom-completions/ssh/ssh-completions.nu"
-source $"($nu.data-dir)/custom-completions/uv/uv-completions.nu"
-source $"($nu.data-dir)/custom-completions/vscode/vscode-completions.nu"
+source $"($nu.default-config-dir)/starship.nu"
+source $"($nu.default-config-dir)/custom-completions/apt/apt.nu"
+source $"($nu.default-config-dir)/custom-completions/bat/bat-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/cargo/cargo-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/curl/curl-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/git/git-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/make/make-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/rg/rg-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/rustup/rustup-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/ssh/ssh-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/uv/uv-completions.nu"
+source $"($nu.default-config-dir)/custom-completions/vscode/vscode-completions.nu"
 
 # ========================= Alias =========================
 alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
@@ -106,18 +92,18 @@ def --env z [cmd: string, path: string] {
                 cd $"($selected)"
                 echo $"enter: (pwd)"
             } else {
-                echo no enter
                 cd -
+                echo no enter
             }
         }
     } else if ( $cmd == "code" ) {
-        let selected = (fzf --walker=dir,hidden)
+        let selected = (fzf --walker=dir,file,hidden)
         if ( $selected != "" ) {
             code $"($selected)"
         } 
         cd -
     } else if ( $cmd == "cd" ) {
-        let selected = (fzf --walker=dir,hidden)
+        let selected = (fzf --walker=dir,file,hidden)
         if ( $selected != "" ) {
             nvim $"($selected)"
         }
