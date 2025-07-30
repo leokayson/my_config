@@ -102,7 +102,7 @@ def --env z [cmd: string, path: string] {
             code $"($selected)"
         } 
         cd -
-    } else if ( $cmd == "cd" ) {
+    } else if ( $cmd == "nvim" ) {
         let selected = (fzf --walker=dir,file,hidden)
         if ( $selected != "" ) {
             nvim $"($selected)"
