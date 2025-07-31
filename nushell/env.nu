@@ -28,3 +28,14 @@ export-env {
         HOSTNAME:               (hostname | split row '.' | first | str trim)
     }
 }
+
+source $"cfg_($nu.os-info.name).nu"
+
+$env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env/script")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env/usr/bin")
+
+$env.LD_LIBRARY_PATH = $"($env.HOME)/env/lib"
+$env.LD_LIBRARY_PATH = ($env.LD_LIBRARY_PATH | append $"($env.HOME)/env/lib")

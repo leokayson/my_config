@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "bluloco-dark"
 
 [editor]
 mouse = true
@@ -106,6 +106,8 @@ ret = ["move_line_down", "goto_first_nonwhitespace"]
 
 "A-S-up"    = [ "extend_to_line_bounds", "yank", "paste_before" ]
 "A-S-down"  = [ "extend_to_line_bounds", "yank", "paste_after" ]
+"C-S-up"    = "copy_selection_on_prev_line"
+"C-S-down"  = "copy_selection_on_next_line"
 
 y = [
   "yank_main_selection_to_clipboard",
@@ -215,12 +217,10 @@ esc = ["collapse_selection", "normal_mode"]
 ]
 "A-up"      = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode" ]
 "A-down"    = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode" ]
-
 "A-right"   = "indent"
 "A-left"    = "unindent"
-
-"A-S-up"    = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert mode" ]
-"A-S-down"  = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert mode" ]
+"A-S-up"    = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode" ]
+"A-S-down"  = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode" ]
 
 " " = ["collapse_selection", ":insert-output printf ' '", "move_char_right"]
 
