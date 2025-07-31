@@ -99,8 +99,25 @@ ret = ["move_line_down", "goto_first_nonwhitespace"]
   "open_above",
   "normal_mode",
 ] # Maps the enter key to open_above then re-enter normal mode
-A-up = "move_line_up"
-A-down = "move_line_down"
+"A-up"      = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+"A-down"    = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
+"A-right"   = "indent"
+"A-left"    = "unindent"
+
+"A-S-up"    = [ "extend_to_line_bounds", "yank", "paste_before" ]
+"A-S-down"  = [ "extend_to_line_bounds", "yank", "paste_after" ]
+
+y = [
+  "yank_main_selection_to_clipboard",
+  "normal_mode",
+  "flip_selections",
+  "collapse_selection",
+]
+Y = [
+  "extend_to_line_bounds",
+  "yank_main_selection_to_clipboard",
+  "collapse_selection",
+]
 # "A-;" = ["save_selection", "insert_at_line_end", ":append-output echo ';'", "delete_char_forward", "jump_backward", "normal_mode"]
 # "backspace" = { c = ":config-open", l = ":config-reload", r = ":sh cargo run", s = [":write", ":config-reload"] }
 
@@ -148,18 +165,7 @@ X = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
 # Would be nice to add ya and yi, but the surround commands can't be chained
-y = [
-  "yank_main_selection_to_clipboard",
-  "normal_mode",
-  "flip_selections",
-  "collapse_selection",
-]
-Y = [
-  "extend_to_line_bounds",
-  "yank_main_selection_to_clipboard",
-  "goto_line_start",
-  "collapse_selection",
-]
+
 
 # Uncanny valley stuff, this makes w and b behave as they do Vim
 # w = ["move_next_word_start", "move_char_right", "collapse_selection"]
@@ -194,8 +200,8 @@ esc = ["collapse_selection", "normal_mode"]
 "C-space" = "completion"
 "A-<" = "goto_file_start"
 "A->" = "goto_file_end"
-"pageup" = "page_up"
-"pagedown" = "page_down"
+"pageup" = "page_cursor_half_up"
+"pagedown" = "page_cursor_half_down"
 "home" = "goto_line_start"
 "C-a" = "goto_first_nonwhitespace"
 "end" = "goto_line_end_newline"
@@ -207,8 +213,15 @@ esc = ["collapse_selection", "normal_mode"]
   "delete_char_forward",
   "jump_backward",
 ]
-"A-left" = "goto_line_start"
-"A-right" = "goto_line_start"
+"A-up"      = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode" ]
+"A-down"    = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode" ]
+
+"A-right"   = "indent"
+"A-left"    = "unindent"
+
+"A-S-up"    = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert mode" ]
+"A-S-down"  = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert mode" ]
+
 " " = ["collapse_selection", ":insert-output printf ' '", "move_char_right"]
 
 [keys.select]

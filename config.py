@@ -35,12 +35,14 @@ def config_soft_link():
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(app_data, 'yazi', 'config')) 
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(local_app_data, 'nvim', 'lua', 'config', 'keymaps.lua'))
         create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(app_data, 'nushell'))
+        create_soft_link(os.path.join(cfg_home, 'helix'), os.path.join(app_data, 'helix'))
     else:
         home = os.getenv('HOME')
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
         create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
+        create_soft_link(os.path.join(cfg_home, 'helix'), os.path.join(home, '.config', 'helix'))
         create_soft_link(os.path.join(cfg_home, 'fish', 'config.fish'), os.path.join(home, '.config', 'fish', 'config.fish'))
 
     create_soft_link(os.path.join(cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
