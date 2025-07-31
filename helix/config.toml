@@ -104,6 +104,11 @@ ret = ["move_line_down", "goto_first_nonwhitespace"]
 "A-right"   = "indent"
 "A-left"    = "unindent"
 
+"C-right"   = "move_next_word_end"
+"C-left"    = "move_prev_word_end"
+"C-S-right" = "move_next_word_start"
+"C-S-left"  = "move_prev_word_start"
+
 "A-S-up"    = [ "extend_to_line_bounds", "yank", "paste_before" ]
 "A-S-down"  = [ "extend_to_line_bounds", "yank", "paste_after" ]
 "C-S-up"    = "copy_selection_on_prev_line"
