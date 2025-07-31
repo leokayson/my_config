@@ -50,7 +50,12 @@ alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
 alias scfg   = code $"($env.HOME)/.config/starship.toml"
 
 alias py     = python
+alias g      = git
+alias vi     = nvim
+alias vim    = nvim
 alias tool   = python ~/env/script/tool.py
+alias where  = which
+
 alias fd     = fd -I -H
 alias ls     = lsd --config-file ~/.config/lsd.yaml
 alias ll     = ls -Al
@@ -60,6 +65,7 @@ alias lld    = fd -l -d 1
 alias btm    = btm --config_location ~/.config/btm.toml
 alias fzff   = fzf --style=full --preview 'bat --color=always {}' --preview-window 'up'
 alias fzf    = fzff -e
+alias fzfp   = fzf | path expand
 
 alias cd1    = cd ../
 alias cd2    = cd ../../
@@ -76,6 +82,10 @@ def grd [] {
 }
         
 # ========================= Function  =========================
+def ncd [path: string] {
+    code ($path | path expand)
+}
+
 def --env y [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 	yazi ...$args --cwd-file $tmp

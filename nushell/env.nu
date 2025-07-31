@@ -19,10 +19,10 @@
 
 export-env {
     load-env {
-        EDITOR:                 'nvim'
-        CLIPBOARD_EDITOR:       'nvim'
+        EDITOR:                 'code'
+        CLIPBOARD_EDITOR:       'code'
         CLIPBOARD_HISTORY:      10
-        VISUAL:                 'nvim'
+        VISUAL:                 'code'
         PAGER:                  'bat'
         SHELL:                  'nu'
         HOSTNAME:               (hostname | split row '.' | first | str trim)
