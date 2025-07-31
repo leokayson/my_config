@@ -19,7 +19,6 @@
 
 export-env {
     load-env {
-        config.buffer_editor:   'nvim'
         EDITOR:                 'nvim'
         CLIPBOARD_EDITOR:       'nvim'
         CLIPBOARD_HISTORY:      10

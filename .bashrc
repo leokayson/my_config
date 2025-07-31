@@ -1,5 +1,6 @@
 # /usr/bin/bash
 
-if [[ "$-" == *i* && "$SHELL" != "/local/mnt/workspace/kayson/env/usr/bin/fish" ]]; then
+if [[ "$-" == *i* && "$SHELL" != "nu" ]]; then
+    export SHELL = nu
     exec ~/env/usr/bin/nu
 fi

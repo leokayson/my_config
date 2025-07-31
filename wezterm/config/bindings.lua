@@ -32,8 +32,8 @@ local keys = { -- misc/useful --
 -- spawn windows
 {key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow},
 
-{key = "-", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
-{key = "\\", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
+{key = "\\", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
+{key = "-q", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
 {key = "0", mods = mod.SUPER_REV, action = act.CloseCurrentPane({confirm = true})}, -- panes: zoom+close pane
 {key = "z", mods = mod.SUPER_REV, action = act.TogglePaneZoomState},
 {key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = false})}, -- panes: navigation
