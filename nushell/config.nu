@@ -42,7 +42,7 @@ alias py     = python
 alias g      = git
 alias vi     = nvim
 alias vim    = nvim
-alias tool   = python ~/env/script/tool.py
+alias tool   = python ~/env/ks_script/tool.py
 alias where  = which
 
 alias fd     = fd -I -H

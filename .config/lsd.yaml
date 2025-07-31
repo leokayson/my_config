@@ -13,7 +13,6 @@ blocks:
   - permission
   - size
   - date
-  - git
   - name
 
 # == Color ==

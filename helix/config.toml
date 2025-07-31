@@ -1,19 +1,20 @@
 theme = "bluloco-dark"
 
 [editor]
-mouse = true
-cursorline = true
-true-color = true
-scrolloff = 8
-scroll-lines = 1
-color-modes = true
-auto-save = false
-bufferline = "multiple"
-rulers = [120]
-auto-pairs = true
-shell = ["zsh", "-c"]
+mouse                  = true
+cursorline             = true
+true-color             = true
+scrolloff              = 8
+scroll-lines           = 1
+color-modes            = true
+auto-save              = false
+bufferline             = "multiple"
+rulers                 = [120]
+auto-pairs             = true
+shell                  = ["nu", "-c"]
 completion-trigger-len = 1
-idle-timeout = 80
+idle-timeout           = 80
+line-number            = "relative"
 
 [editor.gutters]
 layout = ["diff", "diagnostics", "line-numbers", "spacer"]
@@ -22,7 +23,7 @@ layout = ["diff", "diagnostics", "line-numbers", "spacer"]
 min-width = 1
 
 [editor.lsp]
-display-messages = true
+display-messages    = true
 display-inlay-hints = true
 
 [editor.search]
@@ -33,28 +34,28 @@ insert = "bar"
 normal = "block"
 select = "block"
 
-# [editor.soft-wrap]
-# enable = true
-# max-wrap = 25              # increase value to reduce forced mid-word wrapping
-# max-indent-retain = 0      # 40
-# wrap-indicator = "↪"       # set wrap-indicator to "" to hide it
-# wrap-at-text-width = false
+[editor.soft-wrap]
+enable             = true
+max-wrap           = 25    # increase value to reduce forced mid-word wrapping
+max-indent-retain  = 0     # 40
+wrap-indicator     = "↪"   # set wrap-indicator to "" to hide it
+wrap-at-text-width = false
 
 [editor.whitespace.render]
-space = "none"
-tab = "all"
+space   = "none"
+tab     = "all"
 newline = "none"
 
 [editor.whitespace.characters]
 # space = "·"
-nbsp = "⍽"
-tab = "▏"
+nbsp    = "⍽"
+tab     = "▏"
 newline = "⏎"
 # tabpad = "·"
 
 [editor.indent-guides]
-render = true
-character = "╎" # Some characters that work well: "▏", "╎", "┆", "┊", "⸽"
+render    = true
+character = "╎"  # Some characters that work well: "▏", "╎", "┆", "┊", "⸽"
 # skip-levels = 1
 
 [editor.statusline]
@@ -76,7 +77,7 @@ left = [
   "file-name",
   "file-type",
   "total-line-numbers",
-  "file-encoding",
+  "file-encoding"
 ]
 center = []
 right = [
@@ -87,97 +88,67 @@ right = [
   "spacer",
   "diagnostics",
   "workspace-diagnostics",
-  "version-control",
+  "version-control"
 ]
 separator = "│"
+mode.insert = "I"
+mode.normal = "N"
+mode.select = "S"
 
 [keys.normal]
-"C-a" = "goto_first_nonwhitespace"
-ret = ["move_line_down", "goto_first_nonwhitespace"]
-# "ret" = ["open_below", "normal_mode"] # Maps the enter key to open_below then re-enter normal mode
-"A-ret" = [
-  "open_above",
-  "normal_mode",
-] # Maps the enter key to open_above then re-enter normal mode
-"A-up"      = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
-"A-down"    = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
-"A-right"   = "indent"
-"A-left"    = "unindent"
+"A-up"    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"A-down"  = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+"A-right" = "indent"
+"A-left"  = "unindent"
+
+"A-S-up"   = ["extend_to_line_bounds", "yank", "paste_before"]
+"A-S-down" = ["extend_to_line_bounds", "yank", "paste_after"]
 
 "C-right"   = "move_next_word_end"
 "C-left"    = "move_prev_word_end"
 "C-S-right" = "move_next_word_start"
 "C-S-left"  = "move_prev_word_start"
-
-"A-S-up"    = [ "extend_to_line_bounds", "yank", "paste_before" ]
-"A-S-down"  = [ "extend_to_line_bounds", "yank", "paste_after" ]
 "C-S-up"    = "copy_selection_on_prev_line"
 "C-S-down"  = "copy_selection_on_next_line"
+
+"C-a" = ["select_all", "select_mode"]
+"ret" = "open_below"
+
+"A-backspace" = ["insert_mode", "delete_word_backward", "normal_mode"]
+"A-del"       = ["insert_mode", "delete_word_forward", "normal_mode"]
+"C-s"         = ":w"
 
 y = [
   "yank_main_selection_to_clipboard",
   "normal_mode",
   "flip_selections",
-  "collapse_selection",
+  "collapse_selection"
 ]
 Y = [
   "extend_to_line_bounds",
   "yank_main_selection_to_clipboard",
-  "collapse_selection",
+  "collapse_selection"
 ]
-# "A-;" = ["save_selection", "insert_at_line_end", ":append-output echo ';'", "delete_char_forward", "jump_backward", "normal_mode"]
-# "backspace" = { c = ":config-open", l = ":config-reload", r = ":sh cargo run", s = [":write", ":config-reload"] }
 
 # Quick iteration on config changes
-# C-o = ":config-open"
-# C-r = ":config-reload"
-
-C-K = "goto_prev_paragraph"
-C-J = "goto_next_paragraph"
-
-# Some nice Helix stuff
-C-h = "select_prev_sibling"
-C-j = "shrink_selection"
-C-k = "expand_selection"
-C-l = "select_next_sibling"
-
-# Personal preference
-# o = ["open_below", "normal_mode"]
-# O = ["open_above", "normal_mode"]
+r = ":config-reload"
 
 # Muscle memory
-# "{" = ["goto_prev_paragraph", "collapse_selection"]
-# "}" = ["goto_next_paragraph", "collapse_selection"]
-# 0 = "goto_line_start"
-# "$" = "goto_line_end"
-# "^" = "goto_first_nonwhitespace"
-# "G" = "goto_last_line"
-# G = "goto_file_end"
-# "%" = "match_brackets"
-# V = ["select_mode", "extend_to_line_bounds"]
-# C = ["collapse_selection", "extend_to_line_end", "change_selection"] # Requires https://github.com/helix-editor/helix/issues/2051#issuecomment-1140358950
-# D = ["extend_to_line_end", "delete_selection"]
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+G   = "goto_file_end"
+V   = ["select_mode", "extend_to_line_bounds"]
+D   = ["extend_to_line_end", "delete_selection"]
+"/" = "toggle_comments"
 
-# S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
+S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 
 x = ["extend_line_below", "select_mode"]
 X = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
-# Extend and select commands that expect a manual input can't be chained
-# I've kept d[X] commands here because it's better to at least have the stuff you want to delete
-# selected so that it's just a keystroke away to delete
-# d = { d = ["extend_to_line_bounds", "delete_selection"], t = ["extend_till_char"], s = ["surround_delete"], i = ["select_textobject_inner"], a = ["select_textobject_around"] }
 
 # Clipboards over registers ye ye
-# x = "delete_selection"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
-# Would be nice to add ya and yi, but the surround commands can't be chained
-
-
-# Uncanny valley stuff, this makes w and b behave as they do Vim
-# w = ["move_next_word_start", "move_char_right", "collapse_selection"]
-# e = ["move_next_word_end", "collapse_selection"]
-# b = ["move_prev_word_start", "collapse_selection"]
 
 # If you want to keep the selection-while-moving behaviour of Helix, this two lines will help a lot,
 # especially if you find having text remain selected while you have switched to insert or append mode
@@ -185,98 +156,91 @@ P = "paste_clipboard_before"
 # There is no real difference if you have overriden the commands bound to 'w', 'e' and 'b' like above
 # But if you really want to get familiar with the Helix way of selecting-while-moving, comment the
 # bindings for 'w', 'e', and 'b' out and leave the bindings for 'i' and 'a' active below. A world of difference!
-i = [
-  "insert_mode",
-  "collapse_selection",
-] # Requires https://github.com/helix-editor/helix/issues/2052#issuecomment-1140358950
-a = [
-  "append_mode",
-  "collapse_selection",
-] # Requires https://github.com/helix-editor/helix/issues/2052#issuecomment-1140358950
+i = ["collapse_selection", "insert_mode"]
+a = ["collapse_selection", "append_mode"]
 
 # Escape the madness! No more fighting with the cursor! Or with multiple cursors!
-esc = ["collapse_selection", "keep_primary_selection"]
+esc   = ["collapse_selection", "keep_primary_selection"]
 space = { "c" = "toggle_comments", "|" = "global_search" }
 
 [keys.insert]
+"A-up"    = ["normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode"]
+"A-down"  = ["normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode"]
+"A-right" = "indent"
+"A-left"  = "unindent"
+
+"A-S-up"   = ["normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode"]
+"A-S-down" = ["normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode"]
+
+"C-right"   = "move_next_word_end"
+"C-left"    = "move_prev_word_end"
+"C-S-right" = "move_next_word_start"
+"C-S-left"  = "move_prev_word_start"
+"C-S-up"    = "copy_selection_on_prev_line"
+"C-S-down"  = "copy_selection_on_next_line"
+
+"tab"   = "insert_tab"
+"S-tab" = "unindent"
+
 esc = ["collapse_selection", "normal_mode"]
-"A-b" = "move_prev_word_end"
-"C-left" = "move_prev_word_end"
-"A-f" = "move_next_word_start"
-"C-right" = "move_next_word_start"
-"C-space" = "completion"
-"A-<" = "goto_file_start"
-"A->" = "goto_file_end"
-"pageup" = "page_cursor_half_up"
+
+"C-space"  = "completion"
+"C-a"      = ["select_all", "select_mode"]
+"S-home"   = "goto_file_start"
+"S-end"    = "goto_file_end"
+"pageup"   = "page_cursor_half_up"
 "pagedown" = "page_cursor_half_down"
-"home" = "goto_line_start"
-"C-a" = "goto_first_nonwhitespace"
-"end" = "goto_line_end_newline"
-"C-e" = "goto_line_end_newline"
-"C-;" = [
-  "save_selection",
-  "insert_at_line_end",
-  ":append-output echo ';'",
-  "delete_char_forward",
-  "jump_backward",
-]
-"A-up"      = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode" ]
-"A-down"    = [ "normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode" ]
-"A-right"   = "indent"
-"A-left"    = "unindent"
-"A-S-up"    = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode" ]
-"A-S-down"  = [ "normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode" ]
+"home"     = "goto_line_start"
+"end"      = "goto_line_end_newline"
+
+"C-s" = ":w"
 
 " " = ["collapse_selection", ":insert-output printf ' '", "move_char_right"]
 
 [keys.select]
 # Muscle memory
-# "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
-# "}" = ["extend_to_line_bounds", "goto_next_paragraph"]
-# 0 = "goto_line_start"
-# "$" = "goto_line_end"
-# "G" = "goto_last_line"
+"{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
+"}" = ["extend_to_line_bounds", "goto_next_paragraph"]
+0   = "goto_line_start"
+9   = "goto_line_end"
+"G" = "goto_last_line"
 # "^" = "goto_first_nonwhitespace"
-# D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
-# C = ["goto_line_start", "extend_to_line_bounds", "change_selection"]
-# "%" = "match_brackets"
-# S = "surround_add" # Basically 99% of what I use vim-surround for
+D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
 
 # Visual-mode specific muscle memory
-# i = "select_textobject_inner"
-# a = "select_textobject_around"
+i = "select_textobject_inner"
+a = "select_textobject_around"
 
 # Some extra binds to allow us to insert/append in select mode because it's nice with multiple cursors
-tab = [
-  "insert_mode",
-  "collapse_selection",
-] # tab is read by most terminal editors as "C-i"
-C-a = ["append_mode", "collapse_selection"]
+tab = ["insert_mode", "collapse_selection"] # tab is read by most terminal editors as "C-i"
+C-a = "select_all"
 
-x = ["extend_line_below", "select_mode"]
+x = ["extend_line_below", "extend_to_line_bounds"]
 X = ["extend_line_up", "extend_to_line_bounds"]
 # Make selecting lines in visual mode behave sensibly
-k = ["extend_line_up", "extend_to_line_bounds"]
-j = ["extend_line_down", "extend_to_line_bounds"]
+up   = ["extend_line_up", "extend_to_line_bounds"]
+down = ["extend_line_down", "extend_to_line_bounds"]
 
 # Clipboards over registers ye ye
 d = ["yank_main_selection_to_clipboard", "delete_selection"]
+
 # x = ["yank_main_selection_to_clipboard", "delete_selection"]
 y = [
   "yank_main_selection_to_clipboard",
   "normal_mode",
   "flip_selections",
-  "collapse_selection",
+  "collapse_selection"
 ]
 Y = [
   "extend_to_line_bounds",
   "yank_main_selection_to_clipboard",
   "goto_line_start",
   "collapse_selection",
-  "normal_mode",
+  "normal_mode"
 ]
 p = ":clipboard-paste-replace" # No life without this
 P = ":clipboard-paste-after"
 
 # Escape the madness! No more fighting with the cursor! Or with multiple cursors!
 esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+ret = ["collapse_selection", "insert_mode"]

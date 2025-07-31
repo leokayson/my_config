@@ -72,7 +72,6 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 > sudo apt update
 > sudo apt install fish
 > ```
->
 
 # 4 VSCode
 
@@ -102,22 +101,9 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 > ~/Code/User/keybindings.json
 > ~/Code/User/settings.json
 
-# 5 Terminal Emulator
+# 5 Editor and explorer
 
-> - Wezterm
->   - Use nightly version
->
-> https://wezterm.org/installation.html
-
-# 5 Config
-
-## 5.1 soft link
-
-```bash
-python config.py
-```
-
-## 5.2 yazi
+## 5.1 yazi
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f rsa-remote-ssh
@@ -126,7 +112,7 @@ chmod 600 ./.ssh/authorized_keys
 chmod 755 ~
 ```
 
-## 5.3 NVIM plugin
+## 5.2 NVIM plugin
 
 > - Windows
 >
@@ -154,4 +140,46 @@ chmod 755 ~
     -- your optional config goes here, see below.
   end,
 },
+```
+
+## 5.3 Helix
+
+- Build from source:
+
+```bash
+git clone https://github.com/helix-editor/helix
+cd helix
+
+# Optimized
+cargo install \
+    --profile opt \
+    --config 'build.rustflags="-C target-cpu=native"' \
+    --path helix-term \
+    --locked
+
+```
+
+- Release
+
+> https://github.com/helix-editor/helix/releases
+
+- LSP
+
+> https://github.com/tombi-toml/tombi/releases
+>
+> https://github.com/LuaLS/lua-language-server/releases
+>
+> https://github.com/astral-sh/ruff/releases
+
+# 6 Terminal Emulator
+
+> - Wezterm
+>   - Use nightly version
+>
+> https://wezterm.org/installation.html
+
+# 7 Soft link
+
+```bash
+python config.py
 ```

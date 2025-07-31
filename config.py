@@ -50,7 +50,7 @@ def config_soft_link():
     create_soft_link(os.path.join(cfg_home, '.config', 'lsd.yaml'), os.path.join(home, '.config', 'lsd.yaml'))
     create_soft_link(os.path.join(cfg_home, 'wezterm'), os.path.join(home, '.config', 'wezterm'))
 
-    create_soft_link(os.path.join(cfg_home, 'script'), os.path.join(home, 'env', 'script'))
+    create_soft_link(os.path.join(cfg_home, 'ks_script'), os.path.join(home, 'env', 'ks_script'))
     create_soft_link(os.path.join(cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
     create_soft_link(os.path.join(cfg_home, '.gitconfig'), os.path.join(home, '.gitconfig'))
 

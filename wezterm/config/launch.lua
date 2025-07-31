@@ -6,19 +6,19 @@ local options = {
 }
 
 if platform.is_win then
-  options.default_prog = { "C:\\Users\\11409\\env\\bin\\nu.exe" }
+  options.default_prog = { "ssh", "kswu@172.30.100.155", "-p", "22" }
   options.launch_menu = {
+    {
+      label = " Ubuntu",
+      args = { "ssh", "kswu@172.30.100.155", "-p", "22" },
+    },
     { label = " PowerShell v1", args = { "powershell" } },
     { label = " PowerShell v7", args = { "pwsh" } },
     { label = " Cmd", args = { "cmd" } },
-    { label = " Nushell", args = { "nu" } },
+    { label = " Nushell", args = { "nu" } },
     {
       label = " GitBash",
-      args = { "C:\\soft\\Git\\bin\\bash.exe" },
-    },
-    {
-      label = " Ubuntu",
-      args = { "ssh", "kali@192.168.44.147", "-p", "22" },
+      args = { "C:\\Program Files\\Git\\bin\\bash.exe" },
     },
   }
 elseif platform.is_linux then

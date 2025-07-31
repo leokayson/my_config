@@ -117,8 +117,10 @@ keymap = [
 
 	# Goto
 	{ on = [ "g", "~" ],       run = "cd ~",             desc = "Go home" },
-	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
-	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" , for = "windows" },
+	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" ,  for = "windows" },
+	{ on = [ "g", "c" ],       run = "cd /mnt/c",   	 desc = "Go C driver" , 	for = "linux" },
+	{ on = [ "g", "z" ],       run = "cd /mnt/z",   	 desc = "Go Z driver" , 	for = "linux" },
+	{ on = [ "g", "z" ],       run = "cd Z:/",   	 	 desc = "Go Z driver" , 	for = "windows" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
@@ -155,13 +157,12 @@ keymap = [
 	{ on = [ "J", "o" ], run  = "plugin keyjump -- global once",desc = "Global once mode" },
 
 	{ on = [ "B", "a" ],          run = "plugin yamb save",                         desc = "Add bookmark" },
-	{ on = [ "B", "g" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },
-	{ on = [ "B", "G" ],          run = "plugin yamb jump_by_fzf",                  desc = "Jump bookmark by fzf" },
-	{ on = [ "B", "d" ],          run = "plugin yamb delete_by_key",                desc = "Delete bookmark by key" },
-	{ on = [ "B", "D" ],          run = "plugin yamb delete_by_fzf",                desc = "Delete bookmark by fzf" },
-	{ on = [ "B", "A" ],          run = "plugin yamb delete_all",                   desc = "Delete all bookmarks" },
-	{ on = [ "B", "r" ],          run = "plugin yamb rename_by_key",                desc = "Rename bookmark by key" },
-	{ on = [ "B", "R" ],          run = "plugin yamb rename_by_fzf",                desc = "Rename bookmark by fzf" },
+	{ on = [ "B", "b" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },
+	{ on = [ "B", "B" ],          run = "plugin yamb jump_by_fzf",                  desc = "Jump bookmark by fzf" },
+	{ on = [ "B", "d" ],          run = "plugin yamb delete_by_fzf",                desc = "Delete bookmark by fzf" },
+	{ on = [ "B", "D" ],          run = "plugin yamb delete_all",                   desc = "Delete all bookmarks" },
+	{ on = [ "B", "R" ],          run = "plugin yamb rename_by_key",                desc = "Rename bookmark by key" },
+	{ on = [ "B", "r" ],          run = "plugin yamb rename_by_fzf",                desc = "Rename bookmark by fzf" },
 
 	{ on = [ "P", "s" ],          run = "plugin projects save",                     desc = "Save current project" },
 	{ on = [ "P", "l" ],          run = "plugin projects load",                     desc = "Load project" },
