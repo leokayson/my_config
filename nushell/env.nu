@@ -16,20 +16,19 @@
 #
 # You can remove these comments if you want or leave
 # them for future reference.
+source $"cfg_($nu.os-info.name).nu"
 
 export-env {
     load-env {
-        EDITOR:                 'code'
-        CLIPBOARD_EDITOR:       'code'
+        EDITOR:                 'hx'
+        CLIPBOARD_EDITOR:       'hx'
         CLIPBOARD_HISTORY:      10
-        VISUAL:                 'code'
+        VISUAL:                 'hx'
         PAGER:                  'bat'
         SHELL:                  'nu'
         HOSTNAME:               (hostname | split row '.' | first | str trim)
     }
 }
-
-source $"cfg_($nu.os-info.name).nu"
 
 $env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
 $env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")

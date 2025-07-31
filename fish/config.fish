@@ -1,38 +1,55 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    alias bashrc 'code ~/.bashrc'
-    alias fcfg   'code ~/.config/fish/config.fish'
-    alias scfg   'code ~/.config/starship.toml'
-    alias cls    'clear'
-    alias py     'python'
-    alias y      'yazi'
-    alias fd     'fd -I -H'
-    alias ls     'lsd -T --icon-theme unicode'
-    alias ll     'ls --header --git -Al --date relative'
-    alias lld    'fd -l -d 1'
-    alias llt    'll --total-size'
-    alias cd1    'cd ../'
-    alias cd2    'cd ../../'
-    alias cd3    'cd ../../../'
-    alias pc     '~/tool/scripts/bin/tool -pc'
-    alias btm    'btm --theme=gruvbox --config_Location ~/.config/btm.toml'
+    fish_add_path '~/.cargo/bin'
+    fish_add_path '~/.local/bin'
+    fish_add_path '~/env/bin'
+    fish_add_path '~/env/script'
+    fish_add_path '~/env/usr/bin'
 
-    alias ga_cnm 'git add . && git cnm'
-    alias gc_cmd 'git commit -m "[{(date +"%m/%d %H:%M")}] sync"'
-    alias grd    'git rh && git clean -fd'
+    set LD_LIBRARY_PATH  '$LD_LIBRARY_PATH ~/env/lib'
+    set LD_LIBRARY_PATH  '$LD_LIBRARY_PATH ~/env/lib'
 
-    # source ~/.uv_venv/bin/activate.fish
+    set EDITOR                 'hx'
+    set CLIPBOARD_EDITOR       'hx'
+    set CLIPBOARD_HISTORY      10
+    set VISUAL                 'hx'
+    set PAGER                  'bat'
+    set SHELL                  'fish'
+
+    alias fcfg    'code ~/.config/fish/config.fish'
+    alias scfg    'code ~/.config/starship.toml'
+
+    alias py      'python'
+    alias g       'git'
+    alias vi      'nvim'
+    alias vim     'nvim'
+    alias tool    'python ~/env/script/tool.py'
+    alias where   'which'
+    alias ga_cnm  'git add . && git cnm'
+    alias grd     'git rh . && git clean -fd'
+
+    alias fd      'fd -I -H'
+    alias ls      'lsd --config-file ~/.config/lsd.yaml'
+    alias ll      'ls -Al'
+    alias llt     'll --total-size'
+    alias llns    'll --no-symlink'
+    alias lld     'fd -l -d 1'
+    alias btm     'btm --config_location ~/.config/btm.toml'
+    alias fzff    'fzf --style=full --preview "bat --color=always {}"" --preview-window "up"'
+    alias fzf     'fzff -e'
+    alias fzfp    'fzf | path expand'
+
+    alias cd1     'cd ../'
+    alias cd2     'cd ../../'
+    alias cd3     'cd ../../../'
+        
+    source ~/.venv/bin/activate.fish
 end
 
 starship init fish | source
-# zoxide init fish | source
 
 function vscode_crash
     set -gx VSCODE_IPC_HOOK_CLI (lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)
-end
-
-function winpath
-    echo (realpath $argv | string replace -a '/local/mnt/workspace/' 'Z:/')
 end
 
 function y
@@ -75,4 +92,10 @@ function z
     else
         echo "no this cmd: $argv[1]"
     end 
+end
+
+function wwget
+    cd ~
+    wget $argv[1]
+    cd -
 end

@@ -1,6 +1,5 @@
 # /usr/bin/bash
 
-if [[ "$-" == *i* && "$SHELL" != "nu" ]]; then
-    export SHELL = nu
-    exec ~/env/usr/bin/nu
+if [[ "$-" == *i* ]]; then
+    fish
 fi

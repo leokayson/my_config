@@ -31,7 +31,7 @@
 	fp2        = format-patch -2
 [core] 
 	editor     = code --wait 
-	autocrlf   = false
+	autocrlf   = input
 [diff] 
 	tool       = vscode 
 [merge] 
