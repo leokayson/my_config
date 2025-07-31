@@ -69,7 +69,7 @@ def grd [] {
     git rh
     git clean -fd
 }
-        
+
 # ========================= Function  =========================
 def ncd [path: string] {
     code ($path | path expand)
@@ -119,4 +119,8 @@ def --env z [cmd: string, path: string] {
     } else {
         echo $"no such cmd: ($cmd)"
     }
+}
+
+def --env add_path [path: string] {
+    $env.PATH = $env.PATH | append $path
 }

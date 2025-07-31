@@ -6,8 +6,6 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 
 # 2 Env
 
-> ~/env
-
 ## 2.1 System environment
 
 > sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick
@@ -54,6 +52,8 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 
 # 3 Shell
 
+> == Nushell ==
+>
 > - nushell release
 >
 > https://github.com/nushell/nushell/releases
@@ -64,16 +64,30 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 > mkdir ($nu.data-dir | path join "vendor/autoload")
 > starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 > ```
+>
+> == Fish ==
+>
+> ```bash
+> sudo apt-add-repository ppa:fish-shell/release-4
+> sudo apt update
+> sudo apt install fish
+> ```
+>
 
 # 4 VSCode
 
 ## 4.1 Extension
 
 > code --install-extension rust-lang.rust-analyzer
+>
 > code --install-extension uloco.theme-bluloco-dark uloco.theme-bluloco-light
+>
 > code --install-extension llvm-vs-code-extensions.vscode-clangd usernamehw.errorlens mhutchie.git-graph ms-vscode.hexeditor
+>
 > code --install-extension pkief.material-icon-theme cweijan.vscode-office alefragnani.project-manager xshrim.txt-syntax
+>
 > code --install-extension ms-vscode-remote.remote-ssh yo1dog.cursor-align matthewthorning.align-vertically
+>
 > code --install-extension usernamehw.find-jump enkeldigital.relative-goto
 
 ## 4.2 Configs (Can use cloud sync)
@@ -92,7 +106,7 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 
 > - Wezterm
 >   - Use nightly version
-> 
+>
 > https://wezterm.org/installation.html
 
 # 5 Config

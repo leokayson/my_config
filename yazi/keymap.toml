@@ -66,8 +66,8 @@ keymap = [
 	{ on = ";",          run = "plugin custom-shell -- auto --interactive --block",                  desc = "Run a shell command" },
 	{ on = ":",          run = "plugin custom-shell -- auto --interactive --block --wait",           desc = "Run a shell command (block until finishes)" },
 	{ on = ".",          run = "hidden toggle",                        desc = "Toggle the visibility of hidden files" },
-	{ on = "s",          run = "search --via=fd",                      desc = "Search files by name via fd" },
-	{ on = "S",          run = "search --via=rg",                      desc = "Search files by content via ripgrep" },
+	{ on = [ "s", "f" ], run = "search --via=fd",                      desc = "fd - name" },
+	{ on = [ "s", "r" ], run = "search --via=rg",                      desc = "rg - content" },
 	{ on = "<C-s>",      run = "escape --search",                      desc = "Cancel the ongoing search" },
 	{ on = [ "z", "/" ], run = ["cd /", "plugin fzf"],                 desc = "/ -> fzf" },
 	{ on = [ "z", "~" ], run = ["cd ~", "plugin fzf"],                 desc = "~ -> fzf" },
@@ -101,19 +101,19 @@ keymap = [
 	{ on = "N", run = "find_arrow --previous",   desc = "Previous found" },
 
 	# Sorting
-	{ on = [ "<C-s>", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort modified" },
-	{ on = [ "<C-s>", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort modified (R)" },
-	{ on = [ "<C-s>", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort birth" },
-	{ on = [ "<C-s>", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort birth (R)" },
-	{ on = [ "<C-s>", "e" ], run = "sort extension --reverse=no",                   desc = "Sort ext" },
-	{ on = [ "<C-s>", "E" ], run = "sort extension --reverse",                      desc = "Sort ext (R)" },
-	{ on = [ "<C-s>", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alp" },
-	{ on = [ "<C-s>", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alp (R)" },
-	{ on = [ "<C-s>", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
-	{ on = [ "<C-s>", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (R)" },
-	{ on = [ "<C-s>", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort size" },
-	{ on = [ "<C-s>", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort size (R)" },
-	{ on = [ "<C-s>", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
+	{ on = [ "S", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort modified" },
+	{ on = [ "S", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort modified (R)" },
+	{ on = [ "S", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort birth" },
+	{ on = [ "S", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort birth (R)" },
+	{ on = [ "S", "e" ], run = "sort extension --reverse=no",                   desc = "Sort ext" },
+	{ on = [ "S", "E" ], run = "sort extension --reverse",                      desc = "Sort ext (R)" },
+	{ on = [ "S", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alp" },
+	{ on = [ "S", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alp (R)" },
+	{ on = [ "S", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
+	{ on = [ "S", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (R)" },
+	{ on = [ "S", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort size" },
+	{ on = [ "S", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort size (R)" },
+	{ on = [ "S", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
 	{ on = [ "g", "~" ],       run = "cd ~",             desc = "Go home" },
@@ -149,11 +149,10 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 
 	# plugins
-	{ on = "j",          run  = "plugin searchjump",              desc = "Jump to search" },
-	{ on = [ "J", "k" ], run  = "plugin keyjump -- keep",         desc = "Keep mode" },
-	{ on = [ "J", "s" ], run  = "plugin keyjump -- select",       desc = "Select mode" },
-	{ on = [ "J", "g" ], run  = "plugin keyjump -- global",       desc = "Global mode" },
-	{ on = [ "J", "o" ], run  = "plugin keyjump -- global once",  desc = "Once mode" },
+	{ on = "j", run  = "plugin searchjump",  		 		 	desc = "Jump to search" },
+	{ on = [ "J", "s" ], run  = "plugin keyjump -- select",  	desc = "Select mode" },
+	{ on = [ "J", "g" ], run  = "plugin keyjump -- global",  	desc = "Global mode" },
+	{ on = [ "J", "o" ], run  = "plugin keyjump -- global once",desc = "Global once mode" },
 
 	{ on = [ "B", "a" ],          run = "plugin yamb save",                         desc = "Add bookmark" },
 	{ on = [ "B", "g" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },
@@ -182,7 +181,6 @@ keymap = [
 	{ on = "w", 	              run = "plugin close-and-restore-tab close_to_right",	desc = "Close the current tab and turn to right tab, or quit if it is last tab" },
 	{ on = "<C-w>",	              run = "plugin close-and-restore-tab restore",			desc = "Restore the closed tab" },
 
-	{ on = "m",                   run = "plugin relative-motions", 						desc = "Trigger a new relative motion"}
 ]
 
 [tasks]

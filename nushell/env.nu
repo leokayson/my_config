@@ -32,6 +32,7 @@ export-env {
 
 $env.PATH = ($env.PATH | append $"($env.HOME)/.cargo/bin")
 $env.PATH = ($env.PATH | append $"($env.HOME)/.local/bin")
+$env.PATH = ($env.PATH | append $"($env.HOME)/env")
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/bin")
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/script")
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/usr/bin")

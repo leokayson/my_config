@@ -8,6 +8,7 @@ export-env {
 
 $env.PATH = ($env.PATH | append $"($env.HOME)/env/script/win")
 $env.PATH = ($env.PATH | append $"($env.LOCALAPPDATA)/Microsoft/WindowsApps")
+$env.PATH = ($env.PATH | append $"($env.LOCALAPPDATA)/Microsoft/WinGet/Links")
 
 source $"($nu.default-config-dir)/custom-completions/adb/adb-completions.nu"
 source $"($nu.default-config-dir)/custom-completions/fastboot/fastboot-completions.nu"

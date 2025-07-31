@@ -12,8 +12,8 @@ local SPECIAL_KEYS = {
 
 -- stylua: ignore
 local SINGLE_KEYS = {
-	"p", "b", "e", "t", "a", "o", "i", "n", "s", "r", "h", "l", "d", "c",
-	"u", "m", "f", "g", "w", "v", "k", "j", "x", "y", "q"
+	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+	"o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
 }
 
 -- stylua: ignore
