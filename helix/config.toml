@@ -132,19 +132,21 @@ Y = [
 
 # Quick iteration on config changes
 r = ":config-reload"
+R = "goto_line_start"
 
 # Muscle memory
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
 G   = "goto_file_end"
 V   = ["select_mode", "extend_to_line_bounds"]
-D   = ["extend_to_line_end", "delete_selection"]
-"/" = "toggle_comments"
+D   = ["goto_line_start", "extend_to_line_end", "delete_selection"]
 
 S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 
 x = ["extend_line_below", "select_mode"]
 X = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
+"S-up" = ["extend_line_below", "select_mode"]
+"S-down" = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
 
 # Clipboards over registers ye ye
 p = "paste_clipboard_after"

@@ -33,6 +33,7 @@ if status is-interactive
     alias where   'which'
     alias ga_cnm  'git add . && git cnm'
     alias grd     'git rh . && git clean -fd'
+    alias sssh    'sudo systemctl start ssh'
 
     alias fd      'fd -I -H'
     alias bat     'bat -f'
@@ -89,21 +90,18 @@ function f
     else if test $argv[1] = "code"
         if test "$selected" != ""
             code $selected
-        else
-            cd -
         end
+        cd -
     else if test $argv[1] = "nvim"
         if test "$selected" != ""
             nvim $selected
-        else
-            cd -
         end
+        cd -
     else if test $argv[1] = "hx"
         if test "$selected" != ""
             hx $selected
-        else
-            cd -
         end
+        cd -
     else
         echo "no this cmd: $argv[1]"
     end 
