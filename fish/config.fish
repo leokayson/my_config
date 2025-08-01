@@ -1,11 +1,11 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    set PATH -gx $PATH ~/.cargo/bin
-    set PATH -gx $PATH ~/.local/bin
-    set PATH -gx $PATH ~/env/bin
-    set PATH -gx $PATH ~/env/script
-    set PATH -gx $PATH ~/env/usr/bin
-    set PATH -gx $PATH ~/.config/helix/lsp/bin
+    set -gx PATH $PATH ~/.cargo/bin
+    set -gx PATH $PATH ~/.local/bin
+    set -gx PATH $PATH ~/env/bin
+    set -gx PATH $PATH ~/env/script
+    set -gx PATH $PATH ~/env/usr/bin
+    set -gx PATH $PATH ~/.config/helix/lsp/bin
 
     set -gx LD_LIBRARY_PATH  $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH  $LD_LIBRARY_PATH ~/env/lib
@@ -55,7 +55,7 @@ if status is-interactive
     alias cd3     'cd ../../../'
 
     source ~/.venv/bin/activate.fish
-    zoxide init fish | source
+    # zoxide init fish | source
     starship init fish | source
 end
 
@@ -74,7 +74,7 @@ end
 
 function f
     cd "$argv[2]"
-    set selected (fzfe --walker=dir,file,hidden,follow)
+    set selected (fzfa)
     
     if test $argv[1] = "cd" 
         if test "$selected" != ""
@@ -120,4 +120,8 @@ end
 
 function remove_apth
     set -gx PATH (string match -v /usr/local/bin $PATH)
+end
+
+function wsl_mt
+    echo -t drvfs (string upper $agrv[1]): /mnt/(string lower $argv[1])
 end
