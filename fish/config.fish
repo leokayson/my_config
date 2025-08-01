@@ -16,6 +16,7 @@ if status is-interactive
     set -gx VISUAL                 'hx'
     set -gx PAGER                  'bat'
     set -gx SHELL                  'fish'
+    set -gx FZF_DEFAULT_OPTS       '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
 
     alias fcfg    'code ~/.config/fish/config.fish'
     alias scfg    'code ~/.config/starship.toml'
@@ -35,7 +36,7 @@ if status is-interactive
     alias grd     'git rh . && git clean -fd'
     alias sssh    'sudo systemctl start ssh'
 
-    alias fd      'fd -I -H'
+    alias fd      'fd -HIL --strip-cwd-prefix=always --exclude .git'
     alias bat     'bat -f'
     alias ls      'lsd --config-file ~/.config/lsd.yaml'
     alias ll      'ls -Al'
@@ -45,10 +46,10 @@ if status is-interactive
     alias llns    'll --no-symlink'
     alias lld     'fd -l -d 1'
     alias btm     'btm --config_location ~/.config/btm.toml'
-    alias fzf     'fzf -e --style=full --preview "bat {}" --preview-window "up" --scheme=history'
-    alias fzfa    'fzf --walker=dir,file,hidden,follow'
-    alias fzfd    'fzf --walker=dir,hidden,follow'
-    alias fzfp    'fzfe | path expand'
+    alias fzff    'fd -t f | fzf'
+    alias fzfd    'fd -t d | fzf'
+    alias fzfa    'fd -t f -t d | fzf'
+    alias fzfp    'fzfd | path expand'
 
     alias cd1     'cd ../'
     alias cd2     'cd ../../'
