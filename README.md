@@ -67,6 +67,12 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 >
 > == Fish ==
 >
+> - Fish Release
+>
+> https://launchpad.net/~fish-shell/+archive/ubuntu/release-4/+packages
+>
+> - apt
+>
 > ```bash
 > sudo apt-add-repository ppa:fish-shell/release-4
 > sudo apt update

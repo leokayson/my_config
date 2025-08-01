@@ -1,21 +1,21 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    fish_add_path -g ~/.cargo/bin
-    fish_add_path -g ~/.local/bin
-    fish_add_path -g ~/env/bin
-    fish_add_path -g ~/env/script
-    fish_add_path -g ~/env/usr/bin
-    fish_add_path -g ~/.config/helix/lsp/bin
+    set PATH -gx $PATH ~/.cargo/bin
+    set PATH -gx $PATH ~/.local/bin
+    set PATH -gx $PATH ~/env/bin
+    set PATH -gx $PATH ~/env/script
+    set PATH -gx $PATH ~/env/usr/bin
+    set PATH -gx $PATH ~/.config/helix/lsp/bin
 
     set -gx LD_LIBRARY_PATH  $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH  $LD_LIBRARY_PATH ~/env/lib
 
-    set -U EDITOR                 'hx'
-    set -U CLIPBOARD_EDITOR       'hx'
-    set -U CLIPBOARD_HISTORY      10
-    set -U VISUAL                 'hx'
-    set -U PAGER                  'bat'
-    set -U SHELL                  'fish'
+    set -gx EDITOR                 'hx'
+    set -gx CLIPBOARD_EDITOR       'hx'
+    set -gx CLIPBOARD_HISTORY      10
+    set -gx VISUAL                 'hx'
+    set -gx PAGER                  'bat'
+    set -gx SHELL                  'fish'
 
     alias fcfg    'code ~/.config/fish/config.fish'
     alias scfg    'code ~/.config/starship.toml'
@@ -45,8 +45,9 @@ if status is-interactive
     alias llns    'll --no-symlink'
     alias lld     'fd -l -d 1'
     alias btm     'btm --config_location ~/.config/btm.toml'
-    alias fzf     'fzf --style=full --preview "bat {}" --preview-window "up"'
-    alias fzfe    'fzf -e'
+    alias fzf     'fzf -e --style=full --preview "bat {}" --preview-window "up" --scheme=history'
+    alias fzfa    'fzf --walker=dir,file,hidden,follow'
+    alias fzfd    'fzf --walker=dir,hidden,follow'
     alias fzfp    'fzfe | path expand'
 
     alias cd1     'cd ../'
