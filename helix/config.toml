@@ -5,7 +5,7 @@ mouse                  = true
 cursorline             = true
 true-color             = true
 scrolloff              = 8
-scroll-lines           = 1
+scroll-lines           = 5
 color-modes            = true
 auto-save              = false
 bufferline             = "multiple"
@@ -31,8 +31,8 @@ smart-case = true
 
 [editor.cursor-shape]
 insert = "bar"
-normal = "block"
-select = "block"
+normal = "bar"
+select = "bar"
 
 [editor.soft-wrap]
 enable             = true
@@ -56,39 +56,24 @@ newline = "⏎"
 [editor.indent-guides]
 render    = true
 character = "╎"  # Some characters that work well: "▏", "╎", "┆", "┊", "⸽"
-# skip-levels = 1
 
 [editor.statusline]
-# left = [
-#   "mode",
-#   "spacer",
-#   "separator",
-#   "spacer",
-#   "spinner",
-#   "position-percentage",
-#   "spacer",
-#   "total-line-numbers",
-# ]
-# center = ["file-name", "version-control", "spacer", "diagnostics"]
-# right = ["selections", "position", "file-type", "spacer"]
 left = [
   "mode",
-  "spinner",
+  "read-only-indicator",
+]
+center = [
   "file-name",
-  "file-type",
-  "total-line-numbers",
   "file-encoding"
 ]
-center = []
+  
 right = [
-  "selections",
-  "primary-selection-length",
   "position",
-  "position-percentage",
+  "total-line-numbers",
+  "file-line-ending",
+  "file-indent-style",
   "spacer",
-  "diagnostics",
   "workspace-diagnostics",
-  "version-control"
 ]
 separator = "│"
 mode.insert = "I"
@@ -96,27 +81,30 @@ mode.normal = "N"
 mode.select = "S"
 
 [keys.normal]
-"A-up"    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
-"A-down"  = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-"A-right" = "indent"
-"A-left"  = "unindent"
+"C-up"    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"C-down"  = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+"C-right" = "indent"
+"C-left"  = "unindent"
+
+"A-up"    = "copy_selection_on_prev_line"
+"A-down"  = "copy_selection_on_next_line"
+"A-left"    = "move_prev_word_end"
+"A-right"   = "move_next_word_end"
 
 "A-S-up"   = ["extend_to_line_bounds", "yank", "paste_before"]
 "A-S-down" = ["extend_to_line_bounds", "yank", "paste_after"]
-
-"C-right"   = "move_next_word_end"
-"C-left"    = "move_prev_word_end"
-"C-S-right" = "move_next_word_start"
-"C-S-left"  = "move_prev_word_start"
-"C-S-up"    = "copy_selection_on_prev_line"
-"C-S-down"  = "copy_selection_on_next_line"
+"A-S-left"  = [ "select_mode", "move_prev_word_end" ]
+"A-S-right" = [ "select_mode", "move_next_word_end" ]
 
 "C-a" = ["select_all", "select_mode"]
 "ret" = "open_below"
 
 "A-backspace" = ["insert_mode", "delete_word_backward", "normal_mode"]
 "A-del"       = ["insert_mode", "delete_word_forward", "normal_mode"]
+"S-backspace" = "kill_to_line_start"
+"S-del"       = "kill_to_line_end"
 "C-s"         = ":w"
+"/"           = [ "select_all", "select_regex" ]
 
 y = [
   "yank_main_selection_to_clipboard",
@@ -132,14 +120,14 @@ Y = [
 
 # Quick iteration on config changes
 r = ":config-reload"
-R = "goto_line_start"
+c = "toggle_comments"
 
 # Muscle memory
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
 G   = "goto_file_end"
 V   = ["select_mode", "extend_to_line_bounds"]
-D   = ["goto_line_start", "extend_to_line_end", "delete_selection"]
+D   = ["goto_line_start", "extend_to_line_end", "delete_selection", "delete_selection" ]
 
 S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 
@@ -166,20 +154,21 @@ esc   = ["collapse_selection", "keep_primary_selection"]
 space = { "c" = "toggle_comments", "|" = "global_search" }
 
 [keys.insert]
-"A-up"    = ["normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode"]
-"A-down"  = ["normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode"]
-"A-right" = "indent"
-"A-left"  = "unindent"
+"C-up"    = ["normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode"]
+"C-down"  = ["normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode"]
+"C-left"  = "unindent"
+"C-right" = "indent"
+
+"A-up"    = "copy_selection_on_prev_line"
+"A-down"  = "copy_selection_on_next_line"
+"A-left"    = "move_prev_word_end"
+"A-right"   = "move_next_word_end"
 
 "A-S-up"   = ["normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode"]
 "A-S-down" = ["normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode"]
-
-"C-right"   = "move_next_word_end"
-"C-left"    = "move_prev_word_end"
-"C-S-right" = "move_next_word_start"
-"C-S-left"  = "move_prev_word_start"
-"C-S-up"    = "copy_selection_on_prev_line"
-"C-S-down"  = "copy_selection_on_next_line"
+"C-S-right" = [ "move_next_word_start", "select_mode" ] 
+"C-S-left"  = [ "move_prev_word_end", "select_mode" ]
+"C-s" = ":w"
 
 "tab"   = "insert_tab"
 "S-tab" = "unindent"
@@ -195,12 +184,15 @@ esc = ["collapse_selection", "normal_mode"]
 "home"     = "goto_line_start"
 "end"      = "goto_line_end_newline"
 
-"C-s" = ":w"
-
 " " = ["collapse_selection", ":insert-output printf ' '", "move_char_right"]
 
 [keys.select]
 # Muscle memory
+"A-S-right" = "extend_next_word_end"
+"A-S-left"  = "extend_prev_word_start"
+"A-right" = "extend_next_word_end"
+"A-left"  = "extend_prev_word_start"
+
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]
 0   = "goto_line_start"
@@ -242,6 +234,7 @@ Y = [
 ]
 p = ":clipboard-paste-replace" # No life without this
 P = ":clipboard-paste-after"
+"/" = "select_regex"
 
 # Escape the madness! No more fighting with the cursor! Or with multiple cursors!
 esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]

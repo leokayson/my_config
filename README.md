@@ -22,7 +22,7 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 
 ## 2.3 Rust Crate
 
-> cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl ouch
+> cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl kmon ouch
 >
 > cargo install --git https://github.com/leokayson/lsd.git
 >
@@ -132,20 +132,26 @@ chmod 755 ~
 - bloluco.nvim configure
 
 ```lua
-# Linux:  
-# Windows: $env:LOCALAPPDATA\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
+# Linux: nvim ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/colorscheme.lua
+# Windows: nvim ($env.LOCALAPPDATA)\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
+-- add bluloco
+  {
+    'uloco/bluloco.nvim',
+    lazy = false,
+    priority = 1000,
+    dependencies = { 'rktjmp/lush.nvim' },
+    config = function()
+      -- your optional config goes here, see below.
+    end,
+  },
 
-# Linux: nvim 
-# Windows: nvim $env:LOCALAPPDATA\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
-{
-  'uloco/bluloco.nvim',
-  lazy = false,
-  priority = 1000,
-  dependencies = { 'rktjmp/lush.nvim' },
-  config = function()
-    -- your optional config goes here, see below.
-  end,
-},
+  -- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "bluloco-dark",
+    },
+  }
 ```
 
 ## 5.3 Helix

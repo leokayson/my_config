@@ -23,34 +23,39 @@ map("n", "<C-S-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window 
 map("n", "<C-S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Move Lines
-map("n", "<A-Down>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-map("n", "<A-Up>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-map("i", "<A-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+map("n", "<C-Down>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<C-Up>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<C-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<C-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<C-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<C-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Move words
-map("n", "<C-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
-map("n", "<C-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
-map("i", "<C-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
-map("i", "<C-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
-map("v", "<C-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
-map("v", "<C-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
+map("n", "<A-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
+map("n", "<A-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
+map("i", "<A-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
+map("i", "<A-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
+map("v", "<A-Left>", "<S-Left>", { noremap = true, desc = "Move to previous word" })
+map("v", "<A-Right>", "<S-Right>", { noremap = true, desc = "Move to next word" })
 
 -- Delete words
 map("n", "d<Delete>", "dw", { noremap = true, desc = "Delete to later word" })
 map("n", "d<Backspace>", "db", { noremap = true, desc = "Delete to previous word" })
 map("n", "d<Right>", "dw", { noremap = true, desc = "Delete to later word" })
 map("n", "d<Left>", "db", { noremap = true, desc = "Delete to previous word" })
+map("i", "<A-Delete>", "<C-o>dw", { noremap = true, desc = "Delete to previous word" })
+map("i", "<A-Backspace>", "<C-w>", { noremap = true, desc = "Delete to previous word" })
 
 -- Select words
-map("n", "<C-S-Left>", "vb", { noremap = true, desc = "Select word backward" })
-map("n", "<C-S-Right>", "vw", { noremap = true, desc = "Select word forward" })
-map("i", "<C-S-Left>", "<C-o>vb", { noremap = true, desc = "Select word backward" })
-map("i", "<C-S-Right>", "<C-o>vw", { noremap = true, desc = "Select word forward" })
-map("x", "<C-S-Left>", "b", { noremap = true, desc = "Extend selection backward" })
-map("x", "<C-S-Right>", "w", { noremap = true, desc = "Extend selection forward" })
+map("n", "<A-S-Left>", "vb", { noremap = true, desc = "Select word backward" })
+map("n", "<A-S-Right>", "vw", { noremap = true, desc = "Select word forward" })
+map("i", "<A-S-Left>", "<C-o>vb", { noremap = true, desc = "Select word backward" })
+map("i", "<A-S-Right>", "<C-o>vw", { noremap = true, desc = "Select word forward" })
+map("x", "<A-S-Left>", "b", { noremap = true, desc = "Extend selection backward" })
+map("x", "<A-S-Right>", "w", { noremap = true, desc = "Extend selection forward" })
+
+map("n", "<A-Left>", "<gv")
+map("n", "<A-Right>", "<gv")
 
 -- Enter visual block mode
 -- map("n", "<C-S-v>", "<C-q>", { noremap = true, desc = "Extend selection forward" })
