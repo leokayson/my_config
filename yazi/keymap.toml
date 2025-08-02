@@ -63,8 +63,8 @@ keymap = [
 	{ on = "a",          run = "create",                               desc = "Create a file (ends with / for directories)" },
 	{ on = "r",          run = "rename --cursor=before_ext",           desc = "Rename selected file(s)" },
 	{ on = "<F2>",       run = "rename --cursor=before_ext",           desc = "Rename selected file(s)" },
-	{ on = ";",          run = "plugin custom-shell -- auto --interactive --block",                  desc = "Run a shell command" },
-	{ on = ":",          run = "plugin custom-shell -- auto --interactive --block --wait",           desc = "Run a shell command (block until finishes)" },
+    { on = ";",          run = "plugin custom-shell -- auto --interactive --block --wait",    desc = "Run a shell command" },
+	{ on = ":",          run = "plugin custom-shell -- auto --interactive --block",           desc = "Run a shell command (block until finishes)" },
 	{ on = ".",          run = "hidden toggle",                        desc = "Toggle the visibility of hidden files" },
 	{ on = [ "s", "f" ], run = "search --via=fd",                      desc = "fd - name" },
 	{ on = [ "s", "r" ], run = "search --via=rg",                      desc = "rg - content" },
@@ -151,10 +151,9 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 
 	# plugins
-	{ on = "j", run  = "plugin searchjump",  		 		 	desc = "Jump to search" },
-	{ on = [ "J", "s" ], run  = "plugin keyjump -- select",  	desc = "Select mode" },
-	{ on = [ "J", "g" ], run  = "plugin keyjump -- global",  	desc = "Global mode" },
-	{ on = [ "J", "o" ], run  = "plugin keyjump -- global once",desc = "Global once mode" },
+	{ on = [ "j", "s" ], run  = "plugin keyjump -- select",  	desc = "Select mode" },
+	{ on = [ "j", "g" ], run  = "plugin keyjump -- global",  	desc = "Global mode" },
+	{ on = [ "j", "o" ], run  = "plugin keyjump -- global once",desc = "Global once mode" },
 
 	{ on = [ "B", "a" ],          run = "plugin yamb save",                         desc = "Add bookmark" },
 	{ on = [ "B", "b" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },
@@ -181,7 +180,6 @@ keymap = [
 	
 	{ on = "w", 	              run = "plugin close-and-restore-tab close_to_right",	desc = "Close the current tab and turn to right tab, or quit if it is last tab" },
 	{ on = "<C-w>",	              run = "plugin close-and-restore-tab restore",			desc = "Restore the closed tab" },
-
 ]
 
 [tasks]
