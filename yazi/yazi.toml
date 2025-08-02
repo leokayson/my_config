@@ -30,9 +30,8 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ run = 'hx "$@"', desc = "$EDITOR (hx)", block = true, for = "unix" },
-	# { run = 'code %*',    orphan = true, desc = "neovim",           for = "windows" },
-	{ run = 'hx %*', block = true,  desc = "hx",   for = "windows" },
+  { run = 'nvim "$@"', block = true,  desc = "nvim",   for = "unix" },
+	{ run = 'nvim %*',   block = true,  desc = "nvim",   for = "windows" },
 ]
 open = [
 	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },

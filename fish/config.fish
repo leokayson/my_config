@@ -10,8 +10,8 @@ if status is-interactive
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
 
-    set -gx EDITOR hx
-    set -gx CLIPBOARD_EDITOR hx
+    set -gx EDITOR nvim
+    set -gx CLIPBOARD_EDITOR nvim
     set -gx CLIPBOARD_HISTORY 10
     set -gx VISUAL hx
     set -gx PAGER bat
@@ -56,10 +56,7 @@ if status is-interactive
     alias cd2 'cd ../../'
     alias cd3 'cd ../../../'
 
-    # alias cdb_add 'python ~/env/ks_script/cd_bookmarks.py -a'
-
     source ~/.venv/bin/activate.fish
-    # zoxide init fish | source
     starship init fish | source
 end
 
@@ -131,17 +128,17 @@ function cdb
             echo ' cdb l         List all dir bookmarkds'
             echo ' cdb e         Edit the dir bookmarkds'
             echo ' cdb cmd       Run a history cmd'
-        case "a"
+        case a
             python $BK_script -a
-        case "d"
+        case d
             python $BK_script -d
-        case "D"
+        case D
             python $BK_script -D
-        case "l"
+        case l
             python $BK_script -l
-        case "e"
-            $EDITOR ~/.config/cb_bookmarks.log 
-        case "cmd"
+        case e
+            $EDITOR ~/.config/cb_bookmarks.log
+        case cmd
             set cmd (python $BK_script -ch)
             eval $cmd
         case "*"

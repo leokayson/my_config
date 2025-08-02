@@ -54,11 +54,13 @@ map("i", "<A-S-Right>", "<C-o>vw", { noremap = true, desc = "Select word forward
 map("x", "<A-S-Left>", "b", { noremap = true, desc = "Extend selection backward" })
 map("x", "<A-S-Right>", "w", { noremap = true, desc = "Extend selection forward" })
 
-map("n", "<A-Left>", "<gv")
-map("n", "<A-Right>", "<gv")
-
--- Enter visual block mode
--- map("n", "<C-S-v>", "<C-q>", { noremap = true, desc = "Extend selection forward" })
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+map("n", "<C-Left>", "<gv", { noremap = true })
+map("n", "<C-Right>", ">gv", { noremap = true })
+map("i", "<C-Left>", "<Esc><<i", { noremap = true })
+map("i", "<C-Right>", "<Esc>>>i", { noremap = true })
 
 -- use U for redo :))
 map("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
@@ -67,14 +69,8 @@ map("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
 map("v", "<C-c>", '"+y', { noremap = true, desc = "Yank into system clipboard" })
 
 -- scrolling
-map("n", "<S-Up>", "<C-u>", defaults)
-map("n", "<S-Down>", "<C-d>", defaults)
 map("n", "<Pageup>", "<C-u>", defaults)
 map("n", "<Pagedown>", "<C-d>", defaults)
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
--- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")

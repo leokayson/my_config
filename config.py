@@ -41,6 +41,7 @@ def config_soft_link():
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
+        create_soft_link(os.path.join(cfg_home, 'nvim', 'init.lua'), os.path.join(home, '.config', 'nvim', 'init.lua'))
         create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(home, '.config', 'nushell'))
         create_soft_link(os.path.join(cfg_home, 'helix'), os.path.join(home, '.config', 'helix'))
         create_soft_link(os.path.join(cfg_home, 'fish', 'config.fish'), os.path.join(home, '.config', 'fish', 'config.fish'))
