@@ -69,8 +69,8 @@ map("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
 map("v", "<C-c>", '"+y', { noremap = true, desc = "Yank into system clipboard" })
 
 -- scrolling
-map("n", "<Pageup>", "<C-u>", defaults)
-map("n", "<Pagedown>", "<C-d>", defaults)
+map("n", "<Pageup>", "<C-u>", { noremap = true })
+map("n", "<Pagedown>", "<C-d>", { noremap = true })
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })

@@ -10,7 +10,7 @@ parser.add_argument('-d',  '--delete_dir_bookmarks',     action='store_true')
 parser.add_argument('-D',  '--delete_all_dir_bookmarks', action='store_true')
 parser.add_argument('-l',  '--list_dir_bookmarks',       action='store_true')
 parser.add_argument('-c',  '--cd_dir_bookmarks',         action='store_true')
-parser.add_argument('-ch', '--cmd_history',              action='store_true')
+parser.add_argument('-cmd', '--cmd_history',              action='store_true')
 args = parser.parse_args()
 
 def get_cwd():
@@ -32,10 +32,12 @@ def delete_bookmark(dir:str):
             f.write(''.join(context))
     except Exception as e:
         print(f'error: {e}')
+        exit(1)
 
 if args.add_dir_bookmarks:
     cwd = get_cwd()
     is_exist = False
+    context = [ cwd ]
     if not os.path.exists(BM_FILE):
         with open(BM_FILE, 'w') as f:
             pass
@@ -45,11 +47,38 @@ if args.add_dir_bookmarks:
                 is_exist = line.strip() == cwd
                 if is_exist:
                     break
+                context += [ line.strip() ]
         if not is_exist:
-            with open(BM_FILE, 'a') as f:
-                f.write(cwd+'\n')
+            context.sort()
+            with open(BM_FILE, 'w') as f:
+                f.write('\n'.join(context))
     except Exception as e:
         print(f'error: {e}')
+        exit(1)
+    print(f'Add {cwd} done')
+
+if args.delete_dir_bookmarks:
+    if os.path.exists(BM_FILE):
+        dir = fzf_sel()
+        if dir != "":
+            delete_bookmark(dir)
+        print(f'delete {dir} done')
+    else:
+        print("bookmark doesn't exist, add firstly")
+
+if args.delete_all_dir_bookmarks:
+    is_yes = input(f'confirm to delete {BM_FILE}, (y)es:')
+    if is_yes.lower() in ['y', 'yes']:
+        if os.path.exists(BM_FILE):
+            os.remove(BM_FILE)
+        print('delete all bookmarks done')
+    print('cancel to delete all bookmarks')
+
+if args.list_dir_bookmarks:
+    if os.path.exists(BM_FILE):
+        subprocess.run(['bat', BM_FILE], shell=False)
+    else:
+        print("bookmark doesn't exist, add firstly")
 
 if args.cd_dir_bookmarks:
     if os.path.exists(BM_FILE):
@@ -63,25 +92,7 @@ if args.cd_dir_bookmarks:
         else:
             print('.')
     else:
-        print('bookmark file doesn\'t exist, please add bookmark')
-
-if args.delete_dir_bookmarks:
-    if os.path.exists(BM_FILE):
-        dir = fzf_sel()
-        if dir != "":
-            delete_bookmark(dir)
-
-if args.delete_all_dir_bookmarks:
-    is_yes = input(f'confirm to delete {BM_FILE}, (y)es:')
-    if is_yes.lower() in ['y', 'yes']:
-        if os.path.exists(BM_FILE):
-            os.remove(BM_FILE)
-
-if args.list_dir_bookmarks:
-    if os.path.exists(BM_FILE):
-        subprocess.run(['bat', BM_FILE], shell=False)
-    else:
-        print('bookmark file doesn\'t exist, please add bookmark')
+        print("bookmark doesn't exist, add firstly")
 
 if args.cmd_history:
     proc = subprocess.Popen(

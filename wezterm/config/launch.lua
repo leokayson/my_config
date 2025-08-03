@@ -6,26 +6,21 @@ local options = {
 }
 
 if platform.is_win then
-  options.default_prog = { "ssh", "kswu@172.30.100.155", "-p", "22" }
+  -- options.default_prog = { "ssh", "kswu@172.30.100.155", "-p", "22" }
+--   options.default_prog = { "wsl", "-d", "Ubuntu-24.04" }
+  options.default_prog = { "nu" }
   options.launch_menu = {
-    {
-      label = " Ubuntu",
-      args = { "ssh", "kswu@172.30.100.155", "-p", "22" },
-    },
+    { label = " Nushell", args = { "nu" } },
+    { label = " Cmd",     args = { "cmd" } },
     { label = " PowerShell v1", args = { "powershell" } },
     { label = " PowerShell v7", args = { "pwsh" } },
-    { label = " Cmd", args = { "cmd" } },
-    { label = " Nushell", args = { "nu" } },
-    {
-      label = " GitBash",
-      args = { "C:\\Program Files\\Git\\bin\\bash.exe" },
-    },
   }
 elseif platform.is_linux then
   options.default_prog = { "bash", "--login" }
   options.launch_menu = {
+    { label = " Fish", args = { "fish", "--login" } },
     { label = " Bash", args = { "bash", "--login" } },
-    { label = " Nushell", args = { "/opt/homebrew/bin/nu", "--login" } },
+    { label = " Nushell", args = { "nu", "--login" } },
   }
 end
 

@@ -7,21 +7,20 @@ local path_sep = package.config:sub(1, 1)
 local home_path = ya.target_family() == "windows" and os.getenv("USERPROFILE") or os.getenv("HOME")
 if ya.target_family() == "windows" then
 	table.insert(bookmarks, {
-		tag = "Scoop Local",
-
-		path = (os.getenv("SCOOP") or home_path .. "\\scoop") .. "\\",
-		key = "p",
+		tag = "user",
+		path = home_path,
+		key = "u",
 	})
 	table.insert(bookmarks, {
-		tag = "Scoop Global",
-		path = (os.getenv("SCOOP_GLOBAL") or "C:\\ProgramData\\scoop") .. "\\",
-		key = "P",
+		tag = "downloads",
+		path = home_path .. path_sep .. "Downloads",
+		key = "d",
 	})
 end
-table.insert(bookmarks, {
-	tag = "Desktop",
-	path = home_path .. path_sep .. "Desktop" .. path_sep,
-	key = "d",
+	table.insert(bookmarks, {
+		tag = "home",
+		path = home_path,
+		key = "h",
 })
 
 require("yamb"):setup({
@@ -34,8 +33,7 @@ require("yamb"):setup({
 	-- Optional, a string used for randomly generating keys, where the preceding characters have higher priority.
 	keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
 	-- Optional, the path of bookmarks
-	path = (ya.target_family() == "windows" and os.getenv("APPDATA") .. "\\yazi\\config\\bookmark")
-		or (os.getenv("HOME") .. "/.config/yazi/bookmark"),
+	path = home_path .. path_sep .. '.config' .. path_sep .. 'yazi_bookmarks',
 })
 
 require("projects"):setup({

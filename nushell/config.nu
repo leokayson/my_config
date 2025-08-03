@@ -43,6 +43,7 @@ alias g      = git
 alias vi     = nvim
 alias vim    = nvim
 alias tool   = python ~/env/ks_script/tool.py
+alias pc     = python ~/env/ks_script/tool.py -pc
 alias where  = which
 
 alias fd     = fd -I -H
@@ -85,7 +86,7 @@ def --env y [...args] {
 	rm -fp $tmp
 }
 
-def --env z [cmd: string, path: string] {
+def --env f [cmd: string, path: string] {
     cd $"($path)"
     let selected = (fzf --walker=dir,file,hidden)
     
@@ -104,6 +105,11 @@ def --env z [cmd: string, path: string] {
     } else if ( $cmd == "code" ) {
         if ( $selected != "" ) {
             code $"($selected)"
+        } 
+        cd -
+    } else if ( $cmd == "coder" ) {
+        if ( $selected != "" ) {
+            code -r $"($selected)"
         } 
         cd -
     } else if ( $cmd == "nvim" ) {

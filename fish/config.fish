@@ -95,6 +95,11 @@ function f
                 code $selected
             end
             cd -
+        case coder
+            if test "$selected" != ""
+                code -r $selected
+            end
+            cd -
         case nvim
             if test "$selected" != ""
                 nvim $selected
@@ -139,7 +144,7 @@ function cdb
         case e
             $EDITOR ~/.config/cb_bookmarks.log
         case cmd
-            set cmd (python $BK_script -ch)
+            set cmd (python $BK_script -cmd)
             eval $cmd
         case "*"
             set dir (python $BK_script -c)

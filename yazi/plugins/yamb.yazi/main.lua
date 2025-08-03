@@ -313,17 +313,23 @@ return {
       bookmarks[item.path] = { tag = item.tag, path = item.path, key = item.key }
     end
     -- load the config
-    local file = io.open(state.path, "r")
-    if file ~= nil then
-      for line in file:lines() do
-        local tag, path, key = string.match(line, "(.-)\t(.-)\t(.*)")
-        if tag and path then
-          key = key or ""
-          bookmarks[path] = { tag = tag, path = path, key = key }
-        end
+    local file, err = io.open(state.path, "r")
+    if file == nil then
+      if string.find(err, "No such file or directory") then
+        file = io.open(state.path, "w")
+        file:close()
+        file = io.open(state.path, "r")
       end
-      file:close()
     end
+
+    for line in file:lines() do
+      local tag, path, key = string.match(line, "(.-)\t(.-)\t(.*)")
+      if tag and path then
+        key = key or ""
+        bookmarks[path] = { tag = tag, path = path, key = key }
+      end
+    end
+    file:close()
     -- create bookmarks file to enable fzf
     save_to_file(state.path, bookmarks)
     state.bookmarks = bookmarks

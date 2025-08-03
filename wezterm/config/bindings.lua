@@ -34,7 +34,7 @@ local keys = { -- misc/useful --
 
 {key = "\\", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
 {key = "-", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
-{key = "0", mods = mod.SUPER_REV, action = act.CloseCurrentPane({confirm = true})}, -- panes: zoom+close pane
+{key = "0", mods = mod.SUPER_REV, action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' }})},
 {key = "z", mods = mod.SUPER_REV, action = act.TogglePaneZoomState},
 {key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = false})}, -- panes: navigation
 {key = "i", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
@@ -64,7 +64,10 @@ local mouse_bindings = { -- Ctrl-click will open the link under the mouse cursor
 {event = {Up = {streak = 2, button = "Left"}}, mods = "NONE", action = act.SelectTextAtMouseCursor("Word")},
 -- Turn on the mouse wheel to scroll the screen
 {event = {Down = {streak = 1, button = {WheelUp = 1}}}, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta},
-{event = {Down = {streak = 1, button = {WheelDown = 1}}}, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta}}
+{event = {Down = {streak = 1, button = {WheelDown = 1}}}, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta},
+-- click Right to paste{key = "Insert", mods = "SHIFT", action = act.PasteFrom("Clipboard")}
+{event = {Up = {streak = 1, button = "Right"}}, mods = "NONE", action = act.PasteFrom("Clipboard")},
+}
 
 return {disable_default_key_bindings = true, disable_default_mouse_bindings = true,
         leader = {key = "Space", mods = "CTRL|SHIFT"}, keys = keys, key_tables = key_tables,
