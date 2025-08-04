@@ -167,10 +167,10 @@ def --env cdb [cmd : string] {
     }
 }
 
-def --env wm_start [] {
+def --env wm1 [] {
     komorebic start --whkd --bar
 }
 
-def --env wm_stop [] {
+def --env wm0 [] {
     komorebic stop
 }

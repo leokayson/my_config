@@ -3232,9 +3232,9 @@
     ]
   },
   "uTools" : {
-    "floating_applications": [
+    "floating": [
     {
-      "kind": "Title",
+      "kind": "Exe",
       "id": "uTools.exe",
       "matching_strategy": "Equals"
     }

@@ -120,39 +120,11 @@ chmod 755 ~
 
 ## 5.2 NVIM plugin
 
-> - Windows
+> $NVIM_CONFIG_HOME/init.lua
 >
-> git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
+> $NVIM_CONFIG_HOME/lua/config
 >
-> - Linux
->
-> git clone https://github.com/LazyVim/starter ~/.config/nvim
-> git clone https://github.com/uloco/bluloco.nvim.git $env:LOCALAPPDATA\nvim-data\lazy
-
-- bloluco.nvim configure
-
-```lua
-# Linux: nvim ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/colorscheme.lua
-# Windows: nvim ($env.LOCALAPPDATA)\nvim-data\lazy\LazyVim\lua\lazyvim\plugins\colorscheme.lua
--- add bluloco
-  {
-    'uloco/bluloco.nvim',
-    lazy = false,
-    priority = 1000,
-    dependencies = { 'rktjmp/lush.nvim' },
-    config = function()
-      -- your optional config goes here, see below.
-    end,
-  },
-
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "bluloco-dark",
-    },
-  }
-```
+> $NVIM_CONFIG_HOME/lua/plugins
 
 ## 5.3 Helix
 
