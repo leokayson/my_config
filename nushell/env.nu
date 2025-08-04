@@ -26,7 +26,6 @@ export-env {
         VISUAL:                 'hx'
         PAGER:                  'bat'
         SHELL:                  'nu'
-        HOSTNAME:               (hostname | split row '.' | first | str trim)
     }
 }
 

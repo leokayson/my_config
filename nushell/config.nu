@@ -158,7 +158,7 @@ def --env cdb [cmd : string] {
         eval $cmd
     } else {
         let dir = (python $BK_script -c)
-        if ( path exists {$dir} ) {
+        if ( $dir | path exists ) {
             cd $dir
         } else {
             echo $dir

@@ -14,8 +14,11 @@ parser.add_argument('-cmd', '--cmd_history',              action='store_true')
 args = parser.parse_args()
 
 def get_cwd():
-    ret = subprocess.run('pwd', executable='fish', capture_output=True, shell=True)
-    return ret.stdout.decode('utf-8').strip()
+    if os.name == 'nt':
+        return os.getcwd()
+    else:
+        ret = subprocess.run('pwd', executable=SHELL, capture_output=True, shell=True)
+        return ret.stdout.decode('utf-8').strip()
 
 def fzf_sel():
     ret = subprocess.run(f'cat {BM_FILE} | fzf --preview-window=hidden', capture_output=True, shell=True)
@@ -102,6 +105,6 @@ if args.cmd_history:
         stderr=subprocess.PIPE,
     )
     if SHELL == 'fish':
-        history = subprocess.run('history', executable='fish', shell=True, capture_output=True).stdout
+        history = subprocess.run('history', executable=SHELL, shell=True, capture_output=True).stdout
         stdout, _ = proc.communicate(input=history)
         print(stdout.decode('utf-8').strip())
