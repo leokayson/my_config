@@ -34,7 +34,7 @@ if status is-interactive
     alias tool 'python ~/env/ks_script/tool.py'
     alias where which
     alias ga_cnm 'git add . && git cnm'
-    alias grd 'git rh . && git clean -fd'
+    alias grd 'git rh && git clean -fd'
     alias sssh 'sudo systemctl start ssh'
 
     alias fd 'fd -HIL --exclude .git'

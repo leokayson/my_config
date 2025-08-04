@@ -43,8 +43,8 @@ map("n", "d<Delete>", "dw", { noremap = true, desc = "Delete to later word" })
 map("n", "d<Backspace>", "db", { noremap = true, desc = "Delete to previous word" })
 map("n", "d<Right>", "dw", { noremap = true, desc = "Delete to later word" })
 map("n", "d<Left>", "db", { noremap = true, desc = "Delete to previous word" })
-map("i", "<A-Delete>", "<C-o>dw", { noremap = true, desc = "Delete to previous word" })
-map("i", "<A-Backspace>", "<C-w>", { noremap = true, desc = "Delete to previous word" })
+map("i", "<C-Delete>", "<C-o>dw", { noremap = true, desc = "Delete to previous word" })
+map("i", "<C-Backspace>", "<C-w>", { noremap = true, desc = "Delete to previous word" })
 
 -- Select words
 map("n", "<C-S-Left>", "vb", { noremap = true, desc = "Select word backward" })
@@ -55,12 +55,10 @@ map("x", "<C-S-Left>", "b", { noremap = true, desc = "Extend selection backward"
 map("x", "<C-S-Right>", "w", { noremap = true, desc = "Extend selection forward" })
 
 -- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-map("n", "<C-Left>", "<gv", { noremap = true })
-map("n", "<C-Right>", ">gv", { noremap = true })
-map("i", "<C-Left>", "<Esc><<i", { noremap = true })
-map("i", "<C-Right>", "<Esc>>>i", { noremap = true })
+map("n", "<A-Left>", "<gv", { noremap = true })
+map("n", "<A-Right>", ">gv", { noremap = true })
+map("i", "<A-Left>", "<Esc><<i", { noremap = true })
+map("i", "<A-Right>", "<Esc>>>i", { noremap = true })
 
 -- use U for redo :))
 map("n", "U", "<C-r>", { noremap = true, desc = "Redo" })

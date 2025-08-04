@@ -63,5 +63,7 @@ use = "Ape/smart-enter"
 rev = "7b84c89"
 hash = "43eb1a1f2291795fb5b0b2ce1206ebee"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "PinThePenguinOne/sunset"
+rev = "64ad82e"
+hash = "ae36775ed414cad1bcd7af692422df0f"
