@@ -49,6 +49,7 @@ alias where  = which
 alias fd     = fd -I -H
 alias ls     = lsd --config-file ~/.config/lsd.yaml
 alias ll     = ls -Al
+alias lll    = ll -L
 alias llt    = ll --total-size
 alias llns   = ll --no-symlink
 alias lld    = fd -l -d 1
@@ -164,4 +165,12 @@ def --env cdb [cmd : string] {
             echo $dir
         }
     }
+}
+
+def --env wm_start [] {
+    komorebic start --whkd --bar
+}
+
+def --env wm_stop [] {
+    komorebic stop
 }

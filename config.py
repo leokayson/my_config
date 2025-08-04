@@ -1,6 +1,7 @@
 import os, subprocess, shutil
 
 cfg_home = os.path.dirname(__file__)
+home = os.getenv('HOME')
 
 def create_soft_link(file, link_file):
     if os.path.lexists(link_file):
@@ -26,9 +27,7 @@ def create_soft_link(file, link_file):
         print(f'soft link created: {link_file} => {file}')
 
 def config_soft_link():
-    
     if os.name == 'nt':
-        home = os.getenv('USERPROFILE')
         app_data = os.getenv('APPDATA')
         local_app_data = os.getenv('LOCALAPPDATA')
 
@@ -37,7 +36,6 @@ def config_soft_link():
         create_soft_link(os.path.join(cfg_home, 'nushell'), os.path.join(app_data, 'nushell'))
         create_soft_link(os.path.join(cfg_home, 'helix'), os.path.join(app_data, 'helix'))
     else:
-        home = os.getenv('HOME')
         create_soft_link(os.path.join(cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(cfg_home, 'yazi'), os.path.join(home, '.config', 'yazi'))
         create_soft_link(os.path.join(cfg_home, 'nvim', 'keymaps.lua'), os.path.join(home, '.config', 'nvim', 'lua', 'config', 'keymaps.lua'))
@@ -50,11 +48,16 @@ def config_soft_link():
     create_soft_link(os.path.join(cfg_home, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))
     create_soft_link(os.path.join(cfg_home, '.config', 'lsd.yaml'), os.path.join(home, '.config', 'lsd.yaml'))
     create_soft_link(os.path.join(cfg_home, 'wezterm'), os.path.join(home, '.config', 'wezterm'))
-
     create_soft_link(os.path.join(cfg_home, 'ks_script'), os.path.join(home, 'env', 'ks_script'))
     create_soft_link(os.path.join(cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
     create_soft_link(os.path.join(cfg_home, '.gitconfig'), os.path.join(home, '.gitconfig'))
 
+def config_windows_wm_soft_link():
+    create_soft_link(os.path.join(cfg_home, 'win_wm', 'komorebi'), os.path.join(home, '.config', 'komorebi'))
+    create_soft_link(os.path.join(cfg_home, 'win_wm', 'yasb'), os.path.join(home, '.config', 'yasb'))
+
 
 if __name__ == "__main__":
     config_soft_link()
+    if os.name == 'nt':
+        config_windows_wm_soft_link()
