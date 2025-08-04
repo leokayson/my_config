@@ -63,6 +63,9 @@ map("i", "<A-Right>", "<Esc>>>i", { noremap = true })
 -- use U for redo :))
 map("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
 
+map("i", "<C-Backspace>", "<C-o>vb<_d", { noremap = true, desc = "Delete previoud word" })
+map("i", "<C-Delete>", "<C-o>ve<_d", { noremap = true, desc = "Delete next word" })
+
 -- Ctrl+c to copt into system clipboard
 map("v", "<C-c>", '"+y', { noremap = true, desc = "Yank into system clipboard" })
 

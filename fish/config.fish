@@ -8,7 +8,7 @@ if status is-interactive
     set -gx PATH $PATH ~/.config/helix/lsp/bin
 
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
-    set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
+    set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
 
     set -gx EDITOR nvim
     set -gx CLIPBOARD_EDITOR nvim
