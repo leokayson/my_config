@@ -130,3 +130,38 @@ def --env f [cmd: string, path: string] {
 def --env add_path [path: string] {
     $env.PATH = $env.PATH | append $path
 }
+
+def --env cdb [cmd : string] {
+    let BK_script = $'($env.HOME)/env/ks_script/shell_bookmarks.py'
+
+    if ( $cmd == "h" ) {
+        echo 'Usage:'
+        echo ' cdb           Cd to a dir bookmark'
+        echo ' cdb a         Add a dir bookmark'
+        echo ' cdb d         Delete a dir bookmark'
+        echo ' cdb D         Delete all dir bookmarkds'
+        echo ' cdb l         List all dir bookmarkds'
+        echo ' cdb e         Edit the dir bookmarkds'
+        echo ' cdb cmd       Run a history cmd'
+    } else if ( $cmd == "a") {
+        python $BK_script -a
+    } else if ( $cmd  == "d" ) {
+        python $BK_script -d
+    } else if ( $cmd  == "D" ) {
+        python $BK_script -D
+    } else if ( $cmd  == "l" ) {
+        python $BK_script -l
+    } else if ( $cmd  == "e" ) {
+        nvim $'($env.HOME)/.config/cb_bookmarks.log'
+    } else if ( $cmd == "cmd") {
+        let cmd = (python $BK_script -cmd)
+        eval $cmd
+    } else {
+        let dir = (python $BK_script -c)
+        if ( path exists {$dir} ) {
+            cd $dir
+        } else {
+            echo $dir
+        }
+    }
+}
