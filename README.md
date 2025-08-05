@@ -162,7 +162,23 @@ cargo install \
 >
 > https://wezterm.org/installation.html
 
-# 7 Soft link
+# 7 Window Manager
+
+> - Windows
+>
+>> YASB - Status bar
+>>
+>> [Releases · amnweb/yasb](https://github.com/amnweb/yasb/releases)
+>>
+>> Komorebi - WM
+>>
+>> [Releases · LGUG2Z/komorebi](https://github.com/LGUG2Z/komorebi/releases)
+>>
+>> KOMOREBI_CONFIG_HOME: $"($env.USERPROFILE)/.config/komorebi"
+>> WHKD_CONFIG_HOME:     $"($env.USERPROFILE)/.config/komorebi"
+>>
+
+# 8 Soft link
 
 ```bash
 python config.py
