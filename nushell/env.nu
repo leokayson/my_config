@@ -20,12 +20,12 @@ source $"cfg_($nu.os-info.name).nu"
 
 export-env {
     load-env {
-        EDITOR:                 'hx'
-        CLIPBOARD_EDITOR:       'hx'
+        EDITOR:                 'nvim'
+        VISUAL:                 'nvim'
+        CLIPBOARD_EDITOR:       'nvim'
         CLIPBOARD_HISTORY:      10
-        VISUAL:                 'hx'
-        PAGER:                  'bat'
         SHELL:                  'nu'
+        FZF_DEFAULT_OPTS:       '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
     }
 }
 

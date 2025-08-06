@@ -20,26 +20,14 @@
 
 # ========================= Env + PATH =========================
 source $"($nu.default-config-dir)/starship.nu"
-source $"($nu.default-config-dir)/custom-completions/apt/apt.nu"
-source $"($nu.default-config-dir)/custom-completions/bat/bat-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/cargo/cargo-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/curl/curl-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/git/git-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/make/make-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/rg/rg-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/rustup/rustup-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/ssh/ssh-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/uv/uv-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/vscode/vscode-completions.nu"
-source $"($nu.default-config-dir)/themes/catppuccin_latte.nu"
 
 # ========================= Alias =========================
 alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
 alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
 alias scfg   = code $"($env.HOME)/.config/starship.toml"
 
-alias py     = python
 alias g      = git
+alias py     = python
 alias vi     = nvim
 alias vim    = nvim
 alias tool   = python ~/env/ks_script/tool.py
@@ -54,9 +42,10 @@ alias llt    = ll --total-size
 alias llns   = ll --no-symlink
 alias lld    = fd -l -d 1
 alias btm    = btm --config_location ~/.config/btm.toml
-alias fzff   = fzf --style=full --preview 'bat --color=always {}' --preview-window 'up'
-alias fzf    = fzff -e
-alias fzfp   = fzf | path expand
+alias fzff   = fd -t f | fzf
+alias fzfd   = fd -t d | fzf
+alias fzfa   = fd -t f -t d | fzf
+alias fzfp   = fzfd | path expand
 
 alias cd1    = cd ../
 alias cd2    = cd ../../
@@ -89,7 +78,8 @@ def --env y [...args] {
 
 def --env f [cmd: string, path: string] {
     cd $"($path)"
-    let selected = (fzf --walker=dir,file,hidden)
+    let selected = (fzfa)
+    let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
     
     if ( $cmd == "cd" ) {
         if ( $selected != "" ) {
@@ -98,10 +88,11 @@ def --env f [cmd: string, path: string] {
             } else {
                 cd $"(($selected) | path dirname)"
             }
-            echo $"enter: (pwd)"
+            python $CDR_script -r
+            print $"enter: (pwd)"
         } else {
             cd -
-            echo no enter
+            print no enter
         }
     } else if ( $cmd == "code" ) {
         if ( $selected != "" ) {
@@ -124,7 +115,7 @@ def --env f [cmd: string, path: string] {
         }
         cd -
     } else {
-        echo $"no such cmd: ($cmd)"
+        print $"no such cmd: ($cmd)"
     }
 }
 
@@ -132,6 +123,7 @@ def --env add_path [path: string] {
     $env.PATH = $env.PATH | append $path
 }
 
+# Deprecated
 def --env cdb [cmd? : string] {
     let BK_script = $'($env.HOME)/env/ks_script/shell_bookmarks.py'
 
@@ -140,17 +132,16 @@ def --env cdb [cmd? : string] {
         if ( $dir | path exists ) {
             cd $dir
         } else {
-            echo $dir
+            print $dir
         }
     } else if ( $cmd == "h" ) {
-        echo 'Usage:'
-        echo ' cdb           Cd to a dir bookmark'
-        echo ' cdb a         Add a dir bookmark'
-        echo ' cdb d         Delete a dir bookmark'
-        echo ' cdb D         Delete all dir bookmarkds'
-        echo ' cdb l         List all dir bookmarkds'
-        echo ' cdb e         Edit the dir bookmarkds'
-        echo ' cdb cmd       Run a history cmd'
+        print 'Usage:'
+        print ' cdb           Cd to a dir bookmark'
+        print ' cdb a         Add a dir bookmark'
+        print ' cdb d         Delete a dir bookmark'
+        print ' cdb D         Delete all dir bookmarkds'
+        print ' cdb l         List all dir bookmarkds'
+        print ' cdb e         Edit the dir bookmarkds'
     } else if ( $cmd == "a") {
         python $BK_script -a
     } else if ( $cmd  == "d" ) {
@@ -161,45 +152,41 @@ def --env cdb [cmd? : string] {
         python $BK_script -l
     } else if ( $cmd  == "e" ) {
         nvim $'($env.HOME)/.config/cb_bookmarks.log'
-    } else if ( $cmd == "cmd") {
-        let cmd = (python $BK_script -cmd)
-        eval $cmd
     }
 }
 
-def --env cdh [cmd? : string, path? : string] {
-    let CDH_script = $'($env.HOME)/env/ks_script/cd_history.py'
+def --env cdr [cmd : string] {
+    let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
 
-    if ( $cmd == null ) {
-        let dir = (python $CDH_script -C)
-        if ( $dir | path exists ) {
-            cd $dir
-        } else {
-            echo $dir
-        }
-    } else if ( $cmd == "h" ) {
-        echo 'Usage:'
-        echo ' cdh           Cd to a cd history'
-        echo ' cdh c         Normal cd && record'
-        echo ' cdh g         Do gc to cd history'
-        echo ' cdh cmd       Run a history cmd'
+    if ( $cmd == "h" ) {
+        print 'Usage:'
+        print ' cdr(c)           Cd to a cd history'
+        print ' cdr(c) c         Normal cd && record'
+        print ' cdr(c) g         Do gc to cd history'
     } else if ( $cmd == "c") {
-        let dir = (python $CDH_script -c $"($path)") 
+        let dir = (python $CDR_script -c) 
         if ( $dir | path exists ) {
             cd $dir
         } else {
-            echo $dir
+            print $dir
         }
     } else if ( $cmd  == "g" ) {
-        python $CDH_script -g
+        python $CDR_script -g
     } else if ( $cmd  == "l" ) {
-        python $CDH_script -l
-    } else if ( $cmd == "cmd") {
-        let cmd = (python $CDH_script -cmd)
-        eval $cmd
-    }
+        python $CDR_script -l
+    } else {
+        cd $cmd
+        if ( $cmd != "." ) {
+            python $CDR_script -r
+        }
+    } 
 }
 
+alias c = cdr
+
+def --env cmdh [cmd? : string] {
+    let CDR_script = $'($env.HOME)/env/ks_script/cmd_history.py'
+}
 
 def --env wm1 [] {
     komorebic start --whkd
@@ -207,4 +194,16 @@ def --env wm1 [] {
 
 def --env wm0 [] {
     komorebic stop
+}
+
+def sd [ mins?: int ] {
+    if ( $mins == null ) {
+        shutdown -a
+        print "cancel shutting down"
+    } else {
+        let seconds = $mins * 60
+        shutdown -s -t $seconds
+        
+        print $"will shutdown after ($mins) mins"
+    }
 }

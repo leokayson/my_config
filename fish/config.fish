@@ -17,43 +17,43 @@ if status is-interactive
     set -gx SHELL fish
     set -gx FZF_DEFAULT_OPTS '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
 
-    alias fcfg '$EDITOR ~/.config/fish/config.fish'
-    alias scfg '$EDITOR ~/.config/starship.toml'
+    alias fcfg   '$EDITOR ~/.config/fish/config.fish'
+    alias scfg   '$EDITOR ~/.config/starship.toml'
     alias bashrc '$EDITOR ~/.bashrc'
 
-    alias py python
-    alias g git
-    alias z zoxide
-    alias rp realpath
-    alias du dust
-    alias vi nvim
-    alias vim nvim
-    alias cls clear
-    alias where which
-    alias tool 'python ~/env/ks_script/tool.py'
-    alias where which
+    alias c      'cdr'
+    alias g      'git'
+    alias py     'python'
+    alias rp     'realpath'
+    alias du     'dust'
+    alias vi     'nvim'
+    alias vim    'nvim'
+    alias cls    'clear'
+    alias where  'which'
+    alias tool   'python ~/env/ks_script/tool.py'
+    alias where  'which'
     alias ga_cnm 'git add . && git cnm'
-    alias grd 'git rh && git clean -fd'
-    alias sssh 'sudo systemctl start ssh'
+    alias grd    'git rh && git clean -fd'
+    alias sssh   'sudo systemctl start ssh'
 
-    alias fd 'fd -HIL --exclude .git'
-    alias bat 'bat -f'
-    alias ls 'lsd --config-file ~/.config/lsd.yaml'
-    alias ll 'ls -Al'
-    alias lll 'll -L'
-    alias llg 'll --git'
-    alias lls 'll --total-size'
-    alias llns 'll --no-symlink'
-    alias lld 'fd -l -d 1'
-    alias btm 'btm --config_location ~/.config/btm.toml'
-    alias fzff 'fd -t f | fzf'
-    alias fzfd 'fd -t d | fzf'
-    alias fzfa 'fd -t f -t d | fzf'
-    alias fzfp 'fzfd | path expand'
+    alias fd     'fd -HIL --exclude .git'
+    alias bat    'bat -f'
+    alias ls     'lsd --config-file ~/.config/lsd.yaml'
+    alias ll     'ls -Al'
+    alias lll    'll -L'
+    alias llg    'll --git'
+    alias lls    'll --total-size'
+    alias llns   'll --no-symlink'
+    alias lld    'fd -l -d 1'
+    alias btm    'btm --config_location ~/.config/btm.toml'
+    alias fzff   'fd -t f | fzf'
+    alias fzfd   'fd -t d | fzf'
+    alias fzfa   'fd -t f -t d | fzf'
+    alias fzfp   'fzfd | path expand'
 
-    alias cd1 'cd ../'
-    alias cd2 'cd ../../'
-    alias cd3 'cd ../../../'
+    alias cd1    'cd ../'
+    alias cd2    'cd ../../'
+    alias cd3    'cd ../../../'
 
     source ~/.venv/bin/activate.fish
     starship init fish | source
@@ -120,8 +120,10 @@ function wwget
     cd -
 end
 
+# Deprecated
 function cdb
     set BK_script ~/env/ks_script/shell_bookmarks.py
+
     switch $argv[1]
         case h
             echo 'Usage:'
@@ -131,7 +133,6 @@ function cdb
             echo ' cdb D         Delete all dir bookmarkds'
             echo ' cdb l         List all dir bookmarkds'
             echo ' cdb e         Edit the dir bookmarkds'
-            echo ' cdb cmd       Run a history cmd'
         case a
             python $BK_script -a
         case d
@@ -142,9 +143,6 @@ function cdb
             python $BK_script -l
         case e
             $EDITOR ~/.config/cb_bookmarks.log
-        case cmd
-            set cmd (python $BK_script -cmd)
-            eval $cmd
         case "*"
             set dir (python $BK_script -c)
             if test -d $dir
@@ -155,36 +153,46 @@ function cdb
     end
 end
 
-function cdh
-    set CDH_script ~/env/ks_script/cd_history.py
+function cdr
+    set CDR_script ~/env/ks_script/cd_record.py
+
     switch $argv[1]
         case h
             echo 'Usage:'
-            echo ' cdh           Cd to a cd history'
-            echo ' cdh c         Normal cd && record'
-            echo ' cdh g         Do gc to cd history'
-            echo ' cdh l         List cd history'
-            echo ' cdh cmd       Run a history cmd'
-        case g
-            python $CDH_script -g
+            echo ' cdr(c)           Normal cd && record'
+            echo ' cdr(c) c         Cd to a cd record'
+            echo ' cdr(c) gc        Do gc to cd record'
+            echo ' cdr(c) l         List cd record'
         case l
-            python $CDH_script -l
-        case cmd
-            set cmd (python $CDH_script -cmd)
-            eval $cmd
+            python $CDR_script -l
+        case gc
+            python $CDR_script -gc
         case c
-            set dir (python $CDH_script -c "$argv[2]")
+            set dir (python $CDR_script -c)
             if test -d $dir
                 cd $dir
             else
                 echo $dir
             end
         case "*"
-            set dir (python $CDH_script -C)
-            if test -d $dir
-                cd $dir
-            else
-                echo $dir
+            cd $argv[1]
+            if test $status -eq 0 -a -n "$argv[1]" -a "$argv[1]" != "."
+                python $CDR_script -r
+            end
+    end
+end
+
+function cmdh
+    set CMDH_script ~/env/ks_script/cmd_history.py
+
+    switch $argv[1]
+        case "h"
+            echo 'Usage:'
+            echo ' cmdh       Run a history cmd'
+        case "*"
+            set cmd (python $CDR_script -r)
+            if test $status -eq 0
+                eval $cmd
             end
     end
 end
