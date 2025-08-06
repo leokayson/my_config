@@ -44,7 +44,6 @@ alias lld    = fd -l -d 1
 alias btm    = btm --config_location ~/.config/btm.toml
 alias fzff   = fd -t f | fzf
 alias fzfd   = fd -t d | fzf
-alias fzfa   = fd -t f -t d | fzf
 alias fzfp   = fzfd | path expand
 
 alias cd1    = cd ../
@@ -78,7 +77,7 @@ def --env y [...args] {
 
 def --env f [cmd: string, path: string] {
     cd $"($path)"
-    let selected = (fzfa)
+    let selected = (fzf)
     let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
     
     if ( $cmd == "cd" ) {

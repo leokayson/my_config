@@ -10,12 +10,14 @@ if status is-interactive
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
 
-    set -gx EDITOR nvim
-    set -gx CLIPBOARD_EDITOR nvim
-    set -gx CLIPBOARD_HISTORY 10
-    set -gx VISUAL hx
-    set -gx SHELL fish
-    set -gx FZF_DEFAULT_OPTS '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
+    set -gx EDITOR              nvim
+    set -gx CLIPBOARD_EDITOR    nvim
+    set -gx CLIPBOARD_HISTORY   10
+    set -gx VISUAL              nvim
+    set -gx SHELL               fish
+    set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d'
+    set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
+    set -gx CHEAT_USE_FZF       true
 
     alias fcfg   '$EDITOR ~/.config/fish/config.fish'
     alias scfg   '$EDITOR ~/.config/starship.toml'
@@ -48,7 +50,6 @@ if status is-interactive
     alias btm    'btm --config_location ~/.config/btm.toml'
     alias fzff   'fd -t f | fzf'
     alias fzfd   'fd -t d | fzf'
-    alias fzfa   'fd -t f -t d | fzf'
     alias fzfp   'fzfd | path expand'
 
     alias cd1    'cd ../'
@@ -74,7 +75,7 @@ end
 
 function f
     cd "$argv[2]"
-    set selected (fzfa)
+    set selected (fzf)
 
     switch $argv[1]
         case cd

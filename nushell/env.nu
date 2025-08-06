@@ -25,7 +25,9 @@ export-env {
         CLIPBOARD_EDITOR:       'nvim'
         CLIPBOARD_HISTORY:      10
         SHELL:                  'nu'
+        FZF_DEFAULT_COMMAND:    'fd -t f -t d'
         FZF_DEFAULT_OPTS:       '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
+        CHEAT_USE_FZF:          true
     }
 }
 

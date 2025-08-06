@@ -6,6 +6,7 @@ CDR_FILE = f'{HOME}/.config/cd_records.yaml'
 GC_REF_PARAM = 0.01
 GC_REC_PARAM = 0.1
 IS_WRITE_TO = True
+FZF_DIR_OPT = '-e --preview "eza {} --color=always -T -L 1" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
 
 try:
     if not os.path.exists(CDR_FILE):
@@ -42,7 +43,7 @@ if args.cd_record:
     
 if args.cd_in_record:
     proc = subprocess.Popen(
-        ['fzf'],
+        f'fzf {FZF_DIR_OPT}',
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
