@@ -108,3 +108,4 @@ if args.cmd_history:
         history = subprocess.run('history', executable=SHELL, shell=True, capture_output=True).stdout
         stdout, _ = proc.communicate(input=history)
         print(stdout.decode('utf-8').strip())
+    proc.kill()

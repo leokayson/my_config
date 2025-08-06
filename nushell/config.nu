@@ -132,10 +132,17 @@ def --env add_path [path: string] {
     $env.PATH = $env.PATH | append $path
 }
 
-def --env cdb [cmd : string] {
+def --env cdb [cmd? : string] {
     let BK_script = $'($env.HOME)/env/ks_script/shell_bookmarks.py'
 
-    if ( $cmd == "h" ) {
+    if ( $cmd == null ) {
+        let dir = (python $BK_script -c)
+        if ( $dir | path exists ) {
+            cd $dir
+        } else {
+            echo $dir
+        }
+    } else if ( $cmd == "h" ) {
         echo 'Usage:'
         echo ' cdb           Cd to a dir bookmark'
         echo ' cdb a         Add a dir bookmark'
@@ -157,15 +164,42 @@ def --env cdb [cmd : string] {
     } else if ( $cmd == "cmd") {
         let cmd = (python $BK_script -cmd)
         eval $cmd
-    } else {
-        let dir = (python $BK_script -c)
+    }
+}
+
+def --env cdh [cmd? : string, path? : string] {
+    let CDH_script = $'($env.HOME)/env/ks_script/cd_history.py'
+
+    if ( $cmd == null ) {
+        let dir = (python $CDH_script -C)
         if ( $dir | path exists ) {
             cd $dir
         } else {
             echo $dir
         }
+    } else if ( $cmd == "h" ) {
+        echo 'Usage:'
+        echo ' cdh           Cd to a cd history'
+        echo ' cdh c         Normal cd && record'
+        echo ' cdh g         Do gc to cd history'
+        echo ' cdh cmd       Run a history cmd'
+    } else if ( $cmd == "c") {
+        let dir = (python $CDH_script -c $"($path)") 
+        if ( $dir | path exists ) {
+            cd $dir
+        } else {
+            echo $dir
+        }
+    } else if ( $cmd  == "g" ) {
+        python $CDH_script -g
+    } else if ( $cmd  == "l" ) {
+        python $CDH_script -l
+    } else if ( $cmd == "cmd") {
+        let cmd = (python $CDH_script -cmd)
+        eval $cmd
     }
 }
+
 
 def --env wm1 [] {
     komorebic start --whkd

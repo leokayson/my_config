@@ -14,7 +14,6 @@ if status is-interactive
     set -gx CLIPBOARD_EDITOR nvim
     set -gx CLIPBOARD_HISTORY 10
     set -gx VISUAL hx
-    set -gx PAGER bat
     set -gx SHELL fish
     set -gx FZF_DEFAULT_OPTS '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
 
@@ -148,6 +147,40 @@ function cdb
             eval $cmd
         case "*"
             set dir (python $BK_script -c)
+            if test -d $dir
+                cd $dir
+            else
+                echo $dir
+            end
+    end
+end
+
+function cdh
+    set CDH_script ~/env/ks_script/cd_history.py
+    switch $argv[1]
+        case h
+            echo 'Usage:'
+            echo ' cdh           Cd to a cd history'
+            echo ' cdh c         Normal cd && record'
+            echo ' cdh g         Do gc to cd history'
+            echo ' cdh l         List cd history'
+            echo ' cdh cmd       Run a history cmd'
+        case g
+            python $CDH_script -g
+        case l
+            python $CDH_script -l
+        case cmd
+            set cmd (python $CDH_script -cmd)
+            eval $cmd
+        case c
+            set dir (python $CDH_script -c "$argv[2]")
+            if test -d $dir
+                cd $dir
+            else
+                echo $dir
+            end
+        case "*"
+            set dir (python $CDH_script -C)
             if test -d $dir
                 cd $dir
             else
