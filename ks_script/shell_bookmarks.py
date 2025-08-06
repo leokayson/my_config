@@ -10,7 +10,6 @@ parser.add_argument('-d',  '--delete_dir_bookmarks',     action='store_true')
 parser.add_argument('-D',  '--delete_all_dir_bookmarks', action='store_true')
 parser.add_argument('-l',  '--list_dir_bookmarks',       action='store_true')
 parser.add_argument('-c',  '--cd_dir_bookmarks',         action='store_true')
-parser.add_argument('-cmd', '--cmd_history',              action='store_true')
 args = parser.parse_args()
 
 def get_cwd():
@@ -96,16 +95,3 @@ if args.cd_dir_bookmarks:
             print('.')
     else:
         print("bookmark doesn't exist, add firstly")
-
-if args.cmd_history:
-    proc = subprocess.Popen(
-       ['fzf'],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    if SHELL == 'fish':
-        history = subprocess.run('history', executable=SHELL, shell=True, capture_output=True).stdout
-        stdout, _ = proc.communicate(input=history)
-        print(stdout.decode('utf-8').strip())
-    proc.kill()

@@ -185,7 +185,9 @@ def --env cdr [cmd : string] {
 alias c = cdr
 
 def --env cmdh [cmd? : string] {
-    let CDR_script = $'($env.HOME)/env/ks_script/cmd_history.py'
+    let CMDH_script = $'($env.HOME)/env/ks_script/cmd_history.py'
+    let cmd = (python $CMDH_script)
+    run-external $cmd
 }
 
 def --env wm1 [] {
