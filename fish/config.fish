@@ -16,14 +16,20 @@ if status is-interactive
     set -gx VISUAL              nvim
     set -gx SHELL               fish
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d'
-    set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
+    set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
+        if test -d {};
+            eza --color=always --icons -T -L 1 {};
+        else
+            bat --force-colorization {};
+        end
+    "'
     set -gx CHEAT_USE_FZF       true
 
     alias fcfg   '$EDITOR ~/.config/fish/config.fish'
     alias scfg   '$EDITOR ~/.config/starship.toml'
     alias bashrc '$EDITOR ~/.bashrc'
 
-    alias c      'cdr'
+    alias z      'cdr'
     alias g      'git'
     alias py     'python'
     alias rp     'realpath'
@@ -160,10 +166,10 @@ function cdr
     switch $argv[1]
         case h
             echo 'Usage:'
-            echo ' cdr(c)           Normal cd && record'
-            echo ' cdr(c) c         Cd to a cd record'
-            echo ' cdr(c) gc        Do gc to cd record'
-            echo ' cdr(c) l         List cd record'
+            echo ' cdr(z)           Normal cd && record'
+            echo ' cdr(z) c         Cd to a cd record'
+            echo ' cdr(z) gc        Do gc to cd record'
+            echo ' cdr(z) l         List cd record'
         case l
             python $CDR_script -l
         case gc

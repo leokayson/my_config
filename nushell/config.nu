@@ -181,7 +181,7 @@ def --env cdr [cmd : string] {
     } 
 }
 
-alias c = cdr
+alias z = cdr
 
 def --env cmdh [cmd? : string] {
     let CMDH_script = $'($env.HOME)/env/ks_script/cmd_history.py'
