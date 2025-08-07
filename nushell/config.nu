@@ -20,6 +20,7 @@
 
 # ========================= Env + PATH =========================
 source $"($nu.default-config-dir)/starship.nu"
+source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
 alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
@@ -122,63 +123,53 @@ def --env add_path [path: string] {
     $env.PATH = $env.PATH | append $path
 }
 
-# Deprecated
-def --env cdb [cmd? : string] {
-    let BK_script = $'($env.HOME)/env/ks_script/shell_bookmarks.py'
-
-    if ( $cmd == null ) {
-        let dir = (python $BK_script -c)
-        if ( $dir | path exists ) {
-            cd $dir
-        } else {
-            print $dir
-        }
-    } else if ( $cmd == "h" ) {
-        print 'Usage:'
-        print ' cdb           Cd to a dir bookmark'
-        print ' cdb a         Add a dir bookmark'
-        print ' cdb d         Delete a dir bookmark'
-        print ' cdb D         Delete all dir bookmarkds'
-        print ' cdb l         List all dir bookmarkds'
-        print ' cdb e         Edit the dir bookmarkds'
-    } else if ( $cmd == "a") {
-        python $BK_script -a
-    } else if ( $cmd  == "d" ) {
-        python $BK_script -d
-    } else if ( $cmd  == "D" ) {
-        python $BK_script -D
-    } else if ( $cmd  == "l" ) {
-        python $BK_script -l
-    } else if ( $cmd  == "e" ) {
-        nvim $'($env.HOME)/.config/cb_bookmarks.log'
-    }
-}
-
-def --env cdr [cmd : string] {
+def --env cdr [cmd? : string] {
     let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
+    let CDR_file = $'($env.HOME)/.config/cd_record.yaml'
 
-    if ( $cmd == "h" ) {
-        print 'Usage:'
-        print ' cdr(c)           Cd to a cd history'
-        print ' cdr(c) c         Normal cd && record'
-        print ' cdr(c) g         Do gc to cd history'
-    } else if ( $cmd == "c") {
-        let dir = (python $CDR_script -c) 
+    if ($cmd == null) {
+        let dir = (python $CDR_script -c)
         if ( $dir | path exists ) {
             cd $dir
         } else {
-            print $dir
+            print -n 'Input base dir (default is cwd): '
+            let dir2 = (python $CDR_script -i) 
+            if ( $dir2 | path exists ) {
+                cd $dir2
+            } else {
+                print $dir2
+            }
         }
-    } else if ( $cmd  == "g" ) {
-        python $CDR_script -g
-    } else if ( $cmd  == "l" ) {
-        python $CDR_script -l
     } else {
-        cd $cmd
-        if ( $cmd != "." ) {
-            python $CDR_script -r
-        }
-    } 
+        if ( $cmd == "h" ) {
+            print 'Usage:'
+            print ' cdr(z)           Cd to a cd record or interactive select'
+            print ' cdr(z) $path     Normal cd && record'
+            print ' cdr(z) i         Interactive cd via fzf'
+            print ' cdr(z) gc        Do gc to cd record'
+            print ' cdr(z) l         List cd record'
+            print ' cdr(z) e         Edit cd record'
+        } else if ( $cmd  == "i" ) {
+            print -n 'Input base dir (default is cwd): '
+            let dir = (python $CDR_script -i) 
+            if ( $dir | path exists ) {
+                cd $dir
+            } else {
+                print $dir
+            }
+        } else if ( $cmd  == "gc" ) {
+            python $CDR_script -g
+        } else if ( $cmd  == "l" ) {
+            bat -f --style=full $CDR_file
+        } else if ( $cmd  == "e" ) {
+            nvim $CDR_file
+        } else {
+            cd $cmd
+            if ( $cmd != "." ) {
+                python $CDR_script -r
+            }
+        } 
+    }
 }
 
 alias z = cdr

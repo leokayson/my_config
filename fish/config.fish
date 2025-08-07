@@ -15,12 +15,12 @@ if status is-interactive
     set -gx CLIPBOARD_HISTORY   10
     set -gx VISUAL              nvim
     set -gx SHELL               fish
-    set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d'
+    set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
     set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
         if test -d {};
-            eza --color=always --icons -T -L 1 {};
+            lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {};
         else
-            bat --force-colorization {};
+            bat -f --style=full {};
         end
     "'
     set -gx CHEAT_USE_FZF       true
@@ -44,8 +44,8 @@ if status is-interactive
     alias grd    'git rh && git clean -fd'
     alias sssh   'sudo systemctl start ssh'
 
-    alias fd     'fd -HIL --exclude .git'
-    alias bat    'bat -f'
+    alias fd     'fd -Lu -E .git'
+    alias bat    'bat -f --style=full'
     alias ls     'lsd --config-file ~/.config/lsd.yaml'
     alias ll     'ls -Al'
     alias lll    'll -L'
@@ -82,6 +82,7 @@ end
 function f
     cd "$argv[2]"
     set selected (fzf)
+    set CDR_script ~/env/ks_script/cd_record.py
 
     switch $argv[1]
         case cd
@@ -91,6 +92,7 @@ function f
                 else
                     cd (path dirname selected)
                 end
+                python $CDR_script -r
                 echo "enter: $pwd"
             else
                 cd -
@@ -127,37 +129,8 @@ function wwget
     cd -
 end
 
-# Deprecated
-function cdb
-    set BK_script ~/env/ks_script/shell_bookmarks.py
-
-    switch $argv[1]
-        case h
-            echo 'Usage:'
-            echo ' cdb           Cd to a dir bookmark'
-            echo ' cdb a         Add a dir bookmark'
-            echo ' cdb d         Delete a dir bookmark'
-            echo ' cdb D         Delete all dir bookmarkds'
-            echo ' cdb l         List all dir bookmarkds'
-            echo ' cdb e         Edit the dir bookmarkds'
-        case a
-            python $BK_script -a
-        case d
-            python $BK_script -d
-        case D
-            python $BK_script -D
-        case l
-            python $BK_script -l
-        case e
-            $EDITOR ~/.config/cb_bookmarks.log
-        case "*"
-            set dir (python $BK_script -c)
-            if test -d $dir
-                cd $dir
-            else
-                echo $dir
-            end
-    end
+function add_path
+    set -gx PATH $PATH $argv[1]
 end
 
 function cdr
@@ -166,21 +139,41 @@ function cdr
     switch $argv[1]
         case h
             echo 'Usage:'
-            echo ' cdr(z)           Normal cd && record'
-            echo ' cdr(z) c         Cd to a cd record'
+            echo ' cdr(z)           Cd to a cd record or interactive select'
+            echo ' cdr(z) $path     Normal cd && record'
+            echo ' cdr(z) i         Interactive cd via fzf'
             echo ' cdr(z) gc        Do gc to cd record'
             echo ' cdr(z) l         List cd record'
-        case l
-            python $CDR_script -l
-        case gc
-            python $CDR_script -gc
-        case c
+            echo ' cdr(z) e         Edit cd record'
+        case ""
             set dir (python $CDR_script -c)
+            if test -d $dir
+                cd $dir
+            else
+                echo -n 'Input base dir (default is cwd): '
+                sleep 0.1
+                set dir (python $CDR_script -i)
+                if test -d $dir
+                    cd $dir
+                else
+                    echo $dir
+                end
+            end
+        case "i"
+            echo -n 'Input base dir (default is cwd): '
+            sleep 0.1
+            set dir (python $CDR_script -i)
             if test -d $dir
                 cd $dir
             else
                 echo $dir
             end
+        case "gc"
+            python $CDR_script -gc
+        case "l"
+            bat ~/.config/cd_record.yaml
+        case "e"
+            $EDITOR ~/.config/cd_record.yaml
         case "*"
             cd $argv[1]
             if test $status -eq 0 -a -n "$argv[1]" -a "$argv[1]" != "."

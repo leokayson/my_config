@@ -29,7 +29,7 @@ let theme = {
 
 let scheme = {
   recognized_command: $theme.blue
-  unrecognized_command: $theme.text
+  unrecognized_command: $theme.red
   constant: $theme.peach
   punctuation: $theme.overlay2
   operator: $theme.sky

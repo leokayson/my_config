@@ -25,12 +25,12 @@ export-env {
         CLIPBOARD_EDITOR:       'nvim'
         CLIPBOARD_HISTORY:      10
         SHELL:                  'nu'
-        FZF_DEFAULT_COMMAND:    'fd -t f -t d'
+        FZF_DEFAULT_COMMAND:    'fd -t f -t d -Lu -E .git'
         FZF_DEFAULT_OPTS:       '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
             if (({} | path type) == \"dir\") {
-                eza --color=always --icons -T -L 1 {}
+                lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}
             } else {
-                bat --force-colorization {}
+                bat -f --style=full {}
             }"'
         CHEAT_USE_FZF:          true
     }
