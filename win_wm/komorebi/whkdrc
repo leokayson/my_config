@@ -77,3 +77,10 @@ win + ctrl + 5                                : komorebic move-to-workspace 4
 win + ctrl + 6                                : komorebic move-to-workspace 5
 win + ctrl + 7                                : komorebic move-to-workspace 6
 win + ctrl + 8                                : komorebic move-to-workspace 7
+
+# Close workspace
+win + ctrl + delete                           : komorebic close-workspace
+
+# Cycle move workspaces
+win + alt + oem_4                             : komorebic cycle-workspace previous # oem_4 is [
+win + alt + oem_6                             : komorebic cycle-workspace next # oem_6 is ]

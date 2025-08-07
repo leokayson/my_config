@@ -26,7 +26,12 @@ export-env {
         CLIPBOARD_HISTORY:      10
         SHELL:                  'nu'
         FZF_DEFAULT_COMMAND:    'fd -t f -t d'
-        FZF_DEFAULT_OPTS:       '-e --style=full --preview "bat {}" --preview-window "up" --scheme=history --bind=ctrl-j:jump'
+        FZF_DEFAULT_OPTS:       '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
+            if (({} | path type) == \"dir\") {
+                eza --color=always --icons -T -L 1 {}
+            } else {
+                bat --force-colorization {}
+            }"'
         CHEAT_USE_FZF:          true
     }
 }

@@ -1,5 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.asc.json",
+  "uTools": {
+    "floating": [
+      {
+        "kind": "Exe",
+        "id": "uTools.exe",
+        "matching_strategy": "Equals"
+      }
+    ]
+  },
   "1Password": {
     "ignore": [
       {
@@ -1563,7 +1572,7 @@
           "matching_strategy": "StartsWith"
         }
       ]
-     ]
+    ]
   },
   "Microsoft Teams": {
     "tray_and_multi_window": [
@@ -3230,14 +3239,5 @@
         "matching_strategy": "Equals"
       }
     ]
-  },
-  "uTools" : {
-    "floating": [
-    {
-      "kind": "Exe",
-      "id": "uTools.exe",
-      "matching_strategy": "Equals"
-    }
-  ]
   }
 }
