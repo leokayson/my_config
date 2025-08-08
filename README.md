@@ -2,13 +2,15 @@
 
 This repo is just to store my develop habits to sync in many PCs and it includes many personal preferences and shouldn't apply for many people. ofc anyone can use it.
 
-I mainly use linux + windows, so cross-platform is much more preferable.
+I mainly switch my dev env between linux and windows, so cross-platform is much more preferable.
 
 # 2 Env
 
 ## 2.1 System environment
 
 > sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick
+>
+> winget install Gyan.FFmpeg 7zip.7zip jqlang.jq junegunn.fzf ImageMagick.ImageMagick
 
 ## 2.2 Rust
 
@@ -22,7 +24,7 @@ I mainly use linux + windows, so cross-platform is much more preferable.
 
 ## 2.3 Rust Crate
 
-> cargo install bottom fd-find du-dust dysk ripgrep bat starship zoxide binsider hexyl kmon ouch
+> cargo install bottom fd-find du-dust dysk ripgrep bat starship binsider hexyl kmon ouch
 >
 > cargo install --git https://github.com/leokayson/lsd.git
 >
@@ -161,6 +163,10 @@ cargo install \
 >   - Use nightly version
 >
 > https://wezterm.org/installation.html
+>
+> - Windows terminal
+>
+> Patial settings are located in ./terminal. For the Windows PC without dedicated GPU, Windows Terminal is a better chocie.
 
 # 7 Window Manager
 

@@ -24,8 +24,8 @@ local keys = { -- misc/useful --
 -- tabs: spawn+close
 {key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain")},
 {key = "w", mods = "CTRL", action = act.CloseCurrentTab({confirm = false})}, -- tabs: navigation
-{key = "[", mods = "CTRL", action = act.ActivateTabRelative(-1)},
-{key = "]", mods = "CTRL", action = act.ActivateTabRelative(1)},
+{key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1)},
+{key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1)},
 
 -- Clears the scrollback and viewport leaving the prompt line the new first line.
 {key = 'C', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, -- window --

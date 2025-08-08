@@ -1,0 +1,267 @@
+{
+    "keybindings": [
+        {
+            "id": "Terminal.MoveFocusUp",
+            "keys": "ctrl+alt+i"
+        },
+        {
+            "id": "Terminal.ShowContextMenu",
+            "keys": "ctrl+shift+space"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+home"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+7"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+end"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+a"
+        },
+        {
+            "id": null,
+            "keys": "menu"
+        },
+        {
+            "id": "Terminal.ScrollToTop",
+            "keys": "ctrl+home"
+        },
+        {
+            "id": null,
+            "keys": "enter"
+        },
+        {
+            "id": "User.paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "alt+right"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+f"
+        },
+        {
+            "id": "Terminal.ScrollToBottom",
+            "keys": "ctrl+end"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+8"
+        },
+        {
+            "id": "Terminal.ResizePaneUp",
+            "keys": "ctrl+alt+up"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+up"
+        },
+        {
+            "id": null,
+            "keys": "win+sc(41)"
+        },
+        {
+            "id": "Terminal.ResizePaneDown",
+            "keys": "ctrl+alt+down"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+tab"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+down"
+        },
+        {
+            "id": "Terminal.DuplicatePaneRight",
+            "keys": "ctrl+alt+minus"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "id": "Terminal.ResizePaneRight",
+            "keys": "ctrl+alt+right"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+right"
+        },
+        {
+            "id": "Terminal.ClosePane",
+            "keys": "ctrl+w"
+        },
+        {
+            "id": "Terminal.ResizePaneLeft",
+            "keys": "ctrl+alt+left"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+left"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+3"
+        },
+        {
+            "id": "Terminal.SelectAll",
+            "keys": "ctrl+a"
+        },
+        {
+            "id": "Terminal.ScrollUp",
+            "keys": "pgup"
+        },
+        {
+            "id": "Terminal.PrevTab",
+            "keys": "ctrl+pgup"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "id": "Terminal.NextTab",
+            "keys": "ctrl+pgdn"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "id": null,
+            "keys": "alt+up"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+4"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "ctrl+alt+l"
+        },
+        {
+            "id": null,
+            "keys": "alt+down"
+        },
+        {
+            "id": "Terminal.MoveFocusDown",
+            "keys": "ctrl+alt+k"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "ctrl+alt+j"
+        },
+        {
+            "id": null,
+            "keys": "alt+left"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+period"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+pgup"
+        },
+        {
+            "id": "Terminal.ScrollDown",
+            "keys": "pgdn"
+        },
+        {
+            "id": "Terminal.DuplicatePaneDown",
+            "keys": "ctrl+alt+\\"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+minus"
+        },
+        {
+            "id": null,
+            "keys": "alt+space"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+plus"
+        },
+        {
+            "id": "Terminal.OpenNewTab",
+            "keys": "ctrl+t"
+        },
+        {
+            "id": "Terminal.OpenSystemMenu",
+            "keys": "ctrl+shift+m"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+1"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+2"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+6"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+9"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+v"
+        }
+    ],
+    "schemes": {
+        "background": "#1F1F28",
+        "black": "#1F1F28",
+        "blue": "#658594",
+        "brightBlack": "#2A2A37",
+        "brightBlue": "#7FB4CA",
+        "brightCyan": "#A3D4D5",
+        "brightGreen": "#98BB6C",
+        "brightPurple": "#D27E99",
+        "brightRed": "#FF5D62",
+        "brightWhite": "#DCD7BA",
+        "brightYellow": "#E6C384",
+        "cursorColor": "#DCD7BA",
+        "cyan": "#9CABCA",
+        "foreground": "#DCD7BA",
+        "green": "#76946A",
+        "name": "Kanagawa",
+        "purple": "#957FB8",
+        "red": "#E82424",
+        "selectionBackground": "#2A2A37",
+        "white": "#DCD7BA",
+        "yellow": "#FF9E3B"
+    }
+}

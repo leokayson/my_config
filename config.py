@@ -57,7 +57,7 @@ def config_soft_link():
     create_soft_link(os.path.join(my_cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
     create_soft_link(os.path.join(my_cfg_home, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))
     create_soft_link(os.path.join(my_cfg_home, '.config', 'lsd.yaml'), os.path.join(home, '.config', 'lsd.yaml'))
-    create_soft_link(os.path.join(my_cfg_home, 'wezterm'), os.path.join(home, '.config', 'wezterm'))
+    create_soft_link(os.path.join(my_cfg_home, 'terminal', 'wezterm'), os.path.join(home, '.config', 'wezterm'))
 
     # Tool scripts
     create_soft_link(os.path.join(my_cfg_home, 'ks_script'), os.path.join(home, 'env', 'ks_script'))
