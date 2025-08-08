@@ -36,7 +36,7 @@ local keys = { -- misc/useful --
 {key = "-", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
 {key = "0", mods = mod.SUPER_REV, action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' }})},
 {key = "z", mods = mod.SUPER_REV, action = act.TogglePaneZoomState},
-{key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = false})}, -- panes: navigation
+{key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = true})}, -- panes: navigation
 {key = "i", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
 {key = "k", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
 {key = "j", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
@@ -44,7 +44,9 @@ local keys = { -- misc/useful --
 {key = "UpArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Up", 1})},
 {key = "DownArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
 {key = "LeftArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},
-{key = "RightArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Right", 1})}, -- fonts --
+
+{key = "LeftArrow",  mods = "CTRL", action = act.CopyMode 'MoveForwardWordEnv'},
+{key = "RightArrow", mods = "CTRL", action = act.CopyMode 'MoveBackwardWord'}, 
 -- fonts: resize
 {key = "=", mods = mod.SUPER, action = act.IncreaseFontSize},
 {key = "-", mods = mod.SUPER, action = act.DecreaseFontSize} -- key-tables --

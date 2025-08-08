@@ -28,6 +28,7 @@ alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
 alias scfg   = code $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
+alias ff     = fastfetch
 alias py     = python
 alias vi     = nvim
 alias vim    = nvim
@@ -66,15 +67,16 @@ def ncd [path: string] {
     code ($path | path expand)
 }
 
-def --env y [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
+alias y = yazi
+# def --env y [...args] {
+# 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+# 	yazi ...$args --cwd-file $tmp
+# 	let cwd = (open $tmp)
+# 	if $cwd != "" and $cwd != $env.PWD {
+# 		cd $cwd
+# 	}
+# 	rm -fp $tmp
+# }
 
 def --env f [cmd: string, path: string] {
     cd $"($path)"
@@ -145,6 +147,7 @@ def --env cdr [cmd? : string] {
             print 'Usage:'
             print ' cdr(z)           Cd to a cd record or interactive select'
             print ' cdr(z) $path     Normal cd && record'
+            print ' cdr(z) r         Record cwd'
             print ' cdr(z) i         Interactive cd via fzf'
             print ' cdr(z) gc        Do gc to cd record'
             print ' cdr(z) l         List cd record'
@@ -157,6 +160,8 @@ def --env cdr [cmd? : string] {
             } else {
                 print $dir
             }
+        } else if ( $cmd  == "r" ) {
+            python $CDR_script -r
         } else if ( $cmd  == "gc" ) {
             python $CDR_script -g
         } else if ( $cmd  == "l" ) {

@@ -30,6 +30,7 @@ if status is-interactive
     alias bashrc '$EDITOR ~/.bashrc'
 
     alias z      'cdr'
+    alias ff     'fastfetch'
     alias g      'git'
     alias py     'python'
     alias rp     'realpath'
@@ -70,14 +71,15 @@ function vscode_crash
     set -gx VSCODE_IPC_HOOK_CLI (lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)
 end
 
-function y
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    yazi $argv --cwd-file="$tmp"
-    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        builtin cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
-end
+alias y = yazi
+# function y
+#     set tmp (mktemp -t "yazi-cwd.XXXXXX")
+#     yazi $argv --cwd-file="$tmp"
+#     if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+#         builtin cd -- "$cwd"
+#     end
+#     rm -f -- "$tmp"
+# end
 
 function f
     cd "$argv[2]"
@@ -141,6 +143,7 @@ function cdr
             echo 'Usage:'
             echo ' cdr(z)           Cd to a cd record or interactive select'
             echo ' cdr(z) $path     Normal cd && record'
+            echo ' cdr(z) r         Record cwd'
             echo ' cdr(z) i         Interactive cd via fzf'
             echo ' cdr(z) gc        Do gc to cd record'
             echo ' cdr(z) l         List cd record'
@@ -168,6 +171,8 @@ function cdr
             else
                 echo $dir
             end
+        case "r"
+            python $CDR_script -r
         case "gc"
             python $CDR_script -gc
         case "l"
