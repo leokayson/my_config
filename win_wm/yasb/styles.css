@@ -14,7 +14,7 @@
     --grey2: #a89984;
     --fg0: #e2cca9;
 
---accent: #e9b143;
+    --accent: #e9b143;
     --background: rgba(69, 64, 61, 0.85); /*bg3*/
     --background-widget: rgba(50, 48, 45, 0.6); /*bg0*/
     --text: #e2cca9;
@@ -157,6 +157,41 @@
     font-weight: 600;
     padding: 2px 0 0 0;
 }
+
+.glazewm-workspaces {
+    background-color: var(--base2);
+
+}
+.glazewm-workspaces .ws-btn {
+    font-size: 11px;
+    color: var(--text);
+    border: none;
+    padding: 0px 4px 0px 4px;
+    margin: 0 2px 0 2px;
+
+}
+.glazewm-workspaces .ws-btn.active_populated {
+    background-color: var(--accent);
+    color: var(--bg_dim);
+    height: 16px;
+    width: 8px;
+
+}
+.glazewm-workspaces .ws-btn.active_empty {
+    background-color: var(--accent);
+    color: var(--bg_dim);
+    height: 16px;
+    width: 8px;
+}
+
+.glazewm-workspaces .ws-btn.populated {
+    color: var(--text);
+}
+.glazewm-workspaces .ws-btn.empty {
+    color: var(--text);
+}
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn.populated:hover,
 
 /*POWER MENU WIDGET*/
 

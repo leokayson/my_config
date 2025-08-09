@@ -31,7 +31,7 @@ bars:
             bottom: 0
             right: 3
         widgets:
-            left: ["weather", "komorebi_workspaces", "clock", "media"]
+            left: ["weather", "glazewm_workspaces", "clock", "media"]
             center: ["active_window"]
             right: ["taskbar", "language", "volume", "cpu", "memory", "bluetooth", "wifi", "home"]
 widgets:
@@ -197,6 +197,31 @@ widgets:
                 left: 0
                 bottom: 0
                 right: 0
+    glazewm_workspaces:
+        type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+        options:
+            offline_label: "GlazeWM Offline"
+            hide_empty_workspaces: false
+            hide_if_offline: false
+            enable_scroll_switching: true
+            btn_shadow:
+                enabled: true
+                color: "blue"
+                radius: 3
+                offset: [ 1, 1 ]
+            container_padding: 
+                top: 0
+                left: 8
+                bottom: 0
+                right: 8
+
+    # By default workspace names are fetched from GlazeWM and "display_name" option takes priority over "name".
+    # However, you can customize populated and empty labels here using {name} and {display_name} placeholders if needed.
+    # {name} will be replaced with workspace name (index) from GlazeWM.
+    # {display_name} will be replaced with workspace display_name from GlazeWM.
+
+    # populated_label: "{name} {display_name} \uebb4"
+    # empty_label: "{name} {display_name} \uebb5"
     weather:
         type: "yasb.weather.WeatherWidget"
         options:

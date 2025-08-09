@@ -172,16 +172,33 @@ cargo install \
 
 > - Windows
 >
->> YASB - Status bar
+>> **Hide Taskbar**
+>>
+>> https://github.com/Lonely-Atom/HideTaskbar/releases
+>>
+>> **YASB - Status bar**
 >>
 >> [Releases · amnweb/yasb](https://github.com/amnweb/yasb/releases)
 >>
->> Komorebi - WM
+>> **GlazeWM**
 >>
->> [Releases · LGUG2Z/komorebi](https://github.com/LGUG2Z/komorebi/releases)
+>> https://github.com/glzr-io/glazewm/releases
 >>
->> KOMOREBI_CONFIG_HOME: $"($env.USERPROFILE)/.config/komorebi"
->> WHKD_CONFIG_HOME:     $"($env.USERPROFILE)/.config/komorebi"
+>> _GLAZEWM_CONFIG_PATH_: %USERPROFILE%/.config/glazewm/config.yaml
+>>
+>
+>> Komorebi
+>>
+>>> [Releases · LGUG2Z/komorebi](https://github.com/LGUG2Z/komorebi/releases)
+>>>
+>>> _KOMOREBI_CONFIG_HOME_: %USERPROFILE%/.config/komorebi
+>>>
+>>> _WHKD_CONFIG_HOME_:     %USERPROFILE%/.config/komorebi
+>>>
+>>> whkd
+>>>
+>>> **https://github.com/LGUG2Z/whkd/releases**
+>>>
 >>
 
 # 8 Soft link

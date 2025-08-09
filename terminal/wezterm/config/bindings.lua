@@ -45,7 +45,7 @@ local keys = { -- misc/useful --
 {key = "DownArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
 {key = "LeftArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},
 
-{key = "LeftArrow",  mods = "CTRL", action = act.CopyMode 'MoveForwardWordEnv'},
+{key = "LeftArrow",  mods = "CTRL", action = act.CopyMode 'MoveForwardWordEnd'},
 {key = "RightArrow", mods = "CTRL", action = act.CopyMode 'MoveBackwardWord'}, 
 -- fonts: resize
 {key = "=", mods = mod.SUPER, action = act.IncreaseFontSize},

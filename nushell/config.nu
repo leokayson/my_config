@@ -186,12 +186,13 @@ def --env cmdh [cmd? : string] {
 }
 
 def --env wm1 [] {
-    komorebic start --whkd
+    # komorebic start --whkd
+    glazewm start
 }
 
-def --env wm0 [] {
-    komorebic stop
-}
+# def --env wm0 [] {
+    # komorebic stop
+# }
 
 def sd [ mins?: int ] {
     if ( $mins == null ) {
