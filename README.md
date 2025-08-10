@@ -122,6 +122,12 @@ chmod 755 ~
 
 ## 5.2 NVIM plugin
 
+lazyvim
+
+```sh
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+```
+
 > $NVIM_CONFIG_HOME/init.lua
 >
 > $NVIM_CONFIG_HOME/lua/config

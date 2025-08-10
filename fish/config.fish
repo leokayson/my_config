@@ -25,9 +25,9 @@ if status is-interactive
     "'
     set -gx CHEAT_USE_FZF       true
 
-    alias fcfg   '$EDITOR ~/.config/fish/config.fish'
-    alias scfg   '$EDITOR ~/.config/starship.toml'
-    alias bashrc '$EDITOR ~/.bashrc'
+    alias fcfg   'code ~/.config/fish/config.fish'
+    alias scfg   'code ~/.config/starship.toml'
+    alias bashrc 'code ~/.bashrc'
 
     alias z      'cdr'
     alias ff     'fastfetch'
@@ -71,7 +71,7 @@ function vscode_crash
     set -gx VSCODE_IPC_HOOK_CLI (lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)
 end
 
-alias y = yazi
+alias y 'yazi'
 # function y
 #     set tmp (mktemp -t "yazi-cwd.XXXXXX")
 #     yazi $argv --cwd-file="$tmp"

@@ -65,8 +65,10 @@ def config_soft_link():
 def config_windows_wm_soft_link():
     # Deprecated
     # create_soft_link(os.path.join(my_cfg_home, 'win_wm', 'komorebi'), os.path.join(home, '.config', 'komorebi'))
-    create_soft_link(os.path.join(my_cfg_home, 'win_wm', 'glazewm'), os.path.join(home, '.config', 'glazewm'))
-    create_soft_link(os.path.join(my_cfg_home, 'win_wm', 'yasb'), os.path.join(home, '.config', 'yasb'))
+    create_soft_link(os.path.join(my_cfg_home, 'wm', 'win', 'glazewm'), os.path.join(home, '.config', 'glazewm'))
+    create_soft_link(os.path.join(my_cfg_home, 'wm', 'win', 'yasb'), os.path.join(home, '.config', 'yasb'))
+def config_windows_wm_soft_link():
+    create_soft_link(os.path.join(my_cfg_home, 'wm', 'linux', 'hyprland', 'Keybinds.conf'), os.path.join(home, '.config', 'hypr', 'configs', 'Keybinds.conf'))
 
 if __name__ == "__main__":
     config_soft_link()
