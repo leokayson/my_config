@@ -650,12 +650,3 @@
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 6px;
 }
-.taskbar-widget {
-    padding-left: 0;
-    margin-right: -12px;
-}
-.taskbar-widget .widget-container {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    /* padding-left: 6px; */
-}
