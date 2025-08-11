@@ -5,7 +5,7 @@ export-env {
         YAZI_FILE_ONE:        $"($env.ProgramFiles)/Git/usr/bin/file.exe"
         KOMOREBI_CONFIG_HOME: $"($env.USERPROFILE)/.config/komorebi"
         WHKD_CONFIG_HOME:     $"($env.USERPROFILE)/.config/komorebi"
-        GLAZEWM_CONFIG_PATH:  $"($env.USERPROFILE)/.config/glazewm"
+        GLAZEWM_CONFIG_PATH:  $"($env.USERPROFILE)/.config/glazewm/config.yaml"
     }
 }
 
