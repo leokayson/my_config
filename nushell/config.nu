@@ -23,8 +23,8 @@ source $"($nu.default-config-dir)/starship.nu"
 source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
-alias ncfg   = code $"($env.HOME)/.config/nushell/config.nu"
-alias nenv   = code $"($env.HOME)/.config/nushell/env.nu"
+alias ncfg   = code $"($nu.default-config-dir)/.config/nushell/config.nu"
+alias nenv   = code $"($nu.default-config-dir)/.config/nushell/env.nu"
 alias scfg   = code $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
