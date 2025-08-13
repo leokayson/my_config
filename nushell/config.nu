@@ -23,9 +23,9 @@ source $"($nu.default-config-dir)/starship.nu"
 source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
-alias ncfg   = code $"($nu.default-config-dir)/.config/nushell/config.nu"
-alias nenv   = code $"($nu.default-config-dir)/.config/nushell/env.nu"
-alias scfg   = code $"($env.HOME)/.config/starship.toml"
+alias ncfg   = $env.EDITOR $"($nu.default-config-dir)/.config/nushell/config.nu"
+alias nenv   = $env.EDITOR $"($nu.default-config-dir)/.config/nushell/env.nu"
+alias scfg   = $env.EDITOR $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
 alias ff     = fastfetch

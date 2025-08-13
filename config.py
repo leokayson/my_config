@@ -13,7 +13,7 @@ def create_soft_link(file, link_file):
         except Exception as e:
             print(f"Error removing existing link or file: {e}")
             exit(1)
-    
+
     if not os.path.exists(os.path.dirname(link_file)):
         os.makedirs(os.path.dirname(link_file))
 
@@ -31,7 +31,7 @@ def config_soft_link():
         cfg_cmn_dir = os.getenv('APPDATA')
         nvim_home = os.path.join(os.getenv('LOCALAPPDATA'), 'nvim')
 
-        create_soft_link(os.path.join(my_cfg_home, 'yazi'), os.path.join(cfg_cmn_dir, 'yazi', 'config')) 
+        create_soft_link(os.path.join(my_cfg_home, 'yazi'), os.path.join(cfg_cmn_dir, 'yazi', 'config'))
     else:
         cfg_cmn_dir = os.path.join(home, '.config')
         nvim_home = os.path.join(home, '.config', 'nvim')
@@ -39,8 +39,8 @@ def config_soft_link():
         create_soft_link(os.path.join(my_cfg_home, '.bashrc'), os.path.join(home, '.bashrc'))
         create_soft_link(os.path.join(my_cfg_home, 'fish', 'config.fish'), os.path.join(cfg_cmn_dir, 'fish', 'config.fish'))
         create_soft_link(os.path.join(my_cfg_home, 'yazi'), os.path.join(cfg_cmn_dir, 'yazi'))
-    
-    # Normal config files in 
+
+    # Normal config files in
     create_soft_link(os.path.join(my_cfg_home, 'helix'), os.path.join(cfg_cmn_dir, 'helix'))
     create_soft_link(os.path.join(my_cfg_home, 'nushell'), os.path.join(cfg_cmn_dir, 'nushell'))
 
@@ -52,7 +52,7 @@ def config_soft_link():
     # Common config files in ~
     create_soft_link(os.path.join(my_cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
     create_soft_link(os.path.join(my_cfg_home, '.gitconfig'), os.path.join(home, '.gitconfig'))
-    
+
     # Common config files in ~/.config
     create_soft_link(os.path.join(my_cfg_home, '.config', 'starship.toml'), os.path.join(home, '.config', 'starship.toml'))
     create_soft_link(os.path.join(my_cfg_home, '.config', 'btm.toml'), os.path.join(home, '.config', 'btm.toml'))

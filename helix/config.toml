@@ -1,4 +1,4 @@
-theme = "bluloco-dark"
+theme = "kanagawa"
 
 [editor]
 mouse                  = true
@@ -11,7 +11,7 @@ auto-save              = false
 bufferline             = "multiple"
 rulers                 = [120]
 auto-pairs             = true
-shell                  = ["nu", "-c"]
+shell                  = ["fish", "-c"]
 completion-trigger-len = 1
 idle-timeout           = 80
 line-number            = "relative"
@@ -60,20 +60,20 @@ character = "╎"  # Some characters that work well: "▏", "╎", "┆", "┊",
 [editor.statusline]
 left = [
   "mode",
-  "read-only-indicator",
+  "read-only-indicator"
 ]
 center = [
   "file-name",
   "file-encoding"
 ]
-  
+
 right = [
   "position",
   "total-line-numbers",
   "file-line-ending",
   "file-indent-style",
   "spacer",
-  "workspace-diagnostics",
+  "workspace-diagnostics"
 ]
 separator = "│"
 mode.insert = "I"
@@ -81,30 +81,33 @@ mode.normal = "N"
 mode.select = "S"
 
 [keys.normal]
-"C-up"    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
-"C-down"  = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-"C-right" = "indent"
-"C-left"  = "unindent"
+"A-up"    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"A-down"  = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+"A-right" = "indent"
+"A-left"  = "unindent"
 
-"A-up"    = "copy_selection_on_prev_line"
-"A-down"  = "copy_selection_on_next_line"
-"A-left"    = "move_prev_word_end"
-"A-right"   = "move_next_word_end"
+"C-up"    = "copy_selection_on_prev_line"
+"C-down"  = "copy_selection_on_next_line"
+"C-left"  = "move_prev_word_end"
+"C-right" = "move_next_word_end"
 
-"A-S-up"   = ["extend_to_line_bounds", "yank", "paste_before"]
-"A-S-down" = ["extend_to_line_bounds", "yank", "paste_after"]
-"A-S-left"  = [ "select_mode", "move_prev_word_end" ]
-"A-S-right" = [ "select_mode", "move_next_word_end" ]
+"C-S-up"    = ["extend_to_line_bounds", "yank", "paste_before"]
+"C-S-down"  = ["extend_to_line_bounds", "yank", "paste_after"]
+"C-S-left"  = ["select_mode", "move_prev_word_end"]
+"C-S-right" = ["select_mode", "move_next_word_end"]
 
 "C-a" = ["select_all", "select_mode"]
 "ret" = "open_below"
+
+"pageup" = "page_cursor_half_up"
+"pagedown" = "page_cursor_half_down"
 
 "A-backspace" = ["insert_mode", "delete_word_backward", "normal_mode"]
 "A-del"       = ["insert_mode", "delete_word_forward", "normal_mode"]
 "S-backspace" = "kill_to_line_start"
 "S-del"       = "kill_to_line_end"
 "C-s"         = ":w"
-"/"           = [ "select_all", "select_regex" ]
+"/"           = ["select_all", "select_regex"]
 
 y = [
   "yank_main_selection_to_clipboard",
@@ -127,13 +130,13 @@ c = "toggle_comments"
 "}" = ["goto_next_paragraph", "collapse_selection"]
 G   = "goto_file_end"
 V   = ["select_mode", "extend_to_line_bounds"]
-D   = ["goto_line_start", "extend_to_line_end", "delete_selection", "delete_selection" ]
+D   = ["goto_line_start", "extend_to_line_end", "delete_selection", "delete_selection"]
 
 S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 
-x = ["extend_line_below", "select_mode"]
-X = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
-"S-up" = ["extend_line_below", "select_mode"]
+x        = ["extend_line_below", "select_mode"]
+X        = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
+"S-up"   = ["extend_line_below", "select_mode"]
 "S-down" = ["extend_line_up", "extend_to_line_bounds", "select_mode"]
 
 # Clipboards over registers ye ye
@@ -154,21 +157,21 @@ esc   = ["collapse_selection", "keep_primary_selection"]
 space = { "c" = "toggle_comments", "|" = "global_search" }
 
 [keys.insert]
-"C-up"    = ["normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode"]
-"C-down"  = ["normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode"]
-"C-left"  = "unindent"
-"C-right" = "indent"
+"A-up"    = ["normal_mode", "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "insert_mode"]
+"A-down"  = ["normal_mode", "extend_to_line_bounds", "delete_selection", "paste_after", "insert_mode"]
+"A-left"  = "unindent"
+"A-right" = "indent"
 
-"A-up"    = "copy_selection_on_prev_line"
-"A-down"  = "copy_selection_on_next_line"
-"A-left"    = "move_prev_word_end"
-"A-right"   = "move_next_word_end"
+"C-up"    = "copy_selection_on_prev_line"
+"C-down"  = "copy_selection_on_next_line"
+"C-left"  = "move_prev_word_end"
+"C-right" = "move_next_word_end"
 
-"A-S-up"   = ["normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode"]
-"A-S-down" = ["normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode"]
-"C-S-right" = [ "move_next_word_start", "select_mode" ] 
-"C-S-left"  = [ "move_prev_word_end", "select_mode" ]
-"C-s" = ":w"
+"C-S-up"    = ["normal_mode", "extend_to_line_bounds", "yank", "paste_before", "insert_mode"]
+"C-S-down"  = ["normal_mode", "extend_to_line_bounds", "yank", "paste_after", "insert_mode"]
+"C-S-right" = ["move_next_word_start", "select_mode"]
+"C-S-left"  = ["move_prev_word_end", "select_mode"]
+"C-s"       = ":w"
 
 "tab"   = "insert_tab"
 "S-tab" = "unindent"
@@ -188,10 +191,10 @@ esc = ["collapse_selection", "normal_mode"]
 
 [keys.select]
 # Muscle memory
-"A-S-right" = "extend_next_word_end"
-"A-S-left"  = "extend_prev_word_start"
-"A-right" = "extend_next_word_end"
-"A-left"  = "extend_prev_word_start"
+"C-S-right" = "extend_next_word_end"
+"C-S-left"  = "extend_prev_word_start"
+"C-right"   = "extend_next_word_end"
+"C-left"    = "extend_prev_word_start"
 
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]
@@ -204,6 +207,9 @@ D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
 # Visual-mode specific muscle memory
 i = "select_textobject_inner"
 a = "select_textobject_around"
+
+"pageup" = "page_cursor_half_up"
+"pagedown" = "page_cursor_half_down"
 
 # Some extra binds to allow us to insert/append in select mode because it's nice with multiple cursors
 tab = ["insert_mode", "collapse_selection"] # tab is read by most terminal editors as "C-i"

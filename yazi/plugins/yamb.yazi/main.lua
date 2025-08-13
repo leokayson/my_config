@@ -315,11 +315,9 @@ return {
     -- load the config
     local file, err = io.open(state.path, "r")
     if file == nil then
-      if string.find(err, "No such file or directory") then
-        file = io.open(state.path, "w")
-        file:close()
-        file = io.open(state.path, "r")
-      end
+      file = io.open(state.path, "w")
+      file:close()
+      file = io.open(state.path, "r")
     end
 
     for line in file:lines() do

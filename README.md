@@ -8,7 +8,7 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 
 ## 2.1 System environment
 
-> sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick
+> sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick fastfetch
 >
 > winget install Gyan.FFmpeg 7zip.7zip jqlang.jq junegunn.fzf ImageMagick.ImageMagick
 
@@ -24,7 +24,7 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 
 ## 2.3 Rust Crate
 
-> cargo install bottom fd-find du-dust dysk ripgrep bat starship binsider hexyl kmon ouch
+> cargo install starship bat bottom fd-find du-dust dysk eza ripgrep binsider hexyl kmon ouch
 >
 > cargo install --git https://github.com/leokayson/lsd.git
 >
@@ -111,7 +111,7 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 
 # 5 Editor and explorer
 
-## 5.1 yazi
+## 5.1 ssh
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f rsa-remote-ssh

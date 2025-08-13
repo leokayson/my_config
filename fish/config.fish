@@ -10,10 +10,10 @@ if status is-interactive
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
 
-    set -gx EDITOR              nvim
-    set -gx CLIPBOARD_EDITOR    nvim
+    set -gx EDITOR              hx
+    set -gx CLIPBOARD_EDITOR    hx
+    set -gx VISUAL              hx
     set -gx CLIPBOARD_HISTORY   10
-    set -gx VISUAL              nvim
     set -gx SHELL               fish
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
     set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
@@ -25,9 +25,9 @@ if status is-interactive
     "'
     set -gx CHEAT_USE_FZF       true
 
-    alias fcfg   'code ~/.config/fish/config.fish'
-    alias scfg   'code ~/.config/starship.toml'
-    alias bashrc 'code ~/.bashrc'
+    alias fcfg   '$EDITOR ~/.config/fish/config.fish'
+    alias scfg   '$EDITOR ~/.config/starship.toml'
+    alias bashrc '$EDITOR ~/.bashrc'
 
     alias z      'cdr'
     alias ff     'fastfetch'

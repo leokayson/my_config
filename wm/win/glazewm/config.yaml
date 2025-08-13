@@ -12,7 +12,7 @@ general:
   config_reload_commands: []
 
   # Whether to automatically focus windows underneath the cursor.
-  focus_follows_cursor: true
+  focus_follows_cursor: false
 
   # Whether to switch back and forth between the previously focused
   # workspace when focusing the current workspace.
@@ -235,11 +235,11 @@ keybindings:
 
   # Change the focused window to be tiling.
   - commands: ["toggle-tiling"]
-    bindings: ["lwin+ctrl+t"]
+    bindings: ["lwin+ctrl+f"]
 
   # Change the focused window to be fullscreen.
   - commands: ["toggle-fullscreen"]
-    bindings: ["lwin+ctrl+f"]
+    bindings: ["lwin+ctrl+t"]
 
   # Minimize focused window.
   - commands: ["toggle-minimized"]

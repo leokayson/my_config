@@ -11,7 +11,7 @@ return {
 
   -- color scheme
   -- colors = colors,
-  color_scheme = "BlulocoDark",
+  color_scheme = "Kanagawa",
 
   -- background
   window_background_opacity = 1.00,
