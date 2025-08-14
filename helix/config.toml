@@ -91,8 +91,8 @@ mode.select = "S"
 "C-left"  = "move_prev_word_end"
 "C-right" = "move_next_word_end"
 
-"C-S-up"    = ["extend_to_line_bounds", "yank", "paste_before"]
-"C-S-down"  = ["extend_to_line_bounds", "yank", "paste_after"]
+"A-S-up"    = ["extend_to_line_bounds", "yank", "paste_before"]
+"A-S-down"  = ["extend_to_line_bounds", "yank", "paste_after"]
 "C-S-left"  = ["select_mode", "move_prev_word_end"]
 "C-S-right" = ["select_mode", "move_next_word_end"]
 
@@ -102,8 +102,8 @@ mode.select = "S"
 "pageup" = "page_cursor_half_up"
 "pagedown" = "page_cursor_half_down"
 
-"A-backspace" = ["insert_mode", "delete_word_backward", "normal_mode"]
-"A-del"       = ["insert_mode", "delete_word_forward", "normal_mode"]
+"C-backspace" = ["insert_mode", "delete_word_backward", "normal_mode"]
+"C-del"       = ["insert_mode", "delete_word_forward", "normal_mode"]
 "S-backspace" = "kill_to_line_start"
 "S-del"       = "kill_to_line_end"
 "C-s"         = ":w"

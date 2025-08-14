@@ -16,8 +16,3 @@ $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/usbipd-win")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/whkd/bin")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/glzr.io/GlazeWM/cli")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/glzr.io/Zebar")
-
-source $"($nu.default-config-dir)/custom-completions/adb/adb-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/fastboot/fastboot-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/windows/windows-completions.nu"
-source $"($nu.default-config-dir)/custom-completions/winget/winget-completions.nu"

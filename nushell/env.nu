@@ -32,7 +32,6 @@ export-env {
             } else {
                 bat -f --style=full {}
             }"'
-        CHEAT_USE_FZF:          true
     }
 }
 

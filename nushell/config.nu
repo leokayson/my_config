@@ -23,9 +23,9 @@ source $"($nu.default-config-dir)/starship.nu"
 source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
-alias ncfg   = $env.EDITOR $"($nu.default-config-dir)/.config/nushell/config.nu"
-alias nenv   = $env.EDITOR $"($nu.default-config-dir)/.config/nushell/env.nu"
-alias scfg   = $env.EDITOR $"($env.HOME)/.config/starship.toml"
+alias ncfg   = hx $"($nu.default-config-dir)/config.nu"
+alias nenv   = hx $"($nu.default-config-dir)/env.nu"
+alias scfg   = hx $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
 alias ff     = fastfetch
@@ -182,7 +182,7 @@ alias z = cdr
 def --env cmdh [cmd? : string] {
     let CMDH_script = $'($env.HOME)/env/ks_script/cmd_history.py'
     let cmd = (python $CMDH_script)
-    run-external $cmd
+    ^($cmd)
 }
 
 def --env wm1 [] {
