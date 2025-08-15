@@ -20,9 +20,9 @@ source $"cfg_($nu.os-info.name).nu"
 
 export-env {
     load-env {
-        EDITOR:                 'hx'
-        VISUAL:                 'hx'
-        CLIPBOARD_EDITOR:       'hx'
+        EDITOR:                 'ox'
+        VISUAL:                 'ox'
+        CLIPBOARD_EDITOR:       'ox'
         CLIPBOARD_HISTORY:      10
         SHELL:                  'nu'
         FZF_DEFAULT_COMMAND:    'fd -t f -t d -Lu -E .git'

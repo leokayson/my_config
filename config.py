@@ -49,6 +49,9 @@ def config_soft_link():
     create_soft_link(os.path.join(my_cfg_home, 'nvim', 'init.lua'), os.path.join(nvim_home, 'init.lua'))
     create_soft_link(os.path.join(my_cfg_home, 'nvim', 'colorscheme.lua'), os.path.join(nvim_home, 'lua', 'plugins', 'colorscheme.lua'))
 
+    # ox
+    create_soft_link(os.path.join(my_cfg_home, '.oxrc'), os.path.join(home, '.oxrc'))
+
     # Common config files in ~
     create_soft_link(os.path.join(my_cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
     create_soft_link(os.path.join(my_cfg_home, '.gitconfig'), os.path.join(home, '.gitconfig'))

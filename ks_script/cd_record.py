@@ -83,19 +83,25 @@ if args.cd_interactive:
 
 if args.garbage_collection:
     max_access = 0
+    need_gc_k = []
     for k, v in cd_record.items():
         if not (os.path.exists(k) or os.path.lexists(k)):
-            cd_record.pop(k)
+            need_gc_k += [k]
         else:
             max_access = max(max_access, v)
+
     gc_ref_value = int(max_access * GC_REF_PARAM)
-    
     if gc_ref_value != 0:
         for k, v in cd_record.items():
             if v <= gc_ref_value:
-                cd_record.pop(k)
+                need_gc_k += [k]
             else:
                 cd_record[k] = int(v * GC_REC_PARAM)
+                
+    for nk in k:
+        if nk in cd_record.keys():
+            cd_record.pop(nk)
+    
 
 with open(CDR_FILE, 'w') as f:
     yaml.dump(cd_record, f, default_flow_style=False, indent=4)

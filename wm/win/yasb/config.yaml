@@ -31,9 +31,9 @@ bars:
             bottom: 0
             right: 3
         widgets:
-            left: ["weather", "glazewm_workspaces", "clock", "media"]
-            center: ["active_window"]
-            right: ["taskbar", "language", "volume", "cpu", "memory", "bluetooth", "wifi", "home"]
+            left: ["weather", "glazewm_workspaces", "media"]
+            center: ["clock"]
+            right: ["active_window", "taskbar", "language", "volume", "cpu", "memory", "bluetooth", "wifi", "home"]
 widgets:
     cpu:
         type: "yasb.cpu.CpuWidget"

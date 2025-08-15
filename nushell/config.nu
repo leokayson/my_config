@@ -23,9 +23,9 @@ source $"($nu.default-config-dir)/starship.nu"
 source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
-alias ncfg   = hx $"($nu.default-config-dir)/config.nu"
-alias nenv   = hx $"($nu.default-config-dir)/env.nu"
-alias scfg   = hx $"($env.HOME)/.config/starship.toml"
+alias ncfg   = ox $"($nu.default-config-dir)/config.nu"
+alias nenv   = ox $"($nu.default-config-dir)/env.nu"
+alias scfg   = ox $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
 alias ff     = fastfetch
@@ -114,6 +114,11 @@ def --env f [cmd: string, path: string] {
     } else if ( $cmd == "hx" ) {
         if ( $selected != "" ) {
             hx $"($selected)"
+        }
+        cd -
+    } else if ( $cmd == "ox" ) {
+        if ( $selected != "" ) {
+            ox $"($selected)"
         }
         cd -
     } else {

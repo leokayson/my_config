@@ -10,9 +10,9 @@ if status is-interactive
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
 
-    set -gx EDITOR              hx
-    set -gx CLIPBOARD_EDITOR    hx
-    set -gx VISUAL              hx
+    set -gx EDITOR              ox
+    set -gx CLIPBOARD_EDITOR    ox
+    set -gx VISUAL              ox
     set -gx CLIPBOARD_HISTORY   10
     set -gx SHELL               fish
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
@@ -118,6 +118,11 @@ function f
         case hx
             if test "$selected" != ""
                 hx $selected
+            end
+            cd -
+        case ox
+            if test "$selected" != ""
+                ox $selected
             end
             cd -
         case "*"
