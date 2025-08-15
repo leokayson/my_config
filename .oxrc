@@ -179,7 +179,7 @@ event_mapping = {
         editor:copy()
     end,
     ["shift_insert"] = function()
-        editor:display_info("Use ctrl+shift+v for paste or set your terminal emulator to do paste on ctrl+v")
+        editor:paste()
     end,
     -- Undo & Redo
     ["alt_z"] = function()
@@ -274,25 +274,10 @@ event_mapping = {
     ["alt_f5"] = function()
         editor:run_file()
     end,
-    -- Macros
-    ["ctrl_esc"] = function()
-        editor:macro_record_stop()
-        editor:display_info("Macro recorded")
-    end,
-    -- Splits
-    ["ctrl_alt_left"] = function()
-        editor:focus_split_left()
-    end,
-    ["ctrl_alt_right"] = function()
-        editor:focus_split_right()
-    end,
-    ["ctrl_alt_down"] = function()
-        editor:focus_split_down()
-    end,
-    ["ctrl_alt_up"] = function()
-        editor:focus_split_up()
-    end,
     -- File Tree
+    ["alt_t"] = function()
+        editor:toggle_file_tree()
+    end,
     ["ctrl_space"] = function()
         editor:toggle_file_tree()
     end,
@@ -309,3 +294,4 @@ document.wrap_cursor = true
 load_plugin("autoindent.lua")
 load_plugin("pairs.lua")
 load_plugin("quickcomment.lua")
+load_plugin("git.lua")

@@ -28,6 +28,8 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 >
 > cargo install --git https://github.com/leokayson/lsd.git
 >
+> cargo install --git https://github.com/leokayson/ox.git
+>
 > cargo install --locked yazi-fm yazi-cli
 
 ## 2.4 3rd-patry SW or cannot install in crate.io
