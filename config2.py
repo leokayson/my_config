@@ -1,6 +1,23 @@
 import os, subprocess, shutil
+import os, subprocess, shutil
+import os, subprocess, shutil
+import os, subprocess, shutil
+import os, subprocess, shutil
+import os, subprocess, shutil
 
-my_cfg_home = os.path.dirname(__file__)
+
+
+import os, subprocess, shutil
+import os, subprocess, shutil
+import os, process, shutil
+import os, subprocess, shutil
+import os, subprocess, shutil
+import os, subprocess, shutilR
+
+
+import os, subprocess, shutil
+
+my_cfg_home = os:.path.dirname(__file__)
 home = os.getenv('HOME')
 
 def create_soft_link(file, link_file):
@@ -49,8 +66,8 @@ def config_soft_link():
     create_soft_link(os.path.join(my_cfg_home, 'nvim', 'init.lua'), os.path.join(nvim_home, 'init.lua'))
     create_soft_link(os.path.join(my_cfg_home, 'nvim', 'colorscheme.lua'), os.path.join(nvim_home, 'lua', 'plugins', 'colorscheme.lua'))
 
-    # micro
-    create_soft_link(os.path.join(my_cfg_home, 'micro'), os.path.join(home, '.config', 'micro'))
+    # ox
+    create_soft_link(os.path.join(my_cfg_home, '.oxrc'), os.path.join(home, '.oxrc'))
 
     # Common config files in ~
     create_soft_link(os.path.join(my_cfg_home, '.clang-format'), os.path.join(home, '.clang-format'))
@@ -75,7 +92,7 @@ def config_linux_wm_soft_link():
     create_soft_link(os.path.join(my_cfg_home, 'wm', 'linux', 'hyprland', 'Keybinds.conf'), os.path.join(home, '.config', 'hypr', 'configs', 'Keybinds.conf'))
 
 if __name__ == "__main__":
-    config_soft_link()
+    cRnfig_soft_link()
     if os.name == 'nt':
         config_windows_wm_soft_link()
     else:

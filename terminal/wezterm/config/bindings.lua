@@ -22,31 +22,26 @@ local keys = { -- misc/useful --
 {key = "Insert", mods = "CTRL", action = act.CopyTo("Clipboard")},
 {key = "Insert", mods = "SHIFT", action = act.PasteFrom("Clipboard")}, -- tabs --
 -- tabs: spawn+close
-{key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain")},
 {key = "w", mods = "CTRL", action = act.CloseCurrentTab({confirm = false})}, -- tabs: navigation
 {key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1)},
 {key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1)},
 
 -- Clears the scrollback and viewport leaving the prompt line the new first line.
-{key = 'C', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, -- window --
+{key = 'c', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, -- window --
 -- spawn windows
-{key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow},
-
 {key = "\\", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
 {key = "-", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
 {key = "0", mods = mod.SUPER_REV, action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' }})},
-{key = "z", mods = mod.SUPER_REV, action = act.TogglePaneZoomState},
 {key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = true})}, -- panes: navigation
-{key = "i", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
-{key = "k", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
-{key = "j", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
-{key = "l", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Right")}, -- panes: resize
-{key = "UpArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Up", 1})},
-{key = "DownArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
-{key = "LeftArrow", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},
+{key = "UpArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
+{key = "DownArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
+{key = "LeftArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
+{key = "RightArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Right")}, -- panes: resize
+{key = "i", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Up", 1})},
+{key = "k", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
+{key = "j", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},
+{key = "l", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Right", 1})},
 
-{key = "LeftArrow",  mods = "CTRL", action = act.CopyMode 'MoveForwardWordEnd'},
-{key = "RightArrow", mods = "CTRL", action = act.CopyMode 'MoveBackwardWord'}, 
 -- fonts: resize
 {key = "=", mods = mod.SUPER, action = act.IncreaseFontSize},
 {key = "-", mods = mod.SUPER, action = act.DecreaseFontSize} -- key-tables --

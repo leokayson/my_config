@@ -10,10 +10,11 @@ if status is-interactive
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
 
-    set -gx EDITOR              ox
-    set -gx CLIPBOARD_EDITOR    ox
-    set -gx VISUAL              ox
+    set -gx EDITOR              micro
+    set -gx CLIPBOARD_EDITOR    micro
+    set -gx VISUAL              micro
     set -gx CLIPBOARD_HISTORY   10
+    set -gx MICRO_TRUECOLOR     1
     set -gx SHELL               fish
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
     set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
@@ -30,6 +31,7 @@ if status is-interactive
     alias bashrc '$EDITOR ~/.bashrc'
 
     alias z      'cdr'
+    alias mi     'micro'
     alias ff     'fastfetch'
     alias g      'git'
     alias py     'python'

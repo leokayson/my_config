@@ -3,3 +3,5 @@ helix/lsp
 helix/runtime
 .vscode
 **/*.log
+micro/backups
+micro/buffers

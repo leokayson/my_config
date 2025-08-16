@@ -1,0 +1,19 @@
+{
+    "colorscheme"    : "kanagawa",
+    "hlsearch"       : true,
+    "hltrailingws"   : true,
+    "keepautoindent" : false,
+    "matchbracestyle": "highlight",
+    "paste"          : true,
+    "fileformat"     : "unix",
+    "scrollbar"      : true,
+    "scrollmargin"   : 1,
+    "softwrap"       : true,
+    "statusformatl"  : "$(filename) $(modified)| $(opt:fileformat) | $(opt:encoding)",
+    "statusformatr"  : "[$(line):$(col)]",
+    "tabhighlight"   : true,
+    "truecolor"      : true,
+    "wordwrap"       : true,
+    "tabstospaces"   : true,
+    "tabsize"        : 4
+}
