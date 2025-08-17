@@ -28,6 +28,7 @@ alias nenv   = ox $"($nu.default-config-dir)/env.nu"
 alias scfg   = ox $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
+alias mi     = micro
 alias ff     = fastfetch
 alias py     = python
 alias vi     = nvim
@@ -116,9 +117,9 @@ def --env f [cmd: string, path: string] {
             hx $"($selected)"
         }
         cd -
-    } else if ( $cmd == "ox" ) {
+    } else if ( $cmd == "mi" ) {
         if ( $selected != "" ) {
-            ox $"($selected)"
+            micro $"($selected)"
         }
         cd -
     } else {

@@ -1,5 +1,3 @@
-
-
 color-link default "#DCD7BA,#1F1F28"
 color-link comment "#727169"
 
@@ -46,3 +44,6 @@ color-link color-column "#363646"
 color-link type.extended "default"
 
 color-link hlsearch "#DCD7BA,#2D4F67"
+
+color-link identifier.autocomplete "#DCD7BA,#363646"
+color-link identifier.autocomplete.selected "bold #FF9E3B"

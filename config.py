@@ -66,8 +66,6 @@ def config_soft_link():
     create_soft_link(os.path.join(my_cfg_home, 'ks_script'), os.path.join(home, 'env', 'ks_script'))
 
 def config_windows_wm_soft_link():
-    # Deprecated
-    # create_soft_link(os.path.join(my_cfg_home, 'win_wm', 'komorebi'), os.path.join(home, '.config', 'komorebi'))
     create_soft_link(os.path.join(my_cfg_home, 'wm', 'win', 'glazewm'), os.path.join(home, '.config', 'glazewm'))
     create_soft_link(os.path.join(my_cfg_home, 'wm', 'win', 'yasb'), os.path.join(home, '.config', 'yasb'))
 

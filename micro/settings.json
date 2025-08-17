@@ -15,5 +15,9 @@
     "truecolor"      : true,
     "wordwrap"       : true,
     "tabstospaces"   : true,
-    "tabsize"        : 4
+    "tabsize"        : 4,
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/Neko-Box-Coder/unofficial-plugin-channel/main/channel.json"
+    ],
+    "autocomplete_tooltip.EnableCursorUpDown": true
 }

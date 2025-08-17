@@ -72,3 +72,5 @@
 # 	selected   = manager
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main

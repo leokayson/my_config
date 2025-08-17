@@ -1,0 +1,2 @@
+color-link identifier.autocomplete "#DCD7BA,#727169"
+color-link identifier.autocomplete.selected "bold #FF9E3B"

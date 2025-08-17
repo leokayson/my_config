@@ -122,9 +122,9 @@ function f
                 hx $selected
             end
             cd -
-        case ox
+        case mi
             if test "$selected" != ""
-                ox $selected
+                micro $selected
             end
             cd -
         case "*"
