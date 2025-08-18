@@ -1,10 +1,12 @@
 import os, argparse, subprocess
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-pc', '--path_convert', action='store', default='')
-parser.add_argument('-a',  '--usb_attach',    action='store_true')
-parser.add_argument('-d',  '--usb_detach',    action='store_true')
+parser.add_argument('-pc', '--path_convert',    action='store', default='')
+parser.add_argument('-a',  '--usb_attach',      action='store_true')
+parser.add_argument('-d',  '--usb_detach',      action='store_true')
+parser.add_argument('-fc',  '--format_convert',  nargs = 2,     type=str )
 args = parser.parse_args()
+
 
 if args.path_convert:
     print('1. -> \\')
@@ -20,7 +22,48 @@ if args.path_convert:
             print(str(path).replace('/', '\\').replace('\\', '\\\\'))
         elif choice == 3:
             print(str(path).replace('\\\\', '\\').replace('\\', '/'))
-            
+
+if args.format_convert:
+    ori_file = os.path.abspath(args.format_convert[0])
+    if not os.path.exists(ori_file):
+        print(f'File not found: {ori_file}')
+        exit(1)
+    
+    ori_path = os.path.dirname(ori_file)
+    ori_file_name, ori_fmt = os.path.splitext(ori_file)
+    ori_fmt = ori_fmt[1:]
+    to_fmt = args.format_convert[1]
+    to_file = os.path.join(ori_path, ori_file_name + '.' + to_fmt)
+
+    if ori_fmt == to_fmt:
+        print('no need to transfer format')
+    else:
+        if ori_fmt == 'json':
+            import json
+            with open(ori_file, 'r') as f:
+                content = json.load(f)
+        elif ori_fmt == 'yaml':
+            import yaml
+            with open(ori_file, 'r') as f:
+                content = yaml.safe_load(f)
+        elif ori_fmt == 'toml':
+            import toml
+            with open(ori_file, 'r') as f:
+                content = toml.load(f)
+        
+        if to_fmt == 'json':
+            import json
+            with open(to_file, 'w') as f:
+                json.dump(content, f, indent=4)
+        elif to_fmt == 'yaml':
+            import yaml
+            with open(to_file, 'w') as f:
+                yaml.safe_dump(content, f, default_flow_style=False, indent=4)
+        elif to_fmt == 'toml':
+            import toml
+            with open(to_file, 'w') as f:
+                toml.dump(content, f)
+
 if args.usb_attach:
     if os.name == 'nt':
         ret = subprocess.run(['where', 'usbipd'], shell=False, capture_output=True, text=True, check=False)
@@ -41,6 +84,7 @@ if args.usb_attach:
             exit(1)
         subprocess.run(['usbipd', 'list'], shell=False, check=True)
         
+
 if args.usb_detach:
     if os.name == 'nt':
         ret = subprocess.run(['where', 'usbipd'], shell=False, capture_output=True, text=True, check=False)
@@ -65,7 +109,4 @@ if args.usb_detach:
             print(f'Error: {e}')
             exit(1)
         subprocess.run(['usbipd', 'list'], shell=False, check=True)
-        
-            
-
 
