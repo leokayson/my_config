@@ -12,7 +12,7 @@
     "statusformatl"  : "$(filename) $(modified)| $(opt:fileformat) | $(opt:encoding)",
     "statusformatr"  : "[$(line):$(col)]",
     "tabhighlight"   : true,
-    "truecolor"      : true,
+    "truecolor"      : "on",
     "wordwrap"       : true,
     "tabstospaces"   : true,
     "tabsize"        : 4,

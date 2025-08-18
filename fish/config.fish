@@ -106,29 +106,28 @@ function f
             if test "$selected" != ""
                 code $selected
             end
-            cd -
         case coder
             if test "$selected" != ""
                 code -r $selected
             end
-            cd -
         case nvim
             if test "$selected" != ""
                 nvim $selected
             end
-            cd -
         case hx
             if test "$selected" != ""
                 hx $selected
             end
-            cd -
         case mi
             if test "$selected" != ""
                 micro $selected
             end
-            cd -
         case "*"
             echo "no this cmd: $argv[1]"
+    end
+
+    if test "$argv[1]" != "cd" -a "$argv[2]" != "."
+        cd -
     end
 end
 

@@ -14,12 +14,12 @@ color-link symbol "#957FB8"
 color-link symbol.brackets "#9CABCA"
 color-link symbol.tag "#7AA89F"
 
-color-link type "#7AA89F"
-color-link type.keyword "#7FB4CA"
+color-link type "#B8B4D0"
+color-link type.keyword "#957FB8"
 
 color-link special "#C34043"
 color-link statement "#957FB8"
-color-link preproc "#957FB8"
+color-link preproc "#C0A36E"
 
 color-link underlined "#658594"
 color-link error "bold #E82424"

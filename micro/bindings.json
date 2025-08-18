@@ -48,6 +48,10 @@
     "Ctrl-Shift-Home": "SelectToStartOfTextToggle",
     "Ctrl-Shift-Up": "SelectToStart",
     "Ctrl-Up": "SpawnMultiCursorUp",
+    "CtrlUnderscore": "lua:comment.comment",
+    "F4": "command:jumptag",
+    "PageDown": "HalfPageDown",
+    "PageUp": "HalfPageUp",
     "Shift-Tab": "CycleAutocompleteBack|OutdentSelection|OutdentLine",
     "Tab": "Autocomplete|IndentSelection|InsertTab"
 }

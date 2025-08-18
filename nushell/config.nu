@@ -101,29 +101,28 @@ def --env f [cmd: string, path: string] {
         if ( $selected != "" ) {
             code $"($selected)"
         } 
-        cd -
     } else if ( $cmd == "coder" ) {
         if ( $selected != "" ) {
             code -r $"($selected)"
         } 
-        cd -
     } else if ( $cmd == "nvim" ) {
         if ( $selected != "" ) {
             nvim $"($selected)"
         }
-        cd -
     } else if ( $cmd == "hx" ) {
         if ( $selected != "" ) {
             hx $"($selected)"
         }
-        cd -
     } else if ( $cmd == "mi" ) {
         if ( $selected != "" ) {
             micro $"($selected)"
         }
-        cd -
     } else {
         print $"no such cmd: ($cmd)"
+    }
+
+    if ( $cmd != "cd" and $path != "." ) {
+        cd -
     }
 }
 
