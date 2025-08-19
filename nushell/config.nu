@@ -45,8 +45,8 @@ alias llt    = ll --total-size
 alias llns   = ll --no-symlink
 alias lld    = fd -l -d 1
 alias btm    = btm --config_location ~/.config/btm.toml
-alias fzff   = fd -t f | fzf
-alias fzfd   = fd -t d | fzf
+alias fzff   = fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}"
+alias fzfd   = fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}"
 alias fzfp   = fzfd | path expand
 
 alias cd1    = cd ../

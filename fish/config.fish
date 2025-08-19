@@ -17,13 +17,14 @@ if status is-interactive
     set -gx MICRO_TRUECOLOR     1
     set -gx SHELL               fish
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
-    set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
-        if test -d {};
-            lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {};
-        else
-            bat -f --style=full {};
-        end
-    "'
+    set -gx FZF_DEFAULT_OPTS    '-e --style=full --scheme=history --bind=ctrl-j:jump'
+    # set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
+    #     if test -d {};
+    #         lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {};
+    #     else
+    #         bat -f --style=full {};
+    #     end
+    # "'
     set -gx CHEAT_USE_FZF       true
 
     alias fcfg   '$EDITOR ~/.config/fish/config.fish'
@@ -57,16 +58,16 @@ if status is-interactive
     alias llns   'll --no-symlink'
     alias lld    'fd -l -d 1'
     alias btm    'btm --config_location ~/.config/btm.toml'
-    alias fzff   'fd -t f | fzf'
-    alias fzfd   'fd -t d | fzf'
-    alias fzfp   'fzfd | path expand'
+    alias fzff   'fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}"'
+    alias fzfd   'fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}"'
+    alias fzfp   'realpath (fzfd)'
 
     alias cd1    'cd ../'
     alias cd2    'cd ../../'
     alias cd3    'cd ../../../'
 
-    source ~/.venv/bin/activate.fish
     starship init fish | source
+    source ~/.venv/bin/activate.fish
 end
 
 function vscode_crash

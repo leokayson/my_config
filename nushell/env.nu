@@ -26,12 +26,13 @@ export-env {
         CLIPBOARD_HISTORY:      10
         SHELL:                  'nu'
         FZF_DEFAULT_COMMAND:    'fd -t f -t d -Lu -E .git'
-        FZF_DEFAULT_OPTS:       '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "
-            if (({} | path type) == \"dir\") {
-                lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}
-            } else {
-                bat -f --style=full {}
-            }"'
+        FZF_DEFAULT_OPTS:       '-e --style=full --scheme=history --bind=ctrl-j:jump'
+        # FZF_DEFAULT_OPTS:       '-e --style=full --scheme=history --bind=ctrl-j:jump --preview-window "up" --preview "
+        #     if (({} | path type) == \"dir\") {
+        #         lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}
+        #     } else {
+        #         bat -f --style=full {}
+        #     }"'
     }
 }
 

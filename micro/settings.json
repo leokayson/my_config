@@ -19,5 +19,7 @@
     "pluginchannels": [
         "https://raw.githubusercontent.com/Neko-Box-Coder/unofficial-plugin-channel/main/channel.json"
     ],
-    "autocomplete_tooltip.EnableCursorUpDown": true
+    "autocomplete_tooltip.EnableCursorUpDown": true,
+    "filemanager2.nerdfonts"                 : true,
+    "MicroOmni.AutoSaveEnabled"              : false
 }

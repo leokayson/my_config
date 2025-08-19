@@ -28,8 +28,6 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 >
 > cargo install --git https://github.com/leokayson/lsd.git
 >
-> cargo install --git https://github.com/leokayson/ox.git
->
 > cargo install --locked yazi-fm yazi-cli
 
 ## 2.4 3rd-patry SW or cannot install in crate.io
@@ -136,34 +134,9 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 >
 > $NVIM_CONFIG_HOME/lua/plugins
 
-## 5.3 Helix
+## 5.3 Micro
 
-- Build from source:
-
-```bash
-git clone https://github.com/helix-editor/helix
-cd helix
-
-# Optimized
-cargo install \
-    --profile opt \
-    --config 'build.rustflags="-C target-cpu=native"' \
-    --path helix-term \
-    --locked
-
-```
-
-- Release
-
-> https://github.com/helix-editor/helix/releases
-
-- LSP
-
-> https://github.com/tombi-toml/tombi/releases
->
-> https://github.com/LuaLS/lua-language-server/releases
->
-> https://github.com/astral-sh/ruff/releases
+> https://github.com/zyedidia/micro/releases
 
 # 6 Terminal Emulator
 
@@ -193,20 +166,6 @@ cargo install \
 >> https://github.com/glzr-io/glazewm/releases
 >>
 >> _GLAZEWM_CONFIG_PATH_: %USERPROFILE%/.config/glazewm/config.yaml
->>
->
->> Komorebi
->>
->>> [Releases · LGUG2Z/komorebi](https://github.com/LGUG2Z/komorebi/releases)
->>>
->>> _KOMOREBI_CONFIG_HOME_: %USERPROFILE%/.config/komorebi
->>>
->>> _WHKD_CONFIG_HOME_:     %USERPROFILE%/.config/komorebi
->>>
->>> whkd
->>>
->>> **https://github.com/LGUG2Z/whkd/releases**
->>>
 >>
 
 # 8 Soft link
