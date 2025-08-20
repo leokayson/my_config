@@ -15,6 +15,7 @@
     "truecolor"      : "on",
     "wordwrap"       : true,
     "tabstospaces"   : true,
+    "relativeruler"  : true,
     "tabsize"        : 4,
     "pluginchannels": [
         "https://raw.githubusercontent.com/Neko-Box-Coder/unofficial-plugin-channel/main/channel.json"

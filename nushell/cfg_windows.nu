@@ -15,3 +15,5 @@ $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/usbipd-win")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/whkd/bin")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/glzr.io/GlazeWM/cli")
 $env.PATH = ($env.PATH | append $"($env.ProgramFiles)/glzr.io/Zebar")
+
+alias ex = explorer .
