@@ -59,7 +59,7 @@ if args.cd_in_record:
     stdout, _ = proc.communicate(input='\n'.join(record_items).encode('utf-8'))
     chosen = stdout.decode('utf-8').strip()
     if chosen == '':
-        print('')
+        print('no enter')
     else:
         if os.path.exists(chosen):
             record_path(chosen)

@@ -161,14 +161,7 @@ function cdr
             if test -d $dir
                 cd $dir
             else
-                echo -n 'Input base dir (default is cwd): '
-                sleep 0.1
-                set dir (python $CDR_script -i)
-                if test -d $dir
-                    cd $dir
-                else
-                    echo $dir
-                end
+                echo $dir
             end
         case "i"
             echo -n 'Input base dir (default is cwd): '

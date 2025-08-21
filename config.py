@@ -73,28 +73,29 @@ def set_normal_config():
 
 
 def set_editor_config():
-    # Nvim (Temp no longer in use, slow to open)
+    # Nvim (Temp no longer in use, slow to open in a not good computer)
     establish_soft_link(
-        os.path.join(my_cfg_home, "nvim", "keymaps.lua"),
+        os.path.join(my_cfg_home, "editor", "nvim", "keymaps.lua"),
         os.path.join(nvim_home, "lua", "config", "keymaps.lua"),
     )
     establish_soft_link(
-        os.path.join(my_cfg_home, "nvim", "init.lua"),
+        os.path.join(my_cfg_home, "editor", "nvim", "init.lua"),
         os.path.join(nvim_home, "init.lua"),
     )
     establish_soft_link(
-        os.path.join(my_cfg_home, "nvim", "colorscheme.lua"),
+        os.path.join(my_cfg_home, "editor", "nvim", "colorscheme.lua"),
         os.path.join(nvim_home, "lua", "plugins", "colorscheme.lua"),
     )
 
     # Helix (Temp no longer in use, a little ugly)
     establish_soft_link(
-        os.path.join(my_cfg_home, "helix"), os.path.join(cfg_cmn_dir, "helix")
+        os.path.join(my_cfg_home, "editor", "helix"), os.path.join(cfg_cmn_dir, "helix")
     )
 
     # micro
     establish_soft_link(
-        os.path.join(my_cfg_home, "micro"), os.path.join(home, ".config", "micro")
+        os.path.join(my_cfg_home, "editor", "micro"),
+        os.path.join(home, ".config", "micro"),
     )
 
 
@@ -102,12 +103,21 @@ def set_shell_config():
     # wanna also use nushell in linux, but fish is too good while nushell is hard to run some shell cmd in bash
     if os.name == "nt":
         establish_soft_link(
-            os.path.join(my_cfg_home, "nushell"), os.path.join(cfg_cmn_dir, "nushell")
+            os.path.join(my_cfg_home, "shell", "nushell"),
+            os.path.join(cfg_cmn_dir, "nushell"),
+        )
+        establish_soft_link(
+            os.path.join(my_cfg_home, "shell", "PowerShell"),
+            os.path.join(home, "Documents", "PowerShell"),
         )
     else:
         establish_soft_link(
-            os.path.join(my_cfg_home, "fish", "config.fish"),
-            os.path.join(cfg_cmn_dir, "fish", "config.fish"),
+            os.path.join(my_cfg_home, "shell", "fish", "config.fish"),
+            os.path.join(cfg_cmn_dir, "shell", "fish", "config.fish"),
+        )
+        establish_soft_link(
+            os.path.join(my_cfg_home, "terminal", "kitty"),
+            os.path.join(home, ".config", "kitty"),
         )
 
     # Use nightly version, but still has some bugs bringing ugly window bar that I cannot bear. Temp no in use
@@ -115,10 +125,6 @@ def set_shell_config():
     #     os.path.join(my_cfg_home, "terminal", "wezterm"),
     #     os.path.join(home, ".config", "wezterm"),
     # )
-    establish_soft_link(
-        os.path.join(my_cfg_home, "terminal", "kitty"),
-        os.path.join(home, ".config", "kitty"),
-    )
 
 
 def set_wm_config():

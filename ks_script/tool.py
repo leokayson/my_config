@@ -9,19 +9,22 @@ args = parser.parse_args()
 
 
 if args.path_convert:
-    print('1. -> \\')
-    print('2. -> \\\\')
-    print('3. -> /')
+    cmds = ['-> \\', '-> \\\\', '-> /', '-> file://']
+    for i, cmd in enumerate(cmds, 1):
+        print(f'{i}. {cmd}')
     choice = (int)(input('Input your convert:'))
 
     path = args.path_convert
-    if choice >= 1 and choice <= 3:
+    if choice >= 1 and choice <= len(cmds):
         if choice == 1:
             print(str(path).replace('/', '\\').replace('\\\\', '\\'))
         elif choice == 2:
             print(str(path).replace('/', '\\').replace('\\', '\\\\'))
         elif choice == 3:
             print(str(path).replace('\\\\', '\\').replace('\\', '/'))
+        elif choice == 4:
+            path = os.path.abspath(path).replace('\\', '/')
+            print(f'file://{path}')
 
 if args.format_convert:
     ori_file = os.path.abspath(args.format_convert[0])

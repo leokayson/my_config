@@ -139,13 +139,7 @@ def --env cdr [cmd? : string] {
         if ( $dir | path exists ) {
             cd $dir
         } else {
-            print -n 'Input base dir (default is cwd): '
-            let dir2 = (python $CDR_script -i) 
-            if ( $dir2 | path exists ) {
-                cd $dir2
-            } else {
-                print $dir2
-            }
+            print $dir
         }
     } else {
         if ( $cmd == "h" ) {
