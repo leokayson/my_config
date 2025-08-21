@@ -97,6 +97,12 @@ def --env f [cmd: string, path: string] {
             cd -
             print no enter
         }
+    } else if ( $cmd == "ex" ) {
+        if ( (($selected) | path type) == 'dir') {
+            explorer $"($selected)"
+        } else {
+            explorer $"(($selected) | path dirname)"
+        }
     } else if ( $cmd == "code" ) {
         if ( $selected != "" ) {
             code $"($selected)"

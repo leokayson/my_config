@@ -235,11 +235,11 @@ keybindings:
 
   # Change the focused window to be tiling.
   - commands: ["toggle-tiling"]
-    bindings: ["lwin+ctrl+f"]
+    bindings: ["lwin+ctrl+t"]
 
   # Change the focused window to be fullscreen.
   - commands: ["toggle-fullscreen"]
-    bindings: ["lwin+ctrl+t"]
+    bindings: ["lwin+ctrl+f"]
 
   # Minimize focused window.
   - commands: ["toggle-minimized"]

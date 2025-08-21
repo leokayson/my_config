@@ -371,13 +371,13 @@ local function InitializeSettings()
     config.RegisterCommonOption('MicroOmni', 'LocalSearchArgs', 
             "--header='enter: select | alt-enter: output filtered results | alt-q/esc: exit | "..
             "page-[up/down]: preview-[up/down] | alt-[up/down]: half-page-[up/down]' "..
-            "--bind 'start:reload:bat -n --decorations always {filePath}' "..
+            "--bind 'start:reload:bat -n --decorations always \"{filePath}\"' "..
             "-i --reverse "..
             "--bind page-up:preview-half-page-up,page-down:preview-half-page-down,"..
             "alt-up:half-page-up,alt-down:half-page-down,alt-q:abort "..
             "--bind 'alt-enter:change-multi+select-all+accept' "..
             "--preview-window 'down,+{1}-/2' "..
-            "--preview 'bat -f -n --highlight-line {1} {filePath}'")
+            "--preview 'bat -f -n --highlight-line {1} \"{filePath}\"'")
     
     config.RegisterCommonOption('MicroOmni', 'GotoFileArgs', 
             "--header='enter: select | alt-enter: output filtered results | alt-q/esc: exit | "..
@@ -392,7 +392,7 @@ local function InitializeSettings()
     config.RegisterCommonOption('MicroOmni', 'TabSearchArgs', 
             "--header='enter: select | alt-enter: output filtered results | alt-q/esc: exit | "..
             "page-[up/down]: preview-[up/down] | alt-[up/down]: half-page-[up/down]' "..
-            "--bind 'start:reload:bat {filePath}' "..
+            "--bind 'start:reload:bat \"{filePath}\"' "..
             "--delimiter : -i --reverse "..
             "--bind page-up:preview-half-page-up,page-down:preview-half-page-down,"..
             "alt-up:half-page-up,alt-down:half-page-down,alt-q:abort "..
