@@ -110,9 +110,14 @@ def set_shell_config():
             os.path.join(cfg_cmn_dir, "fish", "config.fish"),
         )
 
+    # Use nightly version, but still has some bugs bringing ugly window bar that I cannot bear. Temp no in use
+    # establish_soft_link(
+    #     os.path.join(my_cfg_home, "terminal", "wezterm"),
+    #     os.path.join(home, ".config", "wezterm"),
+    # )
     establish_soft_link(
-        os.path.join(my_cfg_home, "terminal", "wezterm"),
-        os.path.join(home, ".config", "wezterm"),
+        os.path.join(my_cfg_home, "terminal", "kitty"),
+        os.path.join(home, ".config", "kitty"),
     )
 
 

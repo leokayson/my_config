@@ -16,6 +16,7 @@ if status is-interactive
     set -gx CLIPBOARD_HISTORY   10
     set -gx MICRO_TRUECOLOR     1
     set -gx SHELL               fish
+    set -gx PAGER               bat -p -f
     set -gx FZF_DEFAULT_COMMAND 'fd -t f -t d -Lu -E .git'
     set -gx FZF_DEFAULT_OPTS    '-e --style=full --scheme=history --bind=ctrl-j:jump'
     # set -gx FZF_DEFAULT_OPTS    '-e --style=full --preview-window "up" --scheme=history --bind=ctrl-j:jump --preview "

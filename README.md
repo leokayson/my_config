@@ -2,9 +2,7 @@
 
 This repo is just to store my develop habits to sync in many PCs and it includes many personal preferences and shouldn't apply for many people. ofc anyone can use it.
 
-I mainly switch my dev env between linux and windows, so cross-platform is much more preferable.
-
-# 2 Env
+I mainly switch my dev env between linux and windows, so cross-platform is much more preferable. But somehow, I know adapting to multiple platforms and doing them all well is a challenging goal, so sometimes trade-offs are inevitable.
 
 ## 2.1 System environment
 
@@ -141,13 +139,14 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 # 6 Terminal Emulator
 
 > - Wezterm
->   - Use nightly version
 >
-> https://wezterm.org/installation.html
+>   - Use nightly version, but still has some bugs bringing ugly window bar that I cannot bear. Temp no in use
+> - Kitty
 >
+>   - https://sw.kovidgoyal.net/kitty/binary/
 > - Windows terminal
 >
-> Patial settings are located in ./terminal. For the Windows PC without dedicated GPU, Windows Terminal is a better chocie.
+>   - Patial settings are located in ./terminal. For the Windows PC without dedicated GPU, Windows Terminal is a better chocie.
 
 # 7 Window Manager
 
