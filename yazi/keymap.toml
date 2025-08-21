@@ -45,10 +45,10 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
- 	{ on = "o",          run = 'shell "code %*"',	        orphan = true,     desc = "Open with VS Code", for = "windows"  },
- 	{ on = "o",          run = 'shell "code $@"',	        orphan = true,     desc = "Open with VS Code", for = "linux"  },
- 	{ on = "O",          run = 'shell "code ."',	        orphan = true,     desc = "Open dir with VS Code"  },
- 	{ on = "e",          run = 'shell "explorer ."',	    orphan = true,     desc = "Open dir with explorer"  },
+ 	{ on = "o",          run = 'shell "code %*"',	        	orphan = true,     desc = "Open with VS Code", for = "windows"  },
+ 	{ on = "o",          run = 'shell "code $@"',	        	orphan = true,     desc = "Open with VS Code", for = "linux"  },
+ 	{ on = "O",          run = 'shell "code ."',	        	orphan = true,     desc = "Open dir with VS Code"  },
+ 	{ on = "e",          run = 'shell --orphan "explorer ."', 	orphan = true,     desc = "Open dir with explorer"  },
 	{ on = "y",          run = "yank",                                 desc = "Yank selected files (copy)" },
 	{ on = "x",          run = "yank --cut",                           desc = "Yank selected files (cut)" },
 	{ on = [ "p", "p" ], run = "paste",                                desc = "paste" },
@@ -123,7 +123,7 @@ keymap = [
 	{ on = [ "g", "z" ],       run = "cd /mnt/z",   	 desc = "Go Z driver" , 	for = "linux" },
 	{ on = [ "g", "z" ],       run = "cd Z:/",   	 	 desc = "Go Z driver" , 	for = "windows" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
-	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
+	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow symlink" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
