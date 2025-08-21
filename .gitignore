@@ -1,7 +1,7 @@
-nushell/history.txt
-helix/lsp
-helix/runtime
+shell/nushell/history.txt
+editor/helix/lsp
+editor/helix/runtime
+editor/micro/backups
+editor/micro/buffers
 .vscode
 **/*.log
-micro/backups
-micro/buffers
