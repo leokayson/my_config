@@ -22,7 +22,7 @@ local keys = { -- misc/useful --
 {key = "Insert", mods = "CTRL", action = act.CopyTo("Clipboard")},
 {key = "Insert", mods = "SHIFT", action = act.PasteFrom("Clipboard")}, -- tabs --
 -- tabs: spawn+close
-{key = "w", mods = "CTRL", action = act.CloseCurrentTab({confirm = false})}, -- tabs: navigation
+{key = "q", mods = "CTRL", action = act.CloseCurrentTab({confirm = false})}, -- tabs: navigation
 {key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1)},
 {key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1)},
 
@@ -33,10 +33,10 @@ local keys = { -- misc/useful --
 {key = "-", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
 {key = "0", mods = mod.SUPER_REV, action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' }})},
 {key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = true})}, -- panes: navigation
-{key = "UpArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
-{key = "DownArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
-{key = "LeftArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
-{key = "RightArrow", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Right")}, -- panes: resize
+{key = "w", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
+{key = "s", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
+{key = "a", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
+{key = "d", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Right")}, -- panes: resize
 {key = "i", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Up", 1})},
 {key = "k", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
 {key = "j", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},

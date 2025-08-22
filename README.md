@@ -140,13 +140,13 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 
 > - Wezterm
 >
->   - Use nightly version, but still has some bugs bringing ugly window bar that I cannot bear. Temp no in use
+>   - Use nightly version, but still has some bugs bringing ugly window bar that I cannot bear. Temp no in use in linux
 > - Kitty
 >
 >   - https://sw.kovidgoyal.net/kitty/binary/
 > - Windows terminal
 >
->   - Patial settings are located in ./terminal. For the Windows PC without dedicated GPU, Windows Terminal is a better chocie.
+>   - Patial settings are located in ./terminal. For the Windows PC without dedicated GPU, Windows Terminal is a better chocie. But it cannot display pics...
 
 # 7 Window Manager
 

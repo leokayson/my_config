@@ -92,8 +92,8 @@ window_effects:
       enabled: true
       style: "rounded"
     transparency:
-      enabled: true
-      opacity: "90%"
+      enabled: false
+      opacity: "100%"
 
 window_behavior:
   # New windows are created in this state whenever possible.
@@ -181,33 +181,33 @@ binding_modes:
 keybindings:
   # Shift focus in a given direction.
   - commands: ["focus --direction left"]
-    bindings: ["lwin+left"]
+    bindings: ["lwin+a", "lwin+left"]
   - commands: ["focus --direction right"]
-    bindings: ["lwin+right"]
+    bindings: ["lwin+d", "lwin+right"]
   - commands: ["focus --direction up"]
-    bindings: ["lwin+up"]
+    bindings: ["lwin+w", "lwin+up"]
   - commands: ["focus --direction down"]
-    bindings: ["lwin+down"]
+    bindings: ["lwin+s", "lwin+down"]
 
   # Move focused window in a given direction.
   - commands: ["move --direction left"]
-    bindings: ["lwin+ctrl+left"]
+    bindings: ["lwin+ctrl+a", "lwin+ctrl+left"]
   - commands: ["move --direction right"]
-    bindings: ["lwin+ctrl+right"]
+    bindings: ["lwin+ctrl+d", "lwin+ctrl+right"]
   - commands: ["move --direction up"]
-    bindings: ["lwin+ctrl+up"]
+    bindings: ["lwin+ctrl+w", "lwin+ctrl+up"]
   - commands: ["move --direction down"]
-    bindings: ["lwin+ctrl+down"]
+    bindings: ["lwin+ctrl+s", "lwin+ctrl+down"]
 
   # Resize focused window by a percentage or pixel amount.
   - commands: ["resize --width -2%"]
-    bindings: ["lwin+ctrl+oem_minus"]
+    bindings: ["lwin+ctrl+j", "lwin+ctrl+oem_minus"]
   - commands: ["resize --width +2%"]
-    bindings: ["lwin+ctrl+oem_plus"]
+    bindings: ["lwin+ctrl+l", "lwin+ctrl+oem_plus"]
   - commands: ["resize --height -2%"]
-    bindings: ["lwin+ctrl+alt+oem_minus"]
+    bindings: ["lwin+ctrl+k", "lwin+ctrl+alt+oem_minus"]
   - commands: ["resize --height +2%"]
-    bindings: ["lwin+ctrl+alt+oem_plus"]
+    bindings: ["lwin+ctrl+i", "lwin+ctrl+alt+oem_plus"]
 
   # As an alternative to the resize keybindings above, resize mode enables
   # resizing via arrow keys or HJKL. The binding mode is defined above with
@@ -247,10 +247,6 @@ keybindings:
 
   # Close focused window.
   - commands: ["close"]
-    bindings: ["lwin+ctrl+w"]
-
-  # Kill GlazeWM process safely.
-  - commands: ["wm-exit"]
     bindings: ["lwin+ctrl+q"]
 
   # Re-evaluate configuration file.
