@@ -113,7 +113,7 @@ def set_shell_config():
     else:
         establish_soft_link(
             os.path.join(my_cfg_home, "shell", "fish", "config.fish"),
-            os.path.join(cfg_cmn_dir, "shell", "fish", "config.fish"),
+            os.path.join(cfg_cmn_dir, "fish", "config.fish"),
         )
         establish_soft_link(
             os.path.join(my_cfg_home, "terminal", "kitty"),
