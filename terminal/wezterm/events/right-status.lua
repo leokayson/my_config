@@ -6,11 +6,11 @@ M.separator_char = " ~ "
 
 M.colors = {
   date_fg = "#3E7FB5",
-  date_bg = "#0F2536",
+  date_bg = "#1F1F28",
   battery_fg = "#B52F90",
-  battery_bg = "#0F2536",
+  battery_bg = "#1F1F28",
   separator_fg = "#786D22",
-  separator_bg = "#0F2536",
+  separator_bg = "#1F1F28",
 }
 
 M.cells = {} -- wezterm FormatItems (ref: https://wezfurlong.org/wezterm/config/lua/wezterm/format.html)
@@ -26,7 +26,8 @@ M.push = function(text, icon, fg, bg, separate)
   table.insert(M.cells, { Attribute = { Intensity = "Bold" } })
   table.insert(M.cells, { Text = icon .. " " .. text .. " " })
 
-  if separate then
+  -- if separate then
+  if false then
     table.insert(M.cells, { Foreground = { Color = M.colors.separator_fg } })
     table.insert(M.cells, { Background = { Color = M.colors.separator_bg } })
     table.insert(M.cells, { Text = M.separator_char })

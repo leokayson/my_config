@@ -6,7 +6,7 @@ local GLYPH_SEMI_CIRCLE_LEFT = ""
 -- local GLYPH_SEMI_CIRCLE_LEFT = utf8.char(0xe0b6)
 local GLYPH_SEMI_CIRCLE_RIGHT = ""
 -- local GLYPH_SEMI_CIRCLE_RIGHT = utf8.char(0xe0b4)
-local GLYPH_CIRCLE = "󰇷 "
+local GLYPH_CIRCLE = ""
 -- local GLYPH_CIRCLE = utf8.char(0xf111)
 local GLYPH_ADMIN = "󰖳 "
 -- local GLYPH_ADMIN = utf8.char(0xfc7e)
@@ -18,16 +18,15 @@ M.cells = {}
 M.colors = {
   default = {
     bg = "#8C246F",
-    fg = "#0F2536",
+    fg = "#1F1F28",
   },
   is_active = {
     bg = "#3A854B",
-    fg = "#0F2536",
+    fg = "#1F1F28",
   },
-
   hover = {
     bg = "#8C246F",
-    fg = "#0F2536",
+    fg = "#1F1F28",
   },
 }
 
