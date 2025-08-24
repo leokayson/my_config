@@ -6,12 +6,12 @@ SHELL = os.getenv('SHELL')
 CDR_FILE = f'{HOME}/.config/cd_record.yaml'
 GC_REF_PARAM = 0.02
 GC_REC_PARAM = 0.1
-IS_WRITE_TO = True
 
 try:
     if not os.path.exists(CDR_FILE):
+        # Create CDR_FILE file
         with open(CDR_FILE, 'w'):
-            pass # Create cd_record.yaml file
+            pass 
     with open(CDR_FILE, 'r') as f:
         cd_record = yaml.load(f, Loader=yaml.FullLoader)
     if cd_record == None or cd_record == {}:
@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--record',             action='store_true', help='cd and then record')
 parser.add_argument('-c', '--cd_in_record',       action='store_true', help='cd to a dir in record')
 parser.add_argument('-i', '--cd_interactive',     action='store_true', help='cd to a dir in record')
-parser.add_argument('-g', '--garbage_collection', action='store_true', help='collect too old records')
+parser.add_argument('-gc', '--garbage_collection', action='store_true', help='collect too old records')
 args = parser.parse_args()
 
 def get_cwd():
@@ -37,12 +37,21 @@ def get_cwd():
 
 def record_path(abs_path: str):
     '''Record the abs path to CDR_FILE. Use abs path to avoid duplicate'''
-    abs_path = abs_path.strip().replace('\\\\', '/').replace('\\', '/')
-    if abs_path[-1] == '/':
-        abs_path = abs_path[:-1]
-    if abs_path not in cd_record.keys():
-        cd_record[abs_path] = 0
-    cd_record[abs_path] += 1
+    if os.name == 'nt':
+        '''Since the server path starts with \\\\, so path should be contained in \\'''
+        abs_path = abs_path.replace('/', '\\')
+        if abs_path[-1] == '\\':
+            abs_path = abs_path[:-1]
+        if abs_path not in cd_record.keys():
+            cd_record[abs_path] = 0
+        cd_record[abs_path] += 1
+    else:
+        abs_path = abs_path.strip().replace('\\', '/')
+        if abs_path[-1] == '/':
+            abs_path = abs_path[:-1]
+        if abs_path not in cd_record.keys():
+            cd_record[abs_path] = 0
+        cd_record[abs_path] += 1
 
 if args.record:
     record_path(get_cwd())
@@ -90,18 +99,18 @@ if args.garbage_collection:
         else:
             max_access = max(max_access, v)
 
-    gc_ref_value = int(max_access * GC_REF_PARAM)
-    if gc_ref_value != 0:
-        for k, v in cd_record.items():
-            if v <= gc_ref_value:
-                need_gc_k += [k]
-            else:
-                cd_record[k] = int(v * GC_REC_PARAM)
+    '''Don't remove old records anymore'''    
+    # gc_ref_value = int(max_access * GC_REF_PARAM)
+    # if gc_ref_value != 0:
+    #     for k, v in cd_record.items():
+    #         if v <= gc_ref_value:
+    #             need_gc_k += [k]
+    #         else:
+    #             cd_record[k] = int(v * GC_REC_PARAM)
                 
-    for nk in k:
+    for nk in need_gc_k:
         if nk in cd_record.keys():
             cd_record.pop(nk)
-    
 
 with open(CDR_FILE, 'w') as f:
     yaml.dump(cd_record, f, default_flow_style=False, indent=4)

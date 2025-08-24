@@ -23,9 +23,9 @@ source $"($nu.default-config-dir)/starship.nu"
 source $"($nu.default-config-dir)/themes/catppuccin_frappe.nu"
 
 # ========================= Alias =========================
-alias ncfg   = ox $"($nu.default-config-dir)/config.nu"
-alias nenv   = ox $"($nu.default-config-dir)/env.nu"
-alias scfg   = ox $"($env.HOME)/.config/starship.toml"
+alias ncfg   = micro $"($nu.default-config-dir)/config.nu"
+alias nenv   = micro $"($nu.default-config-dir)/env.nu"
+alias scfg   = micro $"($env.HOME)/.config/starship.toml"
 
 alias g      = git
 alias mi     = micro
@@ -168,7 +168,7 @@ def --env cdr [cmd? : string] {
         } else if ( $cmd  == "r" ) {
             python $CDR_script -r
         } else if ( $cmd  == "gc" ) {
-            python $CDR_script -g
+            python $CDR_script -gc
         } else if ( $cmd  == "l" ) {
             bat -f --style=full $CDR_file
         } else if ( $cmd  == "e" ) {
