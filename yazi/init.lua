@@ -34,6 +34,24 @@ require("yamb"):setup({
 	path = home_path .. path_sep .. '.config' .. path_sep .. 'yazi_bookmarks',
 })
 
+-- local records = {}
+-- local path_sep = package.config:sub(1, 1)
+-- local home_path = ya.target_family() == "windows" and os.getenv("USERPROFILE") or os.getenv("HOME")
+-- table.insert(records, home_path)
+
+-- require("cd_record"):setup({
+-- 	-- Optional, the path ending with path seperator represents folder.
+-- 	records = records,
+-- 	-- Optional, recieve notification everytime you jump.
+-- 	jump_notify = true,
+-- 	-- Optional, the cli of fzf.
+-- 	cli = "fzf",
+-- 	-- Optional, a string used for randomly generating keys, where the preceding characters have higher priority.
+-- 	keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+-- 	-- Optional, the path of bookmarks
+-- 	path = home_path .. path_sep .. '.config' .. path_sep .. 'yazi_bookmarks',
+-- })
+
 require("projects"):setup({
 	save = {
 		method = "yazi", -- yazi | lua

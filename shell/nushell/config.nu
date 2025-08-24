@@ -172,7 +172,7 @@ def --env cdr [cmd? : string] {
         } else if ( $cmd  == "l" ) {
             bat -f --style=full $CDR_file
         } else if ( $cmd  == "e" ) {
-            nvim $CDR_file
+            micro $CDR_file
         } else {
             cd $cmd
             if ( $cmd != "." ) {

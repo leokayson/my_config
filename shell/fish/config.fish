@@ -145,6 +145,7 @@ end
 
 function cdr
     set CDR_script ~/env/ks_script/cd_record.py
+    set CDR_file ~/.config/cd_record.yaml
 
     switch $argv[1]
         case h
@@ -177,9 +178,9 @@ function cdr
         case "gc"
             python $CDR_script -gc
         case "l"
-            bat ~/.config/cd_record.yaml
+            bat $CDR_file
         case "e"
-            $EDITOR ~/.config/cd_record.yaml
+            $EDITOR $CDR_file
         case "*"
             cd $argv[1]
             if test $status -eq 0 -a -n "$argv[1]" -a "$argv[1]" != "."
