@@ -87,7 +87,7 @@ alias y 'yazi'
 
 function f
     cd "$argv[2]"
-    set selected (fzf)
+    set selected (fzf -m)
     set CDR_script ~/env/ks_script/cd_record.py
 
     switch $argv[1]

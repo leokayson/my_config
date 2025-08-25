@@ -98,6 +98,19 @@ if args.garbage_collection:
             need_gc_k += [k]
         else:
             max_access = max(max_access, v)
+    
+    proc = subprocess.Popen(
+        ['fzf', '-m'],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+
+    record_items = list(cd_record.keys())
+    stdout, _ = proc.communicate(input='\n'.join(record_items).encode('utf-8'))
+    chosen = stdout.decode('utf-8').strip()
+
+    need_gc_k += chosen.split('\n')
 
     '''Don't remove old records anymore'''    
     # gc_ref_value = int(max_access * GC_REF_PARAM)

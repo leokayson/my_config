@@ -81,7 +81,7 @@ alias y = yazi
 
 def --env f [cmd: string, path: string] {
     cd $"($path)"
-    let selected = (fzf)
+    let selected = (fzf -m)
     let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
     
     if ( $cmd == "cd" ) {
