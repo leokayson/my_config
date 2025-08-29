@@ -4,4 +4,4 @@ editor/helix/runtime
 editor/micro/backups
 editor/micro/buffers
 .vscode
-**/*.log
+**/*.log*

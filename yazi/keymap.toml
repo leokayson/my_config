@@ -152,17 +152,12 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 
 	# plugins
-	{ on = [ "j", "s" ], run  = "plugin keyjump -- select",  	desc = "Select mode" },
-	{ on = [ "j", "g" ], run  = "plugin keyjump -- global",  	desc = "Global mode" },
-	{ on = [ "j", "o" ], run  = "plugin keyjump -- global once",desc = "Global once mode" },
+	{ on = [ "j", "v" ], 		  run  = "plugin keyjump -- select",  	  	desc = "Select mode" },
+	{ on = [ "j", "g" ], 		  run  = "plugin keyjump -- global",  	  	desc = "Global mode" },
+	{ on = [ "j", "o" ], 		  run  = "plugin keyjump -- global once",	desc = "Global once mode" },
 
-	{ on = [ "B", "a" ],          run = "plugin yamb save",                         desc = "Add bookmark" },
-	{ on = [ "B", "b" ],          run = "plugin yamb jump_by_key",                  desc = "Jump bookmark by key" },
-	{ on = [ "B", "B" ],          run = "plugin yamb jump_by_fzf",                  desc = "Jump bookmark by fzf" },
-	{ on = [ "B", "d" ],          run = "plugin yamb delete_by_fzf",                desc = "Delete bookmark by fzf" },
-	{ on = [ "B", "D" ],          run = "plugin yamb delete_all",                   desc = "Delete all bookmarks" },
-	{ on = [ "B", "R" ],          run = "plugin yamb rename_by_key",                desc = "Rename bookmark by key" },
-	{ on = [ "B", "r" ],          run = "plugin yamb rename_by_fzf",                desc = "Rename bookmark by fzf" },
+	{ on = [ "J", "a" ],          run = "plugin cd_record add",				desc = "Add cwd to record" },
+	{ on = [ "J", "J" ],          run = "plugin cd_record jump",			desc = "Jump" },
 
 	{ on = [ "P", "s" ],          run = "plugin projects save",                     desc = "Save current project" },
 	{ on = [ "P", "l" ],          run = "plugin projects load",                     desc = "Load project" },

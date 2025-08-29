@@ -1,9 +1,10 @@
 local path_sep = package.config:sub(1, 1)
 
-local get_cwd = ya.sync(function(state)
-    return to_string(cx.active.current.cwd)
-end
-                         )
+local get_cwd = ya.sync(
+                    function(state)
+        return tostring(cx.active.current.cwd)
+    end
+)
 
 local get_state_attr = ya.sync(
                            function(state, attr)
@@ -11,280 +12,154 @@ local get_state_attr = ya.sync(
     end
                        )
 
--- local set_state_attr = ya.sync(
---                            function(state, attr, value)
---         state[attr] = value
---     end
---                        )
-
--- local set_bookmarks = ya.sync(
---                           function(state, path, value)
---         state.bookmarks[path] = value
---     end
---                       )
-
-local sort_cdrs = function(cdrs, key1, key2, reverse)
-    reverse = reverse or false
-    table.sort(
-        cdrs, function(x, y)
-            if x[key1] == nil and y[key1] == nil then
-                return x[key2] < y[key2]
-            elseif x[key1] == nil then
-                return false
-            elseif y[key1] == nil then
-                return true
-            else
-                return x[key1] < y[key1]
-            end
-        end
-    )
-    if reverse then
-        local n = #cdrs
-        for i = 1, math.floor(n / 2) do
-            cdrs[i], cdrs[n - i + 1] = cdrs[n - i + 1], cdrs[i]
-        end
+local set_state_attr = ya.sync(
+                           function(state, attr, value)
+        state[attr] = value
     end
-    return cdrs
-end
+)
 
-local save_to_file = function(cdr_path, cdr)
-    local file = io.open(cdr_path, "w")
+local save_to_file = function(path, records)
+    local file = io.open(path, "w")
     if file == nil then
         return
     end
-    local array = {}
-    for _, item in pairs(cdr) do
-        table.insert(array, item)
+
+    local key_array = {}
+    for key, _ in pairs(records) do
+        table.insert(key_array, key)
     end
-    sort_cdrs(array, "path", "count", true)
-    for _, item in ipairs(array) do
-        file:write(string.format("%s: %s\n", item.path, item.count))
+
+    table.sort(key_array)
+
+    for _, key in ipairs(key_array) do
+        file:write(string.format("%s: %s\n", key, records[key]))
     end
     file:close()
 end
 
--- local fzf_find = function(cli, mb_path)
---     local permit = ya.hide()
---     local cmd = string.format("%s < \"%s\"", cli, mb_path)
---     local handle = io.popen(cmd, "r")
---     local result = ""
---     if handle then
---         -- strip
---         result = string.gsub(handle:read("*all") or "", "^%s*(.-)%s*$", "%1")
---         handle:close()
---     end
---     permit:drop()
---     local tag, path, key = string.match(result or "", "(.-)\t(.-)\t(.*)")
---     return path
--- end
+local fzf_find = function(path, cli)
+    local permit = ya.hide()
+    local cmd = string.format("%s < \"%s\"", cli, path)
+    local handle = io.popen(cmd, "r")
+    local result = ""
 
--- local which_find = function(bookmarks)
---     local cands = {}
---     for path, item in pairs(bookmarks) do
---         if #item.tag ~= 0 then
---             table.insert(
---                 cands, {
---                     desc = item.tag,
---                     on = item.key,
---                     path = item.path
---                 }
---             )
---         end
---     end
---     sort_bookmarks(cands, "on", "desc", false)
---     if #cands == 0 then
---         ya.notify {
---             title = "Bookmarks",
---             content = "Empty bookmarks",
---             timeout = 2,
---             level = "info"
---         }
---         return nil
---     end
---     local idx = ya.which {
---         cands = cands
---     }
---     if idx == nil then
---         return nil
---     end
---     return cands[idx].path
--- end
+    if handle then
+        -- strip
+        result = string.gsub(handle:read("*all") or "", "^%s*(.-)%s*$", "%1")
+        handle:close()
+    end
+    permit:drop()
 
--- local action_jump = function(bookmarks, path, jump_notify)
---     if path == nil then
---         return
---     end
---     local tag = bookmarks[path].tag
---     if string.sub(path, -1) == path_sep then
---         ya.manager_emit("cd", {path})
---     else
---         ya.manager_emit("reveal", {path})
---     end
---     if jump_notify then
---         ya.notify {
---             title = "Bookmarks",
---             content = 'Jump to "' .. tag .. '"',
---             timeout = 2,
---             level = "info"
---         }
---     end
--- end
+    local path, count = string.match(result or "", "(.-): (.*)")
 
--- local generate_key = function(bookmarks)
---     local keys = get_state_attr("keys")
---     local key2rank = get_state_attr("key2rank")
---     local mb = {}
---     for _, item in pairs(bookmarks) do
---         if #item.key == 1 then
---             table.insert(mb, item.key)
---         end
---     end
---     if #mb == 0 then
---         return keys[1]
---     end
---     table.sort(
---         mb, function(a, b)
---             return key2rank[a] < key2rank[b]
---         end
---     )
---     local idx = 1
---     for _, key in ipairs(keys) do
---         if idx > #mb or key2rank[key] < key2rank[mb[idx]] then
---             return key
---         end
---         idx = idx + 1
---     end
---     return nil
--- end
+    return path
+end
 
--- local action_save = function(mb_path, bookmarks, path)
---     if path == nil or #path == 0 then
---         return
---     end
+local action_jump = function(path, cli)
+    local path_2_jump = fzf_find(path, cli)
+    local msg = ""
 
---     local path_obj = bookmarks[path]
---     -- check tag
---     set_bookmarks(
---         path, {
---             path = path,
---             count = 1
---         }
---     )
---     bookmarks = get_state_attr("bookmarks")
---     save_to_file(mb_path, bookmarks)
---     ya.notify {
---         title = "Bookmarks",
---         content = '"' .. path .. '" saved"',
---         timeout = 2,
---         level = "info"
---     }
--- end
+    if path_2_jump == nil then
+        msg = "No path to jump"
+    else
+        ya.manager_emit("cd", {path_2_jump})
+        msg = "Jump to [" .. path_2_jump .. "]"
+    end
+    
+    
+    -- ya.manager_emit("reveal", {path})
 
--- local action_delete = function(mb_path, bookmarks, path)
---     if path == nil then
---         return
---     end
---     local tag = bookmarks[path].tag
---     set_bookmarks(path, nil)
---     bookmarks = get_state_attr("bookmarks")
---     save_to_file(mb_path, bookmarks)
---     ya.notify {
---         title = "Bookmarks",
---         content = '"' .. tag .. '" deleted',
---         timeout = 2,
---         level = "info"
---     }
--- end
+    ya.notify {
+        title = "cd_record",
+        content = msg,
+        timeout = 2,
+        level = "info"
+    }
+end
 
--- local action_delete_all = function(mb_path)
---     local value, event = ya.input(
---                              {
---             title = "Delete all bookmarks? (y/n)",
---             position = {
---                 "top-center",
---                 y = 3,
---                 w = 40
---             }
---         }
---                          )
---     if event ~= 1 then
---         return
---     end
---     if string.lower(value) == "y" then
---         set_state_attr("bookmarks", {})
---         save_to_file(mb_path, {})
---         ya.notify {
---             title = "Bookmarks",
---             content = "All bookmarks deleted",
---             timeout = 2,
---             level = "info"
---         }
---     else
---         ya.notify {
---             title = "Bookmarks",
---             content = "Cancel delete",
---             timeout = 2,
---             level = "info"
---         }
---     end
--- end
+local action_add = function(path)
+    local msg = ""
+    local path_2_record = get_cwd()
+    local records = get_state_attr("records")
+    
+    if path_2_record == nil or #path_2_record == 0 then
+        msg = "No path specified"
+    else
+        if records[path_2_record] == nil then
+            msg = 'Add [' .. path_2_record .. ']'
+            records[path_2_record] = 1
+        else
+            msg = 'Already exists [' .. path_2_record .. ']'
+        end
+    end
+    
+    ya.notify {
+        title = "cd_record",
+        content = msg,
+        timeout = 2,
+        level = "info"
+    }
+
+    set_state_attr("records", records)
+    save_to_file(path, records)
+end
 
 return {
+    -- There're 4 params in state:
+    --      path - the path of cd_record file,de default is ~/.config/cd_record.yaml
+    --      records - the list of recorded paths, if nil is {home = 1}
+    --      cli - the command line interface to use, default is fzf
     setup = function(state, options)
-        state.path = options.path or
-                         (ya.target_family() == "windows" and os.getenv("APPDATA") .. "\\yazi\\config\\cd_record.yaml") or
-                         (os.getenv("HOME") .. "/.config/yazi/cd_record.yaml")
+        local home_path = ""
+
+        -- state.path
+        if ya.target_family() == "windows" then
+            home_path = os.getenv("USERPROFILE")
+            state.path = options.path or (home_path .. "\\.config\\cd_record.yaml")
+        else
+            home_path = os.getenv("HOME")
+            state.path = options.path or (home_path .. "/.config/cd_record.yaml")
+        end
+        
+        -- state.cli
         state.cli = options.cli or "fzf"
+        -- state.jump_notify
         state.jump_notify = options.jump_notify and true
-        -- init the keys
-        local keys = options.keys or "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        state.keys = {}
-        state.key2rank = {}
-        for i = 1, #keys do
-            local char = keys:sub(i, i)
-            table.insert(state.keys, char)
-            state.key2rank[char] = i
-        end
 
-        -- init the bookmarks
-        local bookmarks = {}
-        for _, item in pairs(options.bookmarks or {}) do
-            bookmarks[item.path] = {
-                path = item.path,
-                count = item.count
-            }
-        end
-        -- load the config
+        -- load the cd_record file
         local file, err = io.open(state.path, "r")
-        if file == nil then
-            file = io.open(state.path, "w")
-            file:close()
-            file = io.open(state.path, "r")
-        end
+        local records = {}
 
-        for line in file:lines() do
-            local path, count = string.match(line, "(.-): (.*)")
-            if path then
-                bookmarks[path] = {
-                    path = path,
-                    count = tonumber(count)
-                }
+        if file == nil then
+            file:close()
+            file = io.open(state.path, "w")
+            records = {home_path = 1}
+            save_to_file(state.path, records)
+        else
+            for line in file:lines() do
+                local path, count = string.match(line, "(.-): (.*)")
+                if path then
+                    records[path] = tonumber(count)
+                end
             end
         end
         file:close()
-        -- create bookmarks file to enable fzf
-        save_to_file(state.path, bookmarks)
-        state.bookmarks = bookmarks
+
+        state.records = records
     end,
+
+
     entry = function(self, jobs)
         local action = jobs.args[1]
         if not action then
             return
         end
-        local mb_path, cli, bookmarks, jump_notify = get_state_attr("path"), get_state_attr("cli"),
-                                                     get_state_attr("bookmarks"), get_state_attr("jump_notify")
-        if action == "save" then
-            action_save(mb_path, bookmarks, get_cwd())
+        local path, cli = get_state_attr("path"), get_state_attr("cli")
+
+        if action == "add" then
+            action_add(path)
+        elseif action == "jump" then
+            action_jump(path, cli)
         end
     end
 }
