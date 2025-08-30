@@ -40,15 +40,15 @@ def record_path(abs_path: str):
     if os.name == 'nt':
         '''Since the server path starts with \\\\, so path should be contained in \\'''
         abs_path = abs_path.replace('/', '\\')
-        if abs_path[-1] == '\\':
-            abs_path = abs_path[:-1]
+        if abs_path[-1] != '\\':
+            abs_path += '\\'
         if abs_path not in cd_record.keys():
             cd_record[abs_path] = 0
         cd_record[abs_path] += 1
     else:
         abs_path = abs_path.strip().replace('\\', '/')
-        if abs_path[-1] == '/':
-            abs_path = abs_path[:-1]
+        if abs_path[-1] != '/':
+            abs_path += '/'
         if abs_path not in cd_record.keys():
             cd_record[abs_path] = 0
         cd_record[abs_path] += 1
