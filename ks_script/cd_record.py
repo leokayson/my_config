@@ -37,21 +37,15 @@ def get_cwd():
 
 def record_path(abs_path: str):
     '''Record the abs path to CDR_FILE. Use abs path to avoid duplicate'''
-    if os.name == 'nt':
-        '''Since the server path starts with \\\\, so path should be contained in \\'''
-        abs_path = abs_path.replace('/', '\\')
-        if abs_path[-1] != '\\':
-            abs_path += '\\'
-        if abs_path not in cd_record.keys():
-            cd_record[abs_path] = 0
-        cd_record[abs_path] += 1
-    else:
-        abs_path = abs_path.strip().replace('\\', '/')
-        if abs_path[-1] != '/':
-            abs_path += '/'
-        if abs_path not in cd_record.keys():
-            cd_record[abs_path] = 0
-        cd_record[abs_path] += 1
+    path_sep = '\\' if os.name == 'nt' else '/'
+    path_against = '/' if os.name == 'nt' else '\\'
+    '''Since the server path starts with \\\\, so path should be contained in \\'''
+    abs_path = abs_path.replace(path_against, path_sep)
+    if abs_path[-1] != path_sep:
+        abs_path += path_sep
+    if abs_path not in cd_record.keys():
+        cd_record[abs_path] = 0
+    cd_record[abs_path] += 1
 
 if args.record:
     record_path(get_cwd())

@@ -62,7 +62,7 @@ local action_jump = function(path, cli)
     if path_2_jump == nil then
         msg = "No path to jump"
     else
-        -- ya.manager_emit("cd", {path_2_jump})
+        ya.manager_emit("cd", {path_2_jump})
         msg = "Jump to [" .. path_2_jump .. "]"
     end
     
