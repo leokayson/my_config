@@ -18,6 +18,15 @@ local set_state_attr = ya.sync(
     end
 )
 
+local ya_notify_info = function(msg)
+    ya.notify {
+        title = "cd_record",
+        content = msg,
+        timeout = 2,
+        level = "info"
+    }
+end
+
 local save_to_file = function(path, records)
     local file = io.open(path, "w")
     if file == nil then
@@ -66,12 +75,7 @@ local action_jump = function(path, cli)
         msg = "Jump to [" .. path_2_jump .. "]"
     end
     
-    ya.notify {
-        title = "cd_record",
-        content = msg,
-        timeout = 2,
-        level = "info"
-    }
+    ya_notify_info(msg)
 end
 
 local action_add = function(path)
@@ -90,12 +94,7 @@ local action_add = function(path)
         end
     end
     
-    ya.notify {
-        title = "cd_record",
-        content = msg,
-        timeout = 2,
-        level = "info"
-    }
+    ya_notify_info(msg)
 
     set_state_attr("records", records)
     save_to_file(path, records)

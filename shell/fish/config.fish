@@ -86,9 +86,14 @@ alias y 'yazi'
 # end
 
 function f
-    cd "$argv[2]"
-    set selected (fzf -m)
     set CDR_script ~/env/ks_script/cd_record.py
+    # -m means multi
+    if test "$argv[2]" == "z" -o test "$argv[2]" == "r"
+        set selected (python $CDR_script -c)
+    else
+        cd "$argv[2]"
+        set selected (fzf -m)
+    end
 
     switch $argv[1]
         case cd

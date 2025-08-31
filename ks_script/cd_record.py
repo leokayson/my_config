@@ -21,10 +21,10 @@ except Exception as e:
     exit(-1)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-r', '--record',             action='store_true', help='cd and then record')
-parser.add_argument('-c', '--cd_in_record',       action='store_true', help='cd to a dir in record')
-parser.add_argument('-i', '--cd_interactive',     action='store_true', help='cd to a dir in record')
-parser.add_argument('-gc', '--garbage_collection', action='store_true', help='collect too old records')
+parser.add_argument('-r', '--record',               action='store_true', help='cd and then record')
+parser.add_argument('-c', '--choose_record',        action='store_true', help='choose a record')
+parser.add_argument('-i', '--cd_interactive',       action='store_true', help='cd interactive')
+parser.add_argument('-gc', '--garbage_collection',  action='store_true', help='collect too old records')
 args = parser.parse_args()
 
 def get_cwd():
@@ -50,7 +50,7 @@ def record_path(abs_path: str):
 if args.record:
     record_path(get_cwd())
     
-if args.cd_in_record:
+if args.choose_record:
     proc = subprocess.Popen(
         'fzf',
         stdin=subprocess.PIPE,

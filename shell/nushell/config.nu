@@ -80,10 +80,15 @@ alias y = yazi
 # }
 
 def --env f [cmd: string, path: string] {
-    cd $"($path)"
-    let selected = (fzf -m)
     let CDR_script = $'($env.HOME)/env/ks_script/cd_record.py'
-    
+
+    let selected = if ( $path == "z" or $path == "r" ) {
+        python $CDR_script -c
+    } else {
+        cd $"($path)"
+        fzf -m
+    }
+
     if ( $cmd == "cd" ) {
         if ( $selected != "" ) {
             if ( (($selected) | path type) == 'dir') {
