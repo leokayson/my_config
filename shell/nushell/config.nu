@@ -45,19 +45,24 @@ alias llt    = ll --total-size
 alias llns   = ll --no-symlink
 alias lld    = fd -l -d 1
 alias btm    = btm --config_location ~/.config/btm.toml
-alias fzff   = fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}"
-alias fzfd   = fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}"
-alias fzfp   = fzfd | path expand
 
 alias cd1    = cd ../
 alias cd2    = cd ../../
 alias cd3    = cd ../../../
 
+def fzff [] {
+    fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}" | path expand
+}
+def fzfd [] {
+    fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}" | path expand
+}
+def fzfp [] {
+    fzf | path expand
+}
 def ga_cnm [] {
     git add .
     git cnm
 }  
-    
 def grd [] {
     git rh
     git clean -fd

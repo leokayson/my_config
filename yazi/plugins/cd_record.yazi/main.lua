@@ -2,7 +2,12 @@ local path_sep = package.config:sub(1, 1)
 
 local get_cwd = ya.sync(
                     function(state)
-        return tostring(cx.active.current.cwd)
+        local path
+        path = tostring(cx.active.current.cwd)
+        if string.sub(path, -1) ~= path_sep then
+            path = path .. path_sep
+        end
+        return path
     end
 )
 

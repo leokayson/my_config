@@ -59,9 +59,9 @@ if status is-interactive
     alias llns   'll --no-symlink'
     alias lld    'fd -l -d 1'
     alias btm    'btm --config_location ~/.config/btm.toml'
-    alias fzff   'fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}"'
-    alias fzfd   'fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}"'
-    alias fzfp   'realpath (fzfd)'
+    alias fzff   'realpath(fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}")'
+    alias fzfd   'realpath(fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}")'
+    alias fzfp   'realpath (fzf)'
 
     alias cd1    'cd ../'
     alias cd2    'cd ../../'
