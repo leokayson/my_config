@@ -25,14 +25,17 @@ local keys = { -- misc/useful --
 {key = "q", mods = "CTRL", action = act.CloseCurrentTab({confirm = false})}, -- tabs: navigation
 {key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1)},
 {key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1)},
+{key = "PageUp", mods = mod.SUPER_REV, action = act.MoveTabRelative(-1)},
+{key = "PageDown", mods = mod.SUPER_REV, action = act.MoveTabRelative(1)},
 
 -- Clears the scrollback and viewport leaving the prompt line the new first line.
-{key = 'c', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, -- window --
+{key = 'c', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport'}, 
 -- spawn windows
 {key = "\\", mods = mod.SUPER_REV, action = act.SplitVertical({domain = "CurrentPaneDomain"})},
 {key = "-", mods = mod.SUPER_REV, action = act.SplitHorizontal({domain = "CurrentPaneDomain"})},
-{key = "0", mods = mod.SUPER_REV, action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' }})},
-{key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = true})}, -- panes: navigation
+{key = "t", mods = "CTRL", action = act.SpawnTab 'CurrentPaneDomain'},
+
+{key = "w", mods = mod.SUPER, action = act.CloseCurrentPane({confirm = false})}, -- panes: navigation
 {key = "w", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Up")},
 {key = "s", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Down")},
 {key = "a", mods = mod.SUPER_REV, action = act.ActivatePaneDirection("Left")},
@@ -41,6 +44,8 @@ local keys = { -- misc/useful --
 {key = "k", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Down", 1})},
 {key = "j", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Left", 1})},
 {key = "l", mods = mod.SUPER_REV, action = act.AdjustPaneSize({"Right", 1})},
+
+{key = 'x', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
 
 -- fonts: resize
 {key = "=", mods = mod.SUPER, action = act.IncreaseFontSize},

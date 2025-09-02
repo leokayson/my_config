@@ -107,38 +107,12 @@ def --env f [cmd: string, path: string] {
             cd -
             print no enter
         }
-    } else if ( $cmd == "ex" ) {
-        if ( (($selected) | path type) == 'dir') {
-            explorer $"($selected)"
-        } else {
-            explorer $"(($selected) | path dirname)"
-        }
-    } else if ( $cmd == "code" ) {
-        if ( $selected != "" ) {
-            code $"($selected)"
-        } 
-    } else if ( $cmd == "coder" ) {
-        if ( $selected != "" ) {
-            code -r $"($selected)"
-        } 
-    } else if ( $cmd == "nvim" ) {
-        if ( $selected != "" ) {
-            nvim $"($selected)"
-        }
-    } else if ( $cmd == "hx" ) {
-        if ( $selected != "" ) {
-            hx $"($selected)"
-        }
-    } else if ( $cmd == "mi" ) {
-        if ( $selected != "" ) {
-            micro $"($selected)"
-        }
     } else {
-        print $"no such cmd: ($cmd)"
-    }
+        ^$cmd $selected
 
-    if ( $cmd != "cd" and $path != "." ) {
-        cd -
+        if ($path != "." ) {
+            cd -
+        }
     }
 }
 

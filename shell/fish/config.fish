@@ -59,8 +59,8 @@ if status is-interactive
     alias llns   'll --no-symlink'
     alias lld    'fd -l -d 1'
     alias btm    'btm --config_location ~/.config/btm.toml'
-    alias fzff   'realpath(fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}")'
-    alias fzfd   'realpath(fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}")'
+    alias fzff   'realpath (fd -t f | fzf --preview-window "up" --preview "bat -f --style=full {}")'
+    alias fzfd   'realpath (fd -t d | fzf --preview-window "up" --preview "lsd -Al --config-file ~/.config/lsd.yaml --tree --depth 1 {}")'
     alias fzfp   'realpath (fzf)'
 
     alias cd1    'cd ../'
@@ -88,53 +88,32 @@ alias y 'yazi'
 function f
     set CDR_script ~/env/ks_script/cd_record.py
     # -m means multi
-    if test "$argv[2]" == "z" -o test "$argv[2]" == "r"
+    if test "$argv[2]" = "z" -o "$argv[2]" = "r"
         set selected (python $CDR_script -c)
     else
         cd "$argv[2]"
         set selected (fzf -m)
     end
 
-    switch $argv[1]
-        case cd
-            if test "$selected" != ""
-                if test -d $selected
-                    cd $selected
-                else
-                    cd (path dirname selected)
-                end
-                python $CDR_script -r
-                echo "enter: $pwd"
+    if test "$argv[1]" = "cd"
+        if test "$selected" != ""
+            if test -d $selected
+                cd $selected
             else
-                cd -
-                echo "no enter"
+                cd (path dirname selected)
             end
-        case code
-            if test "$selected" != ""
-                code $selected
-            end
-        case coder
-            if test "$selected" != ""
-                code -r $selected
-            end
-        case nvim
-            if test "$selected" != ""
-                nvim $selected
-            end
-        case hx
-            if test "$selected" != ""
-                hx $selected
-            end
-        case mi
-            if test "$selected" != ""
-                micro $selected
-            end
-        case "*"
-            echo "no this cmd: $argv[1]"
-    end
+            python $CDR_script -r
+            echo "enter: $pwd"
+        else
+            cd -
+            echo "no enter"
+        end
+    else
+        $argv[1] $selected
 
-    if test "$argv[1]" != "cd" -a "$argv[2]" != "."
-        cd -
+        if test "$argv[2]" != "."
+            cd -
+        end
     end
 end
 
