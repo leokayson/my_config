@@ -8,6 +8,8 @@ I mainly switch my dev env between linux and windows, so cross-platform is much 
 
 > sudo apt install -y build-essential libbz2-dev ffmpeg 7zip jq poppler-utils fzf imagemagick fastfetch
 >
+> sudo pacman -S yazi ffmpeg 7zip jq poppler fzf zoxide resvg imagemagick
+>
 > winget install Gyan.FFmpeg 7zip.7zip jqlang.jq junegunn.fzf ImageMagick.ImageMagick
 
 ## 2.2 Rust

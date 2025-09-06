@@ -74,3 +74,5 @@
 	rebase = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = /home/kswu/.config/my_config

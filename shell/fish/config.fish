@@ -187,3 +187,15 @@ function cmdh
             end
     end
 end
+
+function proxy_on
+    set PROXY 'http://127.0.0.1:12688'
+    set -gx http_proxy $PROXY
+    set -gx https_proxy $PROXY
+    echo "proxy on {$PROXY}"
+end
+
+function proxy_off
+    set -gx http_proxy
+    set -gx https_proxy
+end
