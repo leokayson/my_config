@@ -137,11 +137,11 @@ def set_wm_config():
             os.path.join(my_cfg_home, "wm", "win", "yasb"),
             os.path.join(home, ".config", "yasb"),
         )
-    # else:
-    #     establish_soft_link(
-    #         os.path.join(my_cfg_home, "wm", "linux", "hyprland", "Keybinds.conf"),
-    #         os.path.join(home, ".config", "hypr", "configs", "Keybinds.conf"),
-    #     )
+    else:
+        establish_soft_link(
+            os.path.join(my_cfg_home, "wm", "linux", "hypr"),
+            os.path.join(home, ".config", "hypr"),
+        )
 
 
 def set_script():

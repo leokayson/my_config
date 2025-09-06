@@ -5,7 +5,6 @@ if status is-interactive
     set -gx PATH $PATH ~/env/bin
     set -gx PATH $PATH ~/env/ks_script
     set -gx PATH $PATH ~/env/usr/bin
-    set -gx PATH $PATH ~/.config/helix/lsp/bin
 
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/lib
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/env/usr/lib
